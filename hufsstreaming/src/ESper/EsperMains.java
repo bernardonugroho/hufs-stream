@@ -9,7 +9,7 @@ public class EsperMains {
 	public static void main(String[] args){
 	
 		Configuration config = new Configuration();
-		config.addEventTypeAutoName("ProjectEX2");
+		config.addEventTypeAutoName("ESper");
 		
 		EPServiceProvider epService = EPServiceProviderManager.getDefaultProvider(config);
 		String epl = "select * from FactoryLine output all every 2 seconds";
