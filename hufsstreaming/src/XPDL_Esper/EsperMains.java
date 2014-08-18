@@ -9,7 +9,8 @@ import com.espertech.esper.client.EPStatement;
 
 
 public class EsperMains {
-	public static void main(String[] args){
+	//public static void main(String[] args){
+	public static void EsperMains(){
 		Configuration config = new Configuration();
 		config.addEventTypeAutoName("XPDL_Esper");
 		
