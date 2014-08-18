@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="esp" class="XPDL_Esper.Hello"></jsp:useBean>
+<jsp:useBean id="esp" class="XPDL_Esper.EsperMains"></jsp:useBean>
 <%
-esp.Hello();
+esp.EsperMains();
 %>
 <input type="button" value="OK">
 </body>
