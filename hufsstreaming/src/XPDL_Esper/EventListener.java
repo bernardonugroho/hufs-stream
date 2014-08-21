@@ -13,6 +13,7 @@ public class EventListener implements UpdateListener{
     	
     	for(int i=0; i<newEvents.length; i++){
     		event[i] = newEvents[i];
+    		//System.out.println(event[i].get("time"));
     	}
 		
 		

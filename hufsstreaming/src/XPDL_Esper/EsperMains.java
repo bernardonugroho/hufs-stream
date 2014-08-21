@@ -9,13 +9,14 @@ import com.espertech.esper.client.EPStatement;
 
 
 public class EsperMains {
-	//public static void main(String[] args){
-	public static void EsperMains(){
+	public static void main(String[] args){
+
+	//public static void EsperMains(){
 		Configuration config = new Configuration();
 		config.addEventTypeAutoName("XPDL_Esper");
 		
 		EPServiceProvider epService = EPServiceProviderManager.getDefaultProvider(config);
-		String epl = "select * from FactoryLine output all every 2 seconds";
+		String epl = "select * from FactoryLine ";//output all every 2 seconds
 		EPStatement statement = epService.getEPAdministrator().createEPL(epl);
 		
 		EventListener listener = new EventListener();
