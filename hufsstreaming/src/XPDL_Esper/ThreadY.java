@@ -14,6 +14,7 @@ import com.google.common.collect.Multimap;
 
 public class ThreadY implements Runnable{
 	private EPServiceProvider epService;
+//	private StringBuilder notifContainer;
 	
 	Multimap<String, String> Activity = ArrayListMultimap.create();
 	Multimap<String, String> ActivityTime = ArrayListMultimap.create();
@@ -31,8 +32,9 @@ public class ThreadY implements Runnable{
 	ArrayList StartPoint = new ArrayList();
 	ArrayList CheckDuplicationPID = new ArrayList();
 	
-	public ThreadY(EPServiceProvider epService){
+	public ThreadY(EPServiceProvider epService/*, StringBuilder notifContainer*/){
 		this.epService = epService;
+//		this.notifContainer = notifContainer;
 		
 		SAXParserData SAXParsing = new SAXParserData();
 		
@@ -122,6 +124,10 @@ public class ThreadY implements Runnable{
 					}
 					
 					FactoryLine event = new FactoryLine(RandomProductID, SelectProcess, SelectMachine, Time);
+//					notifContainer.append(event.getProductID()).append(" | ");
+//					notifContainer.append(event.getProcess()).append(" | ");
+//					notifContainer.append(event.getMachine()).append(" | ");
+//					notifContainer.append(event.getTime()).append("\n +!+!");
 					epService.getEPRuntime().sendEvent(event);
 					
 				}
