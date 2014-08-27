@@ -137,11 +137,11 @@ try{
           title: 'My Daily Activities'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
   </body>
 </html>

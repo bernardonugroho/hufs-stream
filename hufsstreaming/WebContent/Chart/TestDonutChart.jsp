@@ -135,7 +135,7 @@ try{
 
         var options = {
           title: 'My Daily Activities',
-       	piehole: 0.4,
+       	pieHole: 0.4,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
