@@ -196,7 +196,7 @@ try{
         var data = google.visualization.arrayToDataTable(datajs);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'My Daily CaseID'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
