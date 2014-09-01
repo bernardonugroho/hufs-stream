@@ -44,8 +44,7 @@ public class EventListener implements UpdateListener{
     		event[i] = newEvents[i];
     	}
 		
-		
-		//System.out.println(event1);
+    	//System.out.println(event1);
 		
 		for(int i =0; i<newEvents.length; i++){
 			
@@ -83,6 +82,8 @@ public class EventListener implements UpdateListener{
 		
 		}
 		
+    	
 	}
-
+	
+	
 
