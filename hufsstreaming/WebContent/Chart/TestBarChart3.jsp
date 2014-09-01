@@ -70,26 +70,25 @@ try{
 	for (String temp : name) {
 		Integer count = map.get(temp);
 		map.put(temp, (count == null) ? 1 : count + 1);
-	}
+		}
 	printMap(map);
  
 	
 	
 	//count3
- Map<String, Integer> treeMap = new TreeMap<String, Integer>(map);
+	Map<String, Integer> treeMap = new TreeMap<String, Integer>(map);
 	printMap(treeMap);
 	
 	
 	
 	
 	
-	public static void printMap(Map<String, Integer> map){
-		 
-		for (Map.Entry<String, Integer> entry : map.entrySet()) {
-			System.out.println("Key : " + entry.getKey() + " Value : "
-				+ entry.getValue());
-		*/
-
+	printMap(Map<String, Integer> map){		 
+		for (Map.Entry<String, Integer> entry : map.entrySet()) 
+		{
+			System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
+		}
+	*/	
   
 
  	
