@@ -38,8 +38,8 @@ try{
 
  	
  	
- 	//Find the activity
- 	//SELECT distinct activity from manuf
+ 	//Find the machine
+ 	//SELECT distinct machine from manuf
  	String query_str1 = "select distinct machine from bpi.manuf";
 	ResultSet rs1=stmt.executeQuery(query_str1);
 	
