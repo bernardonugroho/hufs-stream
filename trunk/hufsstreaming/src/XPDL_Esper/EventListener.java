@@ -52,18 +52,22 @@ public class EventListener implements UpdateListener{
 		String activity = (String) event[i].get("process");
 		String machine = (String) event[i].get("machine");
 		String time = (String) event[i].get("time");
+		int qty = (int)(Math.random() * 1000);
+		while (qty==0)
+			qty = (int)(Math.random() * 1000);
 		
-		String query_str = "insert into bpi.manuf (caseid, activity, machine, time) values ('"+caseid+"','"+activity+"', '"+machine+"','"+time+"')";
+		String query_str = "insert into bpi.manuf (caseid, activity, machine, time, quantity) values ('"+caseid+"','"+activity+"', '"+machine+"','"+time+"',"+qty+")";
 		
 		message = stmt.executeUpdate(query_str);
 
-		
+		String qqq = Integer.toString(qty);
 		
 		pr.append(event[i].get("process"));
 		String out = " -- productID : "+event[i].get("productID")+
 				"    process : "+event[i].get("process") + 
 				"	 Machine : "+event[i].get("machine") + 
-				"    Time : " + event[i].get("time");
+				"    Time : " + event[i].get("time") +
+				"    QTY : " + qty;
 //		System.out.println("productID : "+event[i].get("productID")+
 //							"    process : "+event[i].get("process") + 
 //							"	 Machine : "+event[i].get("machine") + 
