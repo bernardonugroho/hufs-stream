@@ -12,14 +12,16 @@
 <body>
 	
 	<%
-		String BeforePath = request.getParameter("file");
 		
+		String BeforePath = request.getParameter("file");
+		System.out.println(BeforePath);
 	%>
 	
 	<input type="button" value="OK">
 	<jsp:useBean id="esp2" class="XPDL_Esper.EsperMains"></jsp:useBean>
 	
 	<%
+	
 	esp2.EsperMains(BeforePath);
 
 	Connection conn = null; 
