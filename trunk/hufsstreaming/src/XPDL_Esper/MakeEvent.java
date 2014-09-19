@@ -55,6 +55,8 @@ public class MakeEvent {
 		StartPoint = SAXParsing.getStartPoint();
 		
 		ProductID = RandomProductID;
+		
+		
 	}
 
 	public FactoryLine getStart() {
@@ -153,7 +155,8 @@ public class MakeEvent {
 			}
 
 		}
-
+		
+		
 		// System.out.println(SelectProcess);
 		Set<String> AT = ActivityTime.keySet();
 
@@ -197,7 +200,9 @@ public class MakeEvent {
 					break;
 				}
 			}
-
+			
+			System.out.println(SelectProcess);
+			
 			Set<String> Mach = Machine.keySet();
 			for (String MachKey : Mach) {
 				if (MachKey.equals(SelectMachine)) {

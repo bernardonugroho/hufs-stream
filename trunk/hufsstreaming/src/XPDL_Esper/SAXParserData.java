@@ -37,6 +37,7 @@ public class SAXParserData {
 			SAXParserFactory parserFactor = SAXParserFactory.newInstance();
 			SAXParser parser = parserFactor.newSAXParser();
 			SAXHandler handler = new SAXHandler();
+			System.out.println(Path);
 			parser.parse(Path, handler);
 			// parser.parse(ClassLoader.getSystemResourceAsStream("xml/employee.xml"),
 			// handler);
