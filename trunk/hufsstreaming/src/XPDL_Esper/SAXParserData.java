@@ -14,6 +14,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public class SAXParserData {
+	String Path;
 	
 	ArrayList<String> TotalTimeList = new ArrayList();
 	ArrayList<String> ProcessTimeList = new ArrayList();
@@ -28,13 +29,17 @@ public class SAXParserData {
 	Multimap<String, String> Machine = ArrayListMultimap.create();
 	Multimap<String, String> Process = ArrayListMultimap.create();
 	
+	public SAXParserData(String Path){
+		this.Path = Path;
+	}
+	
 	public void ReadData() {
 
 		try {
 			SAXParserFactory parserFactor = SAXParserFactory.newInstance();
 			SAXParser parser = parserFactor.newSAXParser();
 			SAXHandler handler = new SAXHandler();
-			parser.parse("C:\\Users\\WS\\Desktop\\Diagram 2.xpdl ", handler);
+			parser.parse(Path, handler);
 			// parser.parse(ClassLoader.getSystemResourceAsStream("xml/employee.xml"),
 			// handler);
 
