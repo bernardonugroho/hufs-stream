@@ -41,7 +41,7 @@
 		
 			<div style="text-algin:center"><h3>File Upload</h3></div>
 			Select a file to upload:
-			<form action="index.jsp" method="post">
+			<form action="output.jsp" method="post">
 				<input type="file" name="file" size="50" /> <br />  <br />
 				<input type="submit" value="Upload File" />
 			</form>
