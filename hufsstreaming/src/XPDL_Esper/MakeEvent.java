@@ -42,7 +42,7 @@ public class MakeEvent {
 	public MakeEvent(int RandomProductID, String Path) {
 		this.Path = Path;
 		
-		SAXParserData SAXParsing = new SAXParserData();
+		SAXParserData SAXParsing = new SAXParserData(Path);
 
 		SAXParsing.ReadData();
 
