@@ -15,7 +15,10 @@ import com.google.common.collect.Multimap;
 
 public class SAXParserData {
 	
-	ArrayList<String> ActivityTimeList = new ArrayList();
+	ArrayList<String> TotalTimeList = new ArrayList();
+	ArrayList<String> ProcessTimeList = new ArrayList();
+	ArrayList<String> MaxTimeList = new ArrayList();
+	ArrayList<String> MinTimeList = new ArrayList();
 	ArrayList StartPoint = new ArrayList();
 
 	Multimap<String, String> Activity = ArrayListMultimap.create();
@@ -25,20 +28,13 @@ public class SAXParserData {
 	Multimap<String, String> Machine = ArrayListMultimap.create();
 	Multimap<String, String> Process = ArrayListMultimap.create();
 	
-	String Path;
-	
-	public SAXParserData(String Path){
-		this.Path = Path;
-	}
-	
 	public void ReadData() {
 
 		try {
 			SAXParserFactory parserFactor = SAXParserFactory.newInstance();
 			SAXParser parser = parserFactor.newSAXParser();
 			SAXHandler handler = new SAXHandler();
-			System.out.println(Path);
-			parser.parse(Path, handler);
+			parser.parse("C:\\Users\\WS\\Desktop\\Diagram 2.xpdl ", handler);
 			// parser.parse(ClassLoader.getSystemResourceAsStream("xml/employee.xml"),
 			// handler);
 
@@ -46,18 +42,39 @@ public class SAXParserData {
 			
 
 			for (Time emp : handler.TimeList) {
-				ActivityTimeList.add(emp.ActivityTime);
+				TotalTimeList.add(emp.ActivityTime);
+				
 			}
-
+						
+			// ProcessTime, MaxTime, MinTime input Data (parsing) from XPDL
+			for(int i=0; i<TotalTimeList.size()-2;i++){
+				int j = i + 1;
+				int k = i + 2;
+				
+				ProcessTimeList.add(TotalTimeList.get(i));
+				MinTimeList.add(TotalTimeList.get(j));
+				MaxTimeList.add(TotalTimeList.get(k));
+				
+				i = k;
+			}
+			
+			//System.out.println(ProcessTimeList);
+			//System.out.println(MinTimeList);
+			//System.out.println(MaxTimeList);
+			
 			int i = 0;
 			for (Activity emp : handler.ActivityList) {
 				Activity.put(emp.Id, emp.act);
 				if (!emp.act.equalsIgnoreCase("Start") && !emp.act.equalsIgnoreCase("End")) {
 					ActivityMachine.putAll(emp.Id, emp.machine);
-					ActivityTime.put(emp.Id, ActivityTimeList.get(i));
+					ActivityTime.put(emp.Id, ProcessTimeList.get(i));
+					ActivityTime.put(emp.Id, MinTimeList.get(i));
+					ActivityTime.put(emp.Id, MaxTimeList.get(i));
 					i++;
 				}
 			}
+			
+			//System.out.println(ActivityTime);
 			
 			for (Machine emp : handler.MachineList) {
 				Machine.put(emp.Id, emp.Machine);
@@ -123,7 +140,8 @@ public class SAXParserData {
 		Transition Tran = null;
 
 		String content = null;
-		String NullCheck;
+		String ProcessTime;
+		String MaxTime, MinTime;
 
 		@Override
 		// Triggered when the start of tag is found.
@@ -143,11 +161,11 @@ public class SAXParserData {
 				mach.Machine = attributes.getValue("Name");
 				break;
 			case "ExtendedAttribute":
-				NullCheck = attributes.getValue("Value");
-
-				if (NullCheck != null) {
+				ProcessTime = attributes.getValue("Value");
+				
+				if (ProcessTime != null) {
 					ProcTime = new Time();
-					ProcTime.ActivityTime = NullCheck;
+					ProcTime.ActivityTime = ProcessTime;
 				}
 				break;
 			case "Transition":
@@ -175,7 +193,7 @@ public class SAXParserData {
 				MachineList.add(mach);
 				break;
 			case "ExtendedAttribute":
-				if (NullCheck != null) {
+				if (ProcessTime != null) {
 					TimeList.add(ProcTime);
 				}
 				break;

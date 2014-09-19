@@ -25,7 +25,8 @@ public class MakeEvent {
 	int ProductID;
 	String SelectProcess;
 	String SelectMachine;
-	String ProcessTime;
+	String ProcessTime, MinTime, MaxTime;
+	
 	
 	static double PT;
 	static String CheckMachine;
@@ -41,7 +42,7 @@ public class MakeEvent {
 	public MakeEvent(int RandomProductID, String Path) {
 		this.Path = Path;
 		
-		SAXParserData SAXParsing = new SAXParserData(Path);
+		SAXParserData SAXParsing = new SAXParserData();
 
 		SAXParsing.ReadData();
 
@@ -168,7 +169,16 @@ public class MakeEvent {
 				ATList.addAll(ActivityTime.get(key));
 				//System.out.println("Time " + ATList.get(0));
 				ProcessTime = (String) ATList.get(0);
-				PT = Double.parseDouble(ProcessTime);
+				MinTime = (String) ATList.get(1);
+				MaxTime = (String) ATList.get(2);
+				
+				double PTime = Double.parseDouble(ProcessTime);
+				double MinT = Double.parseDouble(MinTime);
+				double MaxT = Double.parseDouble(MaxTime);
+				double FinalTime = (Math.floor(Math.random() 
+			             * (MaxT - MinT + 1)) + MinT);
+				System.out.println(FinalTime);
+				PT = FinalTime;
 				break;
 			}
 		}
