@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR" import="java.sql.*, java.util.*,java.util.ArrayList.*"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -379,86 +381,270 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                
+                </div>
+                <div class="col-lg-3">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Line Chart Example
+                            Select option
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart"></div>
+                            
+                            Select Activity or Machine
+                            <input type="submit" value="Activity" />
+                            <input type="submit" value="Machine"  /><br>
+                            
+                            <br>Select Frequency or time<br>
+                           <input type="submit" value="Frequency"/>
+                           <input type="submit" value="time"/><br>
+                           
+                                <!-- <div class="flot-chart-content" id="flot-pie-chart"></div> -->
+                                <!-- combo box selection activity -->
+                                <!-- data connection -->
+               	<script>
+	  function Send(frm){
+		  frm.action="01_BasicChart.jsp";
+		  frm.method="post";
+		  frm.submit();
+	  }
+	  </script>
+                <% 
+  
+  Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+ArrayList<String> name = new ArrayList<String>();
+try{
+
+  
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	
+	//data initialization
+	if (data.length() > 0) {
+   data.append(',');
+}
+	data.append('[').append("'Activity & Machine'").append(',').append("'Frequency'").append(']');
+	//out.println("******* "+ data);
+	  // select activity input to graph
+  String activity=request.getParameter("activity");
+  //System.out.println(activity+"가 선택되었습니다");
+  //out.println(activity+"가 선택되었습니다");
+  
+   String q = "select count(*), activity, machine from bpi.manuf where activity = '"+activity+"' group by activity, machine";
+	ResultSet rs3=stmt.executeQuery(q);
+	while(rs3.next())
+	{
+		//out.println(" This is count "+rs3.getString(1));
+		//out.println(" between "+rs3.getString(3));
+		//out.println(" and "+activity + " /////////// ");%><br><%
+		data.append(',').append('[').append("'").append(activity).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+	}
+	out.println();
+	rs3.close();
+	//out.println(" data : --- "+data.toString());
+
+		//Find the activity
+	 	//SELECT distinct activity from manuf
+	 	String query_str1 = "select distinct activity from bpi.manuf";
+		ResultSet rs1=stmt.executeQuery(query_str1);
+		int k=0;
+		%>
+		
+                                <form name="act1">
+									<select name="activity" onchange="Send(act1)">
+									<%
+									while(rs1.next())
+									{
+										name.add(rs1.getString("activity"));
+										//out.println("arraylist : "+name.get(k));
+										if(activity==null){
+											%>
+											<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+											<%
+										}
+										if(activity!=null){
+											if(activity.equals(rs1.getString("activity"))){
+												%>
+												<option value="<%=name.get(k)%>" selected><%=name.get(k) %></option>
+												<%	
+											}
+											else{
+												%>
+												<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+												<%
+											}
+										}
+										k++;
+									}
+									rs1.close();
+									%>
+									</select>
+									</form>
+                                <!--  -->
                             </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-                <div class="col-lg-6">
+                
+                
+   
+                <%
+		//-------------------------
+	
+	     stmt.close();
+	     stmt1.close();
+	     conn.close();
+		
+		}catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+
+        %>
+               
+</div>
+                <!--  -->
+                
+                
+                
+                <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Pie Chart Example
+                            Chart
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-pie-chart"></div>
+                            <script> function Frequency() {</script> Choose the Chart
+                           
+                           
+                           
+                            <form action="01_BasicChart.jsp">
+                            
+                        
+                            
+							<!-- <input type="Submit" value="Bar Chart" name="act">
+							<input type="submit" value="Pie Chart"name="act"/>
+                           <input type="submit" value="Line Chart" name="act"/> -->
+                           
+                           
+                           
+                           <input type="submit" value="Bar Chart" onclick="MyBar()"/> 
+                          <input type="button" value="Pie Chart" onclick="MyPie()"/>
+                           <input type="submit" value="Line Chart" onclick="MyLine()"/>
+							</form>
+                           
+                            
+                      <!--   <input type="submit" value="Bar Chart" onclick="MyBar()"/> 
+                          <input type="button" value="Pie Chart" onclick="MyPie()"/>
+                           <input type="submit" value="Line Chart" onclick="MyLine()"/>  -->
+                              <script> } </script> 
+                               
+                               
+                               
+                               
+                               
+                               
+                               <!-- google chart -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    function MyBar(){   
+    google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(datajs);
+        var options = {
+          title: 'Bar Chart'
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    }
+    </script>
+<div id="chart_div" style="width: 600px; height: 300px;"></div>
+          
+                
+   <!-- --------------------------------------------------------------------------------------------- -->          
+                
+                 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>                  
+    <script type="text/javascript">
+    function MyPie(){   
+    google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(datajs);
+        var options = {
+          title: 'Pie Chart'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    }
+    </script>
+<div id="piechart" style="width: 600px; height: 300px;"></div>
+
+                    
+  <!-- --------------------------------------------------------------------------------------------- -->          
+                    
+                     
+                         
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">     
+    function MyLine(){   
+    google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(datajs);
+        var options = {
+          title: 'Line Chart'
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    }
+    </script>
+<div id="chart_div" style="width: 600; height: 300px;"></div>
+
+                            <!--  -->
+                            <!--   <div class="flot-chart-content" id="flot-line-chart"></div> -->
                             </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Multiple Axes Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Moving Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Bar Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-bar-chart"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
+                 <!--    /.panel -->
+                </div> 
+                
+                <!-- /.col-lg-12 --> 
+                
+                
+                
+                
+                
+                
+                
+                
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
