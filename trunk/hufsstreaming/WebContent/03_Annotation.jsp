@@ -1,3 +1,10 @@
+<%@ page import="java.io.*,java.util.*, java.text.*,java.text.SimpleDateFormat" %>
+<%@ page import="ESper.EventListener" %>
+<%@ page import="java.sql.*,java.util.Calendar,
+    java.util.Date,java.util.ArrayList"%>
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -373,106 +380,297 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Flot</h1>
+                    <h1 class="page-header">Annotation </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            <!-- This is the database connection -->
+            
+             <% 
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+
+StringBuffer data1 = new StringBuffer();
+
+String date=null;
+String caseid =null;
+String activity = null;
+String machine = null;
+int quantity = 0;
+int countid = 0;
+int i = 0;
+ArrayList<String> n = new ArrayList<String>();
+
+
+
+try{	
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+ 	String query_str2 = "select distinct caseid from bpi.manuf1";
+ 	ResultSet rs2=stmt.executeQuery(query_str2);
+ 	
+ 	
+ 	int count =0;
+ 
+ 		 for (int number =1; number<=2;number++)
+ 		 {
+ 	 ResultSet ci1;
+		String query_strc1 = "select * from bpi.manuf1 where caseid= '"+number+"' order by time asc ";	
+	 ci1=stmt.executeQuery(query_strc1); 	
+	 
+	 //1.  select each case
+	 //2. put in the stringbuffer
+	 //3. if there are some data in DB, then put in the stringbuffer
+	 //4. if there is no data (until 10), then write undefined	
+	
+while(ci1.next())
+	{
+		int Da=ci1.getInt(1);
+		if(count >0 )
+		{
+			data1.append(',');
+		}
+		//date
+		date = ci1.getString("time");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		Date date1 = sdf.parse(date);
+		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+		calendar.setTime(date1);
+		int timessss= count+1;
+		out.println("Caseid "+Da+ " ");
+		int Y=calendar.get(Calendar.YEAR);
+		out.println( Y+"/");
+		int M=calendar.get(Calendar.MONTH)+1;
+		out.println(M+"/");
+		int D=calendar.get(Calendar.DATE);
+		out.println(D+"/");
+		int S=calendar.get(Calendar.SECOND);
+		out.println(S+":");
+		int H=calendar.get(Calendar.HOUR);
+		out.println( H+":");	
+		int MM=calendar.get(Calendar.MINUTE);
+		out.println( MM);
+		
+			
+                    String s = "new Date("+Y+","+M+","+D+","+H+","+MM+","+S+")";
+                    out.println(s);
+                    out.println("<BR>");
+		data1.append('[').append(s).append(',');
+		
+		for(int sup=1;sup<number;sup++)
+		{
+		
+		data1.append("null").append(',');
+		//case
+		//data.append("'").append(caseid).append("'").append(',');
+		//activity
+		data1.append("undefined").append(',');
+		//machine
+		data1.append("undefined").append(',');
+		}
+		
+		
+		quantity = ci1.getInt("quantity");
+		data1.append(quantity).append(',');
+		//case
+		//caseid = rs1.getString("caseid");
+		//data1.append("'").append(caseid).append("'").append(',');
+		
+		activity = ci1.getString("activity");
+		data1.append("'").append(activity).append("'").append(',');
+		
+		
+		machine = ci1.getString("machine");
+		data1.append("'").append(machine).append("'");
+		
+		 for(int sup=number;sup<2;sup++)
+		{
+		data1.append(',');
+		data1.append("null").append(',');
+		//case
+		//data1.append("'").append(caseid).append("'").append(',');
+		//activity
+		data1.append("undefined").append(',');
+		//machine
+		data1.append("undefined");
+		}
+		data1.append(']'); 
+		
+		count++;
+		  //out.println("<BR>");
+	}
+
+	
+	ci1.close();
+	
+	} // this if the close of FOR LOOPS
+	
+ 		while(rs2.next()){
+ 	 		countid++;
+ 	 		  out.println(rs2.getInt(1));
+ 	 		  out.println("<BR>");
+ 	 	
+ 		}rs2.close();
+ 	 	out.println("how many caseid? : " +countid);
+ 	 	 out.println("<BR>");
+ 	 	 
+	// out.println(data1);
+
+	//--------------------------
+
+     stmt.close();
+   
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+            
+            %>
+            <!-- This is the database connection close statements -->
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+             <!-- /.col-lg-12 -->
+                <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Line Chart Example
+                            Condition
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart"></div>
+                            <input type="text"/></br>
+                            
+                            
+                            <%Class.forName("com.mysql.jdbc.Driver");   
+                        	conn=DriverManager.getConnection(url,id,pw);              
+
+                        	stmt = conn.createStatement();
+                        	
+                         	String query_str2 = "select distinct caseid from bpi.manuf1";
+                         	ResultSet rs2=stmt.executeQuery(query_str2);
+                         	  %>
+                         	  
+                         	<form action="03_Annotation.jsp">    
+                            <% while(rs2.next()){ %>
+                            
+                                <input type="checkbox" name="chex" value=" <%rs2.getInt(1);%>">  <%=rs2.getInt(1)%> </input></br>
+                                <%} %>
+                                <input type="submit" value="ok">
+                                </form>
+                              <!-- chex -->
+                              <% 
+                                try{
+                                String[] chkbox = request.getParameterValues("chex");
+									for( int ix = 0; ix < chkbox.length; ix++ )
+									{
+									out.println(chkbox[ix]);
+									}
+									%>
+                                
+                                <!-- if -->
+                                
+                                <%
+                                
+                                if(chkbox.length==0)
+                                	{
+                                	 out.println("empty");
+                                	}else{%>
+                                	
+                                <!-- if -->
+                                <br>
+                                  
+                                
+                              <!-- chex -->
                             </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
-                <div class="col-lg-6">
+                
+                
+                <div class="col-lg-8">
+                
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Pie Chart Example
+                            Annotation Chart Example
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-pie-chart"></div>
+                             
+                                			
+                                			<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+											    <script type='text/javascript'>
+											      google.load('visualization', '1', {'packages':['annotationchart']});
+											      google.setOnLoadCallback(drawChart);
+											      var datajs = [<%=data1.toString()%>];
+											   
+											      var countids = <%=countid%>;
+											      var countchex = <%= chkbox.length%>;
+											      var ii=0;
+											      
+											      function drawChart() {
+											    	  
+											    	  var data = new google.visualization.DataTable();
+											          data.addColumn('datetime', 'Date');
+											          while(ii<2){
+											          data.addColumn('number', 'Quantity');
+											          data.addColumn('string', 'Activity');
+											          data.addColumn('string', 'Machine');
+											          ii++;
+											  
+											    	 }
+											          
+											          <%=chkbox.length%>
+											          countchex;
+											          
+											           data.addRows(datajs);
+											           
+											             var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+											
+											             var options = {
+											                     displayAnnotations: true,
+											                     chart: { interpolateNulls: true }
+											                   };
+											
+											        chart.draw(data, options);
+											      }
+											      
+											      
+											    </script>
+											  <div id='chart_div' style='width: 600px; height: 400px;'></div>
+                                			
+                                	<%}
+                                }
+                                catch(Exception e){ }
+                                		%>
+    <center>
+    
+  
+                               
                             </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Multiple Axes Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Moving Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Bar Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-bar-chart"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Flot Charts Usage
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <p>Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks, and interactive features. In SB Admin, we are using the most recent version of Flot along with a few plugins to enhance the user experience. The Flot plugins being used are the tooltip plugin for hoverable tooltips, and the resize plugin for fully responsive charts. The documentation for Flot Charts is available on their website, <a target="_blank" href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>.</p>
-                            <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://www.flotcharts.org/">View Flot Charts Documentation</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
+                     
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
