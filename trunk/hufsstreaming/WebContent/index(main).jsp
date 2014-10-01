@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ page language="java"
+	import="XPDL_Esper.*, java.sql.*, java.util.*, java.io.*"%>
 <html lang="en">
 
 <head>
@@ -11,6 +15,10 @@
 
 <title>HUFS Project</title>
 
+	<%
+		String BeforePath = request.getParameter("file");
+		System.out.println(BeforePath);
+	%>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -249,18 +257,20 @@
 						</li>
 						<li><a class="active" href="index(main).jsp"><i
 								class="fa fa-table fa-fw"></i> Home</a></li>
+						<!-- <li class="dropdown"></li> -->
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Dashboard<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href=" ">Basic Charts</a></li>
-								<li><a href=" ">Utilization Charts</a></li>
-								<li><a href=" ">Annotation Charts</a></li>
+								<li><a href="01_BasicChart.jsp">Basic Charts</a></li>
+								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
+								<li><a href="03_Annotation.jsp">Annotation Charts</a></li>
 							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
 						</li>
-						<li><a href=" "><i class="fa fa-table fa-fw"></i>
-								Machine Network</a></li>
-						<li><a href=" "><i class="fa fa-table fa-fw"></i>
-								Process Views</a></li>
+
+						<li><a href=" "><i class="fa fa-table fa-fw"></i> Machine
+								Network</a></li>
+						<li><a href=" "><i class="fa fa-table fa-fw"></i> Process
+								Views</a></li>
 
 					</ul>
 				</div>
@@ -268,6 +278,10 @@
 			</div>
 			<!-- /.navbar-static-side -->
 		</nav>
+
+
+
+
 
 		<div id="page-wrapper">
 			<div class="row">
@@ -400,7 +414,7 @@
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="list-group">
-								<form action="output.jsp" method="post">
+								<form action="index(main).jsp" method="post">
 									<input type="file" name="file" size="50" /> <br /> <br /> <input
 										type="submit" class="btn btn-default btn-block"
 										value="Execute" />
@@ -434,6 +448,99 @@
 
 			<!-- Custom Theme JavaScript -->
 			<script src="js/sb-admin-2.js"></script>
+
+
+			<%
+		
+			
+			if(BeforePath!=null)
+			{
+			%>
+			<jsp:useBean id="esp2" class="XPDL_Esper.EsperMains"></jsp:useBean>
+			<%
+			esp2.EsperMains(BeforePath);
+			
+			Connection conn = null; 
+			String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+			String id = "cmpteam";                                                   
+			String pw = "!cmpteam";                                                
+			String Data_label = "";
+			  
+			Statement stmt = null;
+
+			//esp.getNotifContainer();
+			/* final String notif = esp.getNotifContainer();
+			 new Thread(new Runnable(){
+				@Override
+				public void run(){
+					//esp.getNotifContainer();
+					try {
+					out.println("%#%@#$@ "+notif);
+					while(true)
+				out.println("abc");
+				} catch (Exception e) {
+				}
+					
+				}
+			});   */
+
+			//if(true)
+			//{
+			//System.out.println("%%%%"+esp.getNotifContainer());
+			//}//
+
+
+			try{
+
+					Class.forName("com.mysql.jdbc.Driver");   
+					conn=DriverManager.getConnection(url,id,pw);              
+
+					stmt = conn.createStatement();
+
+					String query_str = "delete from bpi.manuf"; 
+					
+					stmt.executeUpdate(query_str);
+					
+			        stmt.close();
+			        conn.close();
+					
+					}catch(Exception e){                                                    
+
+				e.printStackTrace();
+			        }
+
+					try{
+
+					                
+					Class.forName("com.mysql.jdbc.Driver");   
+					conn=DriverManager.getConnection(url,id,pw);              
+
+					stmt = conn.createStatement();
+					
+					//System.out.println(event1);
+					
+					String query_str = "select caseid, activity, machine, time from bpi.manuf"; 
+					
+					ResultSet rs=stmt.executeQuery(query_str);
+					
+					while(rs.next())  
+			        {
+				
+					}
+					rs.close();
+
+				     stmt.close();
+				     conn.close();
+					
+					}catch(Exception e){                                                    
+
+				e.printStackTrace();
+
+					}
+			
+			}
+	%>
+		
 </body>
 
 </html>
