@@ -247,19 +247,19 @@
 								</span>
 							</div> <!-- /input-group -->
 						</li>
-						<li><a class="active" href="index.jsp"><i
+						<li><a class="active" href="index(main).jsp"><i
 								class="fa fa-table fa-fw"></i> Home</a></li>
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Dashboard<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="flot.jsp">Basic Charts</a></li>
-								<li><a href="morris.jsp">Utilization Charts</a></li>
-								<li><a href="morris.jsp">Annotation Charts</a></li>
+								<li><a href=" ">Basic Charts</a></li>
+								<li><a href=" ">Utilization Charts</a></li>
+								<li><a href=" ">Annotation Charts</a></li>
 							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
 						</li>
-						<li><a href="tables.jsp"><i class="fa fa-table fa-fw"></i>
+						<li><a href=" "><i class="fa fa-table fa-fw"></i>
 								Machine Network</a></li>
-						<li><a href="tables.jsp"><i class="fa fa-table fa-fw"></i>
+						<li><a href=" "><i class="fa fa-table fa-fw"></i>
 								Process Views</a></li>
 
 					</ul>
@@ -382,7 +382,6 @@
 									class="list-group-item"> </a> <a href="#"
 									class="list-group-item"> </a> <a href="#"
 									class="list-group-item"> </a> <a href="#"
-									
 									class="list-group-item"> </a>
 							</div>
 							<!-- /.list-group -->
@@ -402,15 +401,16 @@
 						<div class="panel-body">
 							<div class="list-group">
 								<form action="output.jsp" method="post">
-									<input type="file" name="file" size="50" /> <br />  <br />
-									<input type="submit" class="btn btn-default btn-block" value="Execute"/>
+									<input type="file" name="file" size="50" /> <br /> <br /> <input
+										type="submit" class="btn btn-default btn-block"
+										value="Execute" />
 									<!-- <a href="output.jsp" onclick="document.getElementById('file').submit()" class="btn btn-default btn-block"> 
 										<i class="fa fa-upload fa-fw"></i>Execute
 									</a> -->
 								</form>
 							</div>
 							<!-- /.list-group -->
-							
+
 						</div>
 						<!-- /.panel-body -->
 					</div>
