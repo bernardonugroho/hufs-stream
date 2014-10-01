@@ -379,24 +379,24 @@ while(ci1.next())
 		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 		calendar.setTime(date1);
 		int timessss= count+1;
-		out.println("Caseid "+Da+ " ");
+		//out.println("Caseid "+Da+ " ");
 		int Y=calendar.get(Calendar.YEAR);
-		out.println( Y+"/");
+		//out.println( Y+"/");
 		int M=calendar.get(Calendar.MONTH)+1;
-		out.println(M+"/");
+		//out.println(M+"/");
 		int D=calendar.get(Calendar.DATE);
-		out.println(D+"/");
+		//out.println(D+"/");
 		int S=calendar.get(Calendar.SECOND);
-		out.println(S+":");
+		//out.println(S+":");
 		int H=calendar.get(Calendar.HOUR);
-		out.println( H+":");	
+		//out.println( H+":");	
 		int MM=calendar.get(Calendar.MINUTE);
-		out.println( MM);
+		//out.println( MM);
 		
 			
                     String s = "new Date("+Y+","+M+","+D+","+H+","+MM+","+S+")";
-                    out.println(s);
-                    out.println("<BR>");
+                   // out.println(s);
+                   // out.println("<BR>");
 		data1.append('[').append(s).append(',');
 		
 		for(int sup=1;sup<number;sup++)
