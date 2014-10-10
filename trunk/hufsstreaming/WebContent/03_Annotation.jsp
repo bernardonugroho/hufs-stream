@@ -286,20 +286,90 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li><a class="active" href="index(main).jsp"><i
-								class="fa fa-table fa-fw"></i> Home</a></li>
-						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-								Dashboard<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="01_BasicChart.jsp">Basic Charts</a></li>
-								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
-								<li><a href="03_Annotation.jsp">Annotation Charts</a></li>
-							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
-						</li>
-						<li><a href=" "><i class="fa fa-table fa-fw"></i>
-								Machine Network</a></li>
-						<li><a href=" "><i class="fa fa-table fa-fw"></i>
-								Process Views</a></li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="active" href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -316,161 +386,7 @@
             </div>
             <!-- This is the database connection -->
             
-             <% 
-    Connection conn = null; 
-String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
-String id = "cmpteam";                                                   
-String pw = "!cmpteam";                                                
-String Data_label = "";
-  
-Statement stmt = null;
-Statement stmt1 = null;
-
-
-StringBuffer data1 = new StringBuffer();
-
-String date=null;
-String caseid =null;
-String activity = null;
-String machine = null;
-int quantity = 0;
-int countid = 0;
-int i = 0;
-ArrayList<String> n = new ArrayList<String>();
-
-
-
-try{	
-
-    
-	Class.forName("com.mysql.jdbc.Driver");   
-	conn=DriverManager.getConnection(url,id,pw);              
-
-	stmt = conn.createStatement();
-	
- 	String query_str2 = "select distinct caseid from bpi.manuf1";
- 	ResultSet rs2=stmt.executeQuery(query_str2);
- 	
- 	
- 	int count =0;
- 
- 		 for (int number =1; number<=2;number++)
- 		 {
- 	 ResultSet ci1;
-		String query_strc1 = "select * from bpi.manuf1 where caseid= '"+number+"' order by time asc ";	
-	 ci1=stmt.executeQuery(query_strc1); 	
-	 
-	 //1.  select each case
-	 //2. put in the stringbuffer
-	 //3. if there are some data in DB, then put in the stringbuffer
-	 //4. if there is no data (until 10), then write undefined	
-	
-while(ci1.next())
-	{
-		int Da=ci1.getInt(1);
-		if(count >0 )
-		{
-			data1.append(',');
-		}
-		//date
-		date = ci1.getString("time");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-		Date date1 = sdf.parse(date);
-		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-		calendar.setTime(date1);
-		int timessss= count+1;
-		//out.println("Caseid "+Da+ " ");
-		int Y=calendar.get(Calendar.YEAR);
-		//out.println( Y+"/");
-		int M=calendar.get(Calendar.MONTH)+1;
-		//out.println(M+"/");
-		int D=calendar.get(Calendar.DATE);
-		//out.println(D+"/");
-		int S=calendar.get(Calendar.SECOND);
-		//out.println(S+":");
-		int H=calendar.get(Calendar.HOUR);
-		//out.println( H+":");	
-		int MM=calendar.get(Calendar.MINUTE);
-		//out.println( MM);
-		
-			
-                    String s = "new Date("+Y+","+M+","+D+","+H+","+MM+","+S+")";
-                   // out.println(s);
-                   // out.println("<BR>");
-		data1.append('[').append(s).append(',');
-		
-		for(int sup=1;sup<number;sup++)
-		{
-		
-		data1.append("null").append(',');
-		//case
-		//data.append("'").append(caseid).append("'").append(',');
-		//activity
-		data1.append("undefined").append(',');
-		//machine
-		data1.append("undefined").append(',');
-		}
-		
-		
-		quantity = ci1.getInt("quantity");
-		data1.append(quantity).append(',');
-		//case
-		//caseid = rs1.getString("caseid");
-		//data1.append("'").append(caseid).append("'").append(',');
-		
-		activity = ci1.getString("activity");
-		data1.append("'").append(activity).append("'").append(',');
-		
-		
-		machine = ci1.getString("machine");
-		data1.append("'").append(machine).append("'");
-		
-		 for(int sup=number;sup<2;sup++)
-		{
-		data1.append(',');
-		data1.append("null").append(',');
-		//case
-		//data1.append("'").append(caseid).append("'").append(',');
-		//activity
-		data1.append("undefined").append(',');
-		//machine
-		data1.append("undefined");
-		}
-		data1.append(']'); 
-		
-		count++;
-		  //out.println("<BR>");
-	}
-
-	
-	ci1.close();
-	
-	} // this if the close of FOR LOOPS
-	
- 		while(rs2.next()){
- 	 		countid++;
- 	 		  out.println(rs2.getInt(1));
- 	 		  out.println("<BR>");
- 	 	
- 		}rs2.close();
- 	 	out.println("how many caseid? : " +countid);
- 	 	 out.println("<BR>");
- 	 	 
-	// out.println(data1);
-
-	//--------------------------
-
-     stmt.close();
-   
-     conn.close();
-	
-	}catch(Exception e){                                                    
-
-		e.printStackTrace();
-
-	}
-            
-            %>
+           
             <!-- This is the database connection close statements -->
             <!-- /.row -->
             <div class="row">
@@ -484,42 +400,194 @@ while(ci1.next())
                         <div class="panel-body">
                             <div class="flot-chart">
                             <input type="text"/></br>
-                            
-                            
-                            <%Class.forName("com.mysql.jdbc.Driver");   
-                        	conn=DriverManager.getConnection(url,id,pw);              
-
-                        	stmt = conn.createStatement();
-                        	
-                         	String query_str2 = "select distinct caseid from bpi.manuf1";
-                         	ResultSet rs2=stmt.executeQuery(query_str2);
-                         	  %>
-                         	  
-                         	<form action="03_Annotation.jsp">    
-                            <% while(rs2.next()){ %>
-                            
-                                <input type="checkbox" name="chex" value=" <%rs2.getInt(1);%>">  <%=rs2.getInt(1)%> </input></br>
-                                <%} %>
-                                <input type="submit" value="ok">
-                                </form>
-                              <!-- chex -->
-                              <% 
-                                try{
-                                String[] chkbox = request.getParameterValues("chex");
-									for( int ix = 0; ix < chkbox.length; ix++ )
+                                   <% 
+									    Connection conn = null; 
+									String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+									String id = "cmpteam";                                                   
+									String pw = "!cmpteam";                                                
+									String Data_label = "";
+									  
+									Statement stmt = null;
+									Statement stmt1 = null;
+									
+									
+									StringBuffer data1 = new StringBuffer();
+									
+									String date=null;
+									String caseid =null;
+									String activity = null;
+									String machine = null;
+									int quantity = 0;
+									int countid = 0;
+									int i = 0;
+									ArrayList<String> n = new ArrayList<String>();
+									
+									
+									
+									try{	
+									
+									    
+										Class.forName("com.mysql.jdbc.Driver");   
+										conn=DriverManager.getConnection(url,id,pw);              
+									
+										stmt = conn.createStatement();
+										
+									 	String query_str2 = "select distinct caseid from bpi.manuf1";
+									 	ResultSet rs2=stmt.executeQuery(query_str2);
+									 	%>
+									 	
+									 	<form action="03_Annotation.jsp"> 
+									 	 <% while(rs2.next()){ %>
+									    
+									        <input type="checkbox" name="chex" value="<%=rs2.getInt(1)%>"><%=rs2.getInt(1)%> </input></br>
+									        <%} rs2.beforeFirst(); %>
+									        <input type="submit" value="ok">
+									        <%String chkbox[] = request.getParameterValues("chex");
+									        out.println(request.getParameter("chex"));
+									        out.println("<BR>"); %>
+									        </form>
+									        
+									        
+									        
+									 	 <%
+									 	try{
+									        
+											for( int z = 0; z < chkbox.length; z++ )
+											{
+											out.println(chkbox[z]);
+											
+											}
+											 out.println("<BR>");
+											 out.println("length is :"+chkbox.length);
+											 out.println("<BR>");
+										      
+											if(request.getParameter("chex") == null )
+									    	{
+												out.println("empty");
+												out.println(chkbox[0]);
+									    	}else{
+									    		
+									    		while(rs2.next()){
+											  countid++;
+											  //out.println(rs2.getInt(1));
+											  out.println("<BR>");
+											  n.add(rs2.getString(1));
+									}rs2.close();
+										//out.println("how many caseid? : " +countid);
+										 //out.println("<BR>");
+										int count =0;
+										 
+											 for ( int z = 0; z < chkbox.length; z++ )
+											 {
+										 ResultSet ci1;
+										String query_strc1 = "select * from bpi.manuf1 where caseid= '"+chkbox[z]+"' order by time asc ";	
+									 ci1=stmt.executeQuery(query_strc1); 	
+									 
+									 //1.  select each case
+									 //2. put in the stringbuffer
+									 //3. if there are some data in DB, then put in the stringbuffer
+									 //4. if there is no data (until 10), then write undefined	
+									
+									while(ci1.next())
 									{
-									out.println(chkbox[ix]);
+										int Da=ci1.getInt(1);
+										if(count >0 )
+										{
+											data1.append(',');
+										}
+										//date
+										date = ci1.getString("time");
+										SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+										Date date1 = sdf.parse(date);
+										Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+										calendar.setTime(date1);
+										//out.println("Caseid "+Da+ " ");
+										int Y=calendar.get(Calendar.YEAR);
+										//out.println( Y+"/");
+										int M=calendar.get(Calendar.MONTH)+1;
+										//out.println(M+"/");
+										int D=calendar.get(Calendar.DATE);
+										//out.println(D+"/");
+										int S=calendar.get(Calendar.SECOND);
+										//out.println(S+":");
+										int H=calendar.get(Calendar.HOUR);
+										//out.println( H+":");	
+										int MM=calendar.get(Calendar.MINUTE);
+										//out.println( MM);
+										
+									                String s = "new Date("+Y+","+M+","+D+","+H+","+MM+","+S+")";
+									               // out.println(s);
+									               // out.println("<BR>");
+										data1.append('[').append(s).append(',');
+										
+										for(int sup=0;sup<z;sup++)
+										{		
+										data1.append("null").append(',');
+										//case
+										//data.append("'").append(caseid).append("'").append(',');
+										//activity
+										data1.append("undefined").append(',');
+										//machine
+										data1.append("undefined").append(',');
+										}
+										
+										//quantity
+										quantity = ci1.getInt("quantity");
+										data1.append(quantity).append(',');
+										//case
+										//caseid = rs1.getString("caseid");
+										//data.append("'").append(caseid).append("'").append(',');
+										//activity
+										activity = ci1.getString("activity");
+										data1.append("'").append(activity).append("'").append(',');
+										//data1.append(" '").append("abc").append("'").append(',');
+										//machine
+										machine = ci1.getString("machine");
+										data1.append("'").append(machine).append("'");
+										//data1.append(" '").append("def").append( "'").append(']');
+									
+										 for(int sup=z;sup<chkbox.length-1;sup++)
+										{
+										data1.append(',');
+										data1.append("null").append(',');
+										//case
+										//data.append("'").append(caseid).append("'").append(',');
+										//activity
+										data1.append("undefined").append(',');
+										//machine
+										data1.append("undefined");
+										}
+										data1.append(']'); 
+										//data1.append(" '").append("def").append( "'").append(']');
+										count++;
+										  //out.println("<BR>");
 									}
-									%>
+									
+									ci1.close();
+									
+									} // this if the close of FOR LOOPS
+									
+									
+									// out.println(data1);
+									
+									//--------------------------
+									
+									 stmt.close();
+									 conn.close();
+									
+									    	}
+											}catch(Exception e){                                                    
+									
+										e.printStackTrace();
+									
+									}
+									            
+									            %>
+                            
+                          
                                 
                                 <!-- if -->
-                                
-                                <%
-                                
-                                if(chkbox.length==0)
-                                	{
-                                	 out.println("empty");
-                                	}else{%>
+                            
                                 	
                                 <!-- if -->
                                 <br>
@@ -543,50 +611,45 @@ while(ci1.next())
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                             
-                                			
+                              		    
+	                                
                                 			<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
-											    <script type='text/javascript'>
-											      google.load('visualization', '1', {'packages':['annotationchart']});
-											      google.setOnLoadCallback(drawChart);
-											      var datajs = [<%=data1.toString()%>];
-											   
-											      var countids = <%=countid%>;
-											      var countchex = <%= chkbox.length%>;
-											      var ii=0;
-											      
-											      function drawChart() {
-											    	  
-											    	  var data = new google.visualization.DataTable();
-											          data.addColumn('datetime', 'Date');
-											          while(ii<2){
-											          data.addColumn('number', 'Quantity');
-											          data.addColumn('string', 'Activity');
-											          data.addColumn('string', 'Machine');
-											          ii++;
-											  
-											    	 }
-											          
-											          <%=chkbox.length%>
-											          countchex;
-											          
-											           data.addRows(datajs);
-											           
-											             var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
-											
-											             var options = {
-											                     displayAnnotations: true,
-											                     chart: { interpolateNulls: true }
-											                   };
-											
-											        chart.draw(data, options);
-											      }
+										    <script type='text/javascript'>
+										      google.load('visualization', '1', {'packages':['annotationchart']});
+										      google.setOnLoadCallback(drawChart);
+										      var datajs = [<%=data1.toString()%>];
+										      var countids = <%=countid%>;
+										      var msi= <%=chkbox.length%>;     
+										      var ii=0;
+										     
+										     
+										
+										      function drawChart() {    
+										    	  var data = new google.visualization.DataTable();
+										          data.addColumn('datetime', 'Date');
+										          while(ii<msi){
+										          data.addColumn('number', 'Quantity');
+										          data.addColumn('string', 'Activity');
+										          data.addColumn('string', 'Machine');
+										          ii++;  
+										    	 }
+										          
+										          
+										           data.addRows(datajs);
+										        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+										
+										        var options = {
+										                displayAnnotations: true,
+										                chart: { interpolateNulls: true }
+										              };
+										        chart.draw(data, options);
+										      }
 											      
 											      
 											    </script>
 											  <div id='chart_div' style='width: 600px; height: 400px;'></div>
                                 			
-                                	<%}
+                                	<%
                                 }
                                 catch(Exception e){ }
                                 		%>
