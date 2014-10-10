@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.sql.*, java.util.*"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,6 +26,14 @@
 </head>
 <body>
 
+<%
+		String[] check = request.getParameterValues("checkbox1");
+		for (int i = 0; i < check.length; i++) {
+			out.println("◀"+check[i]+"▶"+" , ");
+		}
+		out.println("'s Utilization");
+	%>
+
 		<%
 									Connection conn7 = null;
 									String url7 = "jdbc:mysql://203.253.70.34:3306/bpi";
@@ -48,7 +57,7 @@
 
 										//System.out.println(event1);
 
-										String query_str7 = "select caseid, activity, machine, time from bpi.manuf";
+										String query_str7 = "select caseid, activity, machine, time from bpi.manuf1";
 
 										ResultSet rs7 = stmt7.executeQuery(query_str7);
 
@@ -57,7 +66,7 @@
 										}
 										rs7.close();
 
-										String q7 = "Select distinct activity from manuf"; // q 에 엑티비티들을 따온다
+										String q7 = "Select distinct activity from manuf1"; // q 에 엑티비티들을 따온다
 
 										ResultSet rs27 = stmt7.executeQuery(q7);
 
@@ -68,7 +77,7 @@
 										//System.out.println(Act);
 										////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 
-										String q27 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM manuf ";
+										String q27 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM manuf1 ";
 
 										ResultSet rs47 = stmt7.executeQuery(q27);
 										int TotalActTime7 = 0;
@@ -80,7 +89,7 @@
 										int num7 = 0;
 										//System.out.println(Act7.size());
 										//준비된 어레이리스트를 사용해서 넣어준다 
-										for (int j7 = 0; j7 < Act7.size(); j7++) {
+										for (int j7 = 0; j7 < check.length; j7++) {
 											/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
 											String query_str17 = "SELECT  a.caseid ,a.activity, ";
 
@@ -96,9 +105,9 @@
 
 											query_str17 += "TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff7 ";
 
-											query_str17 += "FROM    manuf as a ";
+											query_str17 += "FROM    manuf1 as a ";
 
-											query_str17 += "LEFT JOIN manuf as b ";
+											query_str17 += "LEFT JOIN manuf1 as b ";
 
 											query_str17 += "ON a.caseid = b.caseid ";
 
@@ -106,7 +115,7 @@
 
 											query_str17 += "GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
 
-											query_str17 += "having activity = '" + Act7.get(j7) + "'"; //어레이 리스트 이름과 i 로 줘서 계속 돌아가게 한다
+											query_str17 += "having activity = '" + check[j7] + "'"; //어레이 리스트 이름과 i 로 줘서 계속 돌아가게 한다
 											//System.out.println(Act.get(j));
 											ResultSet rs17 = stmt7.executeQuery(query_str17);
 
@@ -121,8 +130,8 @@
 											rs17.close();
 
 											int countNum7 = 0;
-											String q57 = "Select time from manuf where activity = '"
-													+ Act7.get(j7) + "'";
+											String q57 = "Select time from manuf1 where activity = '"
+													+ check[j7] + "'";
 											ResultSet rs57 = stmt7.executeQuery(q57);
 											while (rs57.next()) {
 												countNum7++;
@@ -148,7 +157,7 @@
 												num7++;
 											}
 											dataUtil7.append(',').append('[').append("'")
-													.append(Act7.get(num7++ - 1));
+													.append(check[num7++ - 1]);
 											num7--;
 											dataUtil7.append("'").append(',')
 													.append(dataList7.get(num7++ - 1)).append(']');

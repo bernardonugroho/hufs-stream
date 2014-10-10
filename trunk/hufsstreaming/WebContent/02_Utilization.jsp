@@ -2,6 +2,7 @@
 <html lang="en">
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.sql.*, java.util.*"%>
+
 <head>
 
 <meta charset="utf-8">
@@ -303,20 +304,71 @@
 						<div class="panel-body">
 							<div class="flot-chart">
 							
-							
-							
+							<%
+									Connection conn = null;
+									String url = "jdbc:mysql://203.253.70.34:3306/bpi";
+									String id = "cmpteam";
+									String pw = "!cmpteam";
+									String Data_label = "";
+
+									Statement stmt = null;
+							Class.forName("com.mysql.jdbc.Driver");   
+                        	conn=DriverManager.getConnection(url,id,pw);              
+
+                        	stmt = conn.createStatement();
+                        	
+                         	String query_str2 = "select distinct machine from bpi.manuf1";
+                         	ResultSet rs2=stmt.executeQuery(query_str2);
+                         	ArrayList GOGO = new ArrayList();
+                         	while(rs2.next()){ 
+                         		GOGO.add(rs2.getString(1));
+                         	}
+							%>
 							
 							<!-- 여기다가 버튼을 넣어서 해야되는데 쉬바 -->
 							
 							<form action="MachineNetWork.jsp" method="post"  target="Machine">
-							<input type="submit" value="Machine Utilization">
-							</form>
+							<%for(int si=0;si<GOGO.size();si++){ %>  
+							<input name="checkbox1" type="checkbox" value="<%=GOGO.get(si)%>" ></input><%=GOGO.get(si)%></br>
+                               
+                               <%} %> 
+                            <input type="submit" value="Show checked">
+                            <%rs2.close(); %>
+                            </form>
+                           
+                           
+					
+							<% String query_str3 = "select distinct activity from bpi.manuf1";
+                         	ResultSet rs3=stmt.executeQuery(query_str3);
+                         	ArrayList GOGO2 = new ArrayList();
+                         	while(rs3.next()){ 
+                         		GOGO2.add(rs3.getString(1));
+                         	}%>
 							<form action="AcitivtyNetwork.jsp" method="post" target="Machine">
-							<input type="submit" value="Activity Utilization">
+							<%for(int si2=0;si2<GOGO2.size();si2++){ %>  
+							<input name="checkbox1" type="checkbox" value="<%=GOGO2.get(si2)%>" ></input><%=GOGO2.get(si2)%></br>
+                               
+                               <%} %> 
+                            <input type="submit" value="Show checked">
+							  <%rs3.close(); %>
 							</form>
+							
+							
+							
+							<% String query_str4 = "select distinct caseid from bpi.manuf1";
+                         	ResultSet rs4=stmt.executeQuery(query_str4);
+                         	ArrayList GOGO3 = new ArrayList();
+                         	while(rs4.next()){ 
+                         		GOGO3.add(rs4.getString(1));
+                         	}%>
 							<form action="CaparateNetwork.jsp" method="post" target="Machine">
-							<input type="submit" value="Caparate">
-							</form>
+							<%for(int si3=0;si3<GOGO3.size();si3++){ %>  
+							<input name="checkbox1" type="checkbox" value="<%=GOGO3.get(si3)%>" ></input><%=GOGO3.get(si3)%></br>
+                               
+                               <%} %> 
+                            <input type="submit" value="Show checked">
+							  <%rs4.close(); %>
+							</form> 
 							
 							<!--  왜안될까 ㅜㅜㅜㅜ -->
 							

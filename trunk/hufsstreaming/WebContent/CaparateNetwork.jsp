@@ -24,6 +24,16 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body>
+
+
+<%
+		String[] check = request.getParameterValues("checkbox1");
+		for (int i = 0; i < check.length; i++) {
+			out.println("◀"+check[i]+"▶"+" , ");
+		}
+		out.println("'s Caparate");
+	%>
+	
 		<%
 		Connection conn9 = null; 
 	String url9 = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -54,7 +64,7 @@
 		//System.out.println(event1);
 		
 	
-		String q9 = "Select distinct caseid from manuf"; // q 에 엑티비티들을 따온다
+		String q9 = "Select distinct caseid from manuf1"; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs29 =  stmt9.executeQuery(q9); 
 		
@@ -74,11 +84,11 @@
 		float capastart=0,capaend=0;
 		float caparate=0,sumcaparate=0;
 		//준비된 어레이리스트를 사용해서 넣어준다 
-		for (int j9 =0 ; j9<caseid9.size() ;j9++){
+		for (int j9 =0 ; j9<check.length ;j9++){
 			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
 					
-		String query_str19 = "Select quantity as quantity1 from manuf where caseid='"+caseid9.get(j9)+"'and activity ='Start' ";
-		String query_str29 = "Select quantity as quantity2 from manuf where caseid='"+caseid9.get(j9)+"'and activity ='End' ";
+		String query_str19 = "Select quantity as quantity1 from manuf1 where caseid='"+check[j9]+"'and activity ='Start' ";
+		String query_str29 = "Select quantity as quantity2 from manuf1 where caseid='"+check[j9]+"'and activity ='End' ";
 		
 		rs19 = stmt9.executeQuery(query_str19);
 		while(rs19.next()){
@@ -117,7 +127,7 @@
 					num9++;
 				}
 				dataUtil9.append(',').append('[').append("'")
-						.append("Case ID ="+caseid9.get(num9++ - 1));
+						.append("Case ID ="+check[num9++ - 1]);
 				num9--;
 				dataUtil9.append("'").append(',')
 						.append(dataList29.get(num9++ - 1)).append(']');
