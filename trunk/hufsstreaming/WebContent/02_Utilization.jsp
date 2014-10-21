@@ -317,7 +317,7 @@
 
 									stmt = conn.createStatement();
 
-									String query_str2 = "select distinct machine from bpi.manuf1";
+									String query_str2 = "select distinct machine from bpi.manuf";
 									ResultSet rs2 = stmt.executeQuery(query_str2);
 									ArrayList GOGO = new ArrayList();
 									while (rs2.next()) {
@@ -346,7 +346,7 @@
 
 
 								<%
-									String query_str3 = "select distinct activity from bpi.manuf1";
+									String query_str3 = "select distinct activity from bpi.manuf";
 									ResultSet rs3 = stmt.executeQuery(query_str3);
 									ArrayList GOGO2 = new ArrayList();
 									while (rs3.next()) {
@@ -373,7 +373,7 @@
 
 
 								<%
-									String query_str4 = "select distinct caseid from bpi.manuf1";
+									String query_str4 = "select distinct caseid from bpi.manuf";
 									ResultSet rs4 = stmt.executeQuery(query_str4);
 									ArrayList GOGO3 = new ArrayList();
 									while (rs4.next()) {

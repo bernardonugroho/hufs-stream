@@ -57,7 +57,7 @@
 
 										//System.out.println(event1);
 
-										String query_str7 = "select caseid, activity, machine, time from bpi.manuf1";
+										String query_str7 = "select caseid, activity, machine, time from bpi.manuf";
 
 										ResultSet rs7 = stmt7.executeQuery(query_str7);
 
@@ -66,7 +66,7 @@
 										}
 										rs7.close();
 
-										String q7 = "Select distinct activity from manuf1"; // q 에 엑티비티들을 따온다
+										String q7 = "Select distinct activity from manuf"; // q 에 엑티비티들을 따온다
 
 										ResultSet rs27 = stmt7.executeQuery(q7);
 
@@ -77,7 +77,7 @@
 										//System.out.println(Act);
 										////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 
-										String q27 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM manuf1 ";
+										String q27 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM manuf ";
 
 										ResultSet rs47 = stmt7.executeQuery(q27);
 										int TotalActTime7 = 0;
@@ -105,9 +105,9 @@
 
 											query_str17 += "TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff7 ";
 
-											query_str17 += "FROM    manuf1 as a ";
+											query_str17 += "FROM    manuf as a ";
 
-											query_str17 += "LEFT JOIN manuf1 as b ";
+											query_str17 += "LEFT JOIN manuf as b ";
 
 											query_str17 += "ON a.caseid = b.caseid ";
 
@@ -130,7 +130,7 @@
 											rs17.close();
 
 											int countNum7 = 0;
-											String q57 = "Select time from manuf1 where activity = '"
+											String q57 = "Select time from manuf where activity = '"
 													+ check[j7] + "'";
 											ResultSet rs57 = stmt7.executeQuery(q57);
 											while (rs57.next()) {

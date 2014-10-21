@@ -64,7 +64,7 @@
 		//System.out.println(event1);
 		
 	
-		String q9 = "Select distinct caseid from manuf1"; // q 에 엑티비티들을 따온다
+		String q9 = "Select distinct caseid from manuf"; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs29 =  stmt9.executeQuery(q9); 
 		
@@ -87,8 +87,8 @@
 		for (int j9 =0 ; j9<check.length ;j9++){
 			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
 					
-		String query_str19 = "Select quantity as quantity1 from manuf1 where caseid='"+check[j9]+"'and activity ='Start' ";
-		String query_str29 = "Select quantity as quantity2 from manuf1 where caseid='"+check[j9]+"'and activity ='End' ";
+		String query_str19 = "Select quantity as quantity1 from manuf where caseid='"+check[j9]+"'and activity ='Start' ";
+		String query_str29 = "Select quantity as quantity2 from manuf where caseid='"+check[j9]+"'and activity ='End' ";
 		
 		rs19 = stmt9.executeQuery(query_str19);
 		while(rs19.next()){
