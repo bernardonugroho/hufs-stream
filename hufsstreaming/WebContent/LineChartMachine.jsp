@@ -34,13 +34,13 @@ try{
      data.append(',');
  	}
  	data.append('[').append("'Machine'").append(',').append("'Frequency'").append(']').append(',');
- 	out.println("******* "+ data);
+ 	//out.println("******* "+ data);
 
  	
  	
  	//Find the machine
  	//SELECT distinct machine from manuf
- 	String query_str1 = "select distinct machine from bpi.manuf1";
+ 	String query_str1 = "select distinct machine from bpi.manuf";
 	ResultSet rs1=stmt.executeQuery(query_str1);
 	
 	ArrayList<String> name = new ArrayList<String>();
@@ -48,14 +48,14 @@ try{
 	while(rs1.next())
 	{
 		name.add(rs1.getString("machine"));
-		out.println("arraylist : "+name.get(k));
+		//out.println("arraylist : "+name.get(k));
 		k++;
 	}
 
 	rs1.close();
 	for (String mac : name)
 	{
-	String q = "select count(*) from bpi.manuf1 where machine='"+mac+"'";
+	String q = "select count(*) from bpi.manuf where machine='"+mac+"'";
 	//out.println(q);
 	ResultSet rs2=stmt.executeQuery(q);
 	int countA=0;
@@ -63,15 +63,15 @@ try{
 		countA =rs2.getInt(1);	
 	}
 	
-	out.println(mac+" : "+countA);
+	//out.println(mac+" : "+countA);
 	rs2.close();
 	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
 	}
-	out.println(data.toString());
+	//out.println(data.toString());
 	
 	//------------------------------		
 	 //------------------------------
-	 out.println(data);
+	 //out.println(data);
 	//--------------------------
 	
 
@@ -101,11 +101,11 @@ try{
           title: 'My Daily Machines'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
   </body>
 </html>
