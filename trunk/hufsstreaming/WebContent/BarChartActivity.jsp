@@ -33,13 +33,13 @@ try{
      data.append(',');
  }
  	data.append('[').append("'Activity'").append(',').append("'Frequency'").append(']').append(',');
- 	out.println("******* "+ data);
+ 	//out.println("******* "+ data);
 
  	
  	
  	//Find the activity
  	//SELECT distinct activity from manuf
- 	String query_str1 = "select distinct activity from bpi.manuf1";
+ 	String query_str1 = "select distinct activity from bpi.manuf";
 	ResultSet rs1=stmt.executeQuery(query_str1);
 	
 	ArrayList<String> name = new ArrayList<String>();
@@ -47,7 +47,7 @@ try{
 	while(rs1.next())
 	{
 		name.add(rs1.getString("activity"));
-		out.println("arraylist : "+name.get(k));
+		//out.println("arraylist : "+name.get(k));
 		k++;
 	}
 
@@ -55,7 +55,7 @@ try{
 	
 	for (String act : name)
 	{
-	String q = "select count(*) from bpi.manuf1 where activity='"+act+"'";
+	String q = "select count(*) from bpi.manuf where activity='"+act+"'";
 	//out.println(q);
 	ResultSet rs2=stmt.executeQuery(q);
 	int countA=0;
@@ -63,16 +63,16 @@ try{
 		countA =rs2.getInt(1);	
 	}
 	
-	out.println(act+" : "+countA);
+	//out.println(act+" : "+countA);
 	rs2.close();
 	data.append('[').append("'").append(act).append("'").append(',').append(countA).append(']').append(',');
 	}
-	out.println(data.toString());
+	//out.println(data.toString());
 	
 	
 	//------------------------------		
 	 //------------------------------
-	 out.println(data);
+	 //out.println(data);
 	//--------------------------
 	
 	
@@ -87,10 +87,11 @@ try{
 
 	}
 
+
 %>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
+   google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
@@ -103,11 +104,11 @@ try{
           title: 'My Daily Activities'
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
   </body>
 </html>

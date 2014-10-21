@@ -4,14 +4,14 @@
 <html>
 <head>
      <HEAD>
-        <TITLE>Line Chart</TITLE>
+        <TITLE>Bar Chart</TITLE>
     </HEAD>
     
   </head>
   
 	<script>
 	  function Send(frm){
-		  frm.action="LineChartCombobox.jsp";
+		  frm.action="BarChartCombobox.jsp";
 		  frm.method="post";
 		  frm.submit();
 	  }
@@ -56,25 +56,25 @@ try{
 	  // select activity input to graph
   String activity=request.getParameter("activity");
   //System.out.println(activity+"가 선택되었습니다");
-  out.println(activity+"가 선택되었습니다");
+  //out.println(activity+"가 선택되었습니다");
   
-   String q = "select count(*), activity, machine from bpi.manuf1 where activity = '"+activity+"' group by activity, machine";
+   String q = "select count(*), activity, machine from bpi.manuf where activity = '"+activity+"' group by activity, machine";
 	ResultSet rs3=stmt.executeQuery(q);
 	while(rs3.next())
 	{
-		out.println(" This is count "+rs3.getString(1));
-		out.println(" between "+rs3.getString(3));
-		out.println(" and "+activity + " /////////// ");
+		//out.println(" This is count "+rs3.getString(1));
+		//out.println(" between "+rs3.getString(3));
+		//out.println(" and "+activity + " /////////// ");
 		data.append(',').append('[').append("'").append(activity).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
 	}
-	out.println();
+	//out.println();
 	rs3.close();
-	out.println(" data : --- "+data.toString());
+	//out.println(" data : --- "+data.toString());
 
 	
 		//Find the activity
 	 	//SELECT distinct activity from manuf
-	 	String query_str1 = "select distinct activity from bpi.manuf1";
+	 	String query_str1 = "select distinct activity from bpi.manuf";
 		ResultSet rs1=stmt.executeQuery(query_str1);
 		int k=0;
 		%>
@@ -141,7 +141,7 @@ try{
  
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
+   google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
@@ -151,14 +151,16 @@ try{
         var data = google.visualization.arrayToDataTable(datajs);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'My Daily Activities & Machines'
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+
+
   </body>
 </html>

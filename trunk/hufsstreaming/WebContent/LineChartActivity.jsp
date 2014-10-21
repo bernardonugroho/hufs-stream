@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="java.sql.*, java.util.*,java.util.ArrayList.*"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,30 +31,31 @@ try{
 	//data initialization
 	if (data.length() > 0) {
      data.append(',');
- 	}
- 	data.append('[').append("'Machine'").append(',').append("'Frequency'").append(']').append(',');
- 	out.println("******* "+ data);
+ }
+ 	data.append('[').append("'Activity'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
 
  	
  	
- 	//Find the machine
- 	//SELECT distinct machine from manuf
- 	String query_str1 = "select distinct machine from bpi.manuf1";
+ 	//Find the activity
+ 	//SELECT distinct activity from manuf
+ 	String query_str1 = "select distinct activity from bpi.manuf";
 	ResultSet rs1=stmt.executeQuery(query_str1);
 	
 	ArrayList<String> name = new ArrayList<String>();
 	int k=0;
 	while(rs1.next())
 	{
-		name.add(rs1.getString("machine"));
-		out.println("arraylist : "+name.get(k));
+		name.add(rs1.getString("activity"));
+		//out.println("arraylist : "+name.get(k));
 		k++;
 	}
 
 	rs1.close();
-	for (String mac : name)
+	
+	for (String act : name)
 	{
-	String q = "select count(*) from bpi.manuf1 where machine='"+mac+"'";
+	String q = "select count(*) from bpi.manuf where activity='"+act+"'";
 	//out.println(q);
 	ResultSet rs2=stmt.executeQuery(q);
 	int countA=0;
@@ -63,16 +63,18 @@ try{
 		countA =rs2.getInt(1);	
 	}
 	
-	out.println(mac+" : "+countA);
+	//out.println(act+" : "+countA);
 	rs2.close();
-	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
+	data.append('[').append("'").append(act).append("'").append(',').append(countA).append(']').append(',');
 	}
-	out.println(data.toString());
+	//out.println(data.toString());
+	
 	
 	//------------------------------		
 	 //------------------------------
-	 out.println(data);
+	 //out.println(data);
 	//--------------------------
+	
 	
 
      stmt.close();
@@ -98,7 +100,7 @@ try{
         var data = google.visualization.arrayToDataTable(datajs);
 
         var options = {
-          title: 'My Daily Machines'
+          title: 'My Daily Activities'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
@@ -106,6 +108,6 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
   </body>
 </html>
