@@ -281,20 +281,90 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li><a class="active" href="index(main).jsp"><i
-								class="fa fa-table fa-fw"></i> Home</a></li>
-						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-								Dashboard<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="01_BasicChart.jsp">Basic Charts</a></li>
-								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
-								<li><a href="03_Annotation.jsp">Annotation Charts</a></li>
-							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
-						</li>
-						<li><a href=" "><i class="fa fa-table fa-fw"></i>
-								Machine Network</a></li>
-						<li><a href=" "><i class="fa fa-table fa-fw"></i>
-								Process Views</a></li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="active" href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -322,107 +392,256 @@
                         <div class="panel-body">
                             <div class="flot-chart">
                             
-                            Select Activity or Machine
-                            <input type="submit" value="Activity" />
-                            <input type="submit" value="Machine"  /><br>
+                            <form action = "00_test.jsp">
+                            Select Activity or Machine<br/>
+                        
+                            <input type="checkbox" name="chex" value="Activity"> Activity
+                            <input type="checkbox" name="chex" value="Machine"> Machine
+                             
+                            <br>
                             
+                            
+                             
                             <br>Select Frequency or time<br>
-                           <input type="submit" value="Frequency"/>
-                           <input type="submit" value="time"/><br>
+                            <input type="checkbox" name="chex" value="Frequency"> Frequency
+                            <input type="checkbox" name="chex" value="Time"> time<br>
+                            
+                            
+                             <br>Select Graph<br>
+                             <input type="checkbox" name="chex" value="Bar Chart"> Bar Chart<br>
+                            <input type="checkbox" name="chex" value="Pie Chart"> Pie Chart<br>
+                            <input type="checkbox" name="chex" value="Line Chart"> Line Chart<br>
+                            
+                             <input type="submit" value="ok" onclick="graph()">
                            
+                            
+                            <br>
+                          </form>
+                            <%String[] subject= request.getParameterValues("chex");
+                           
+                            /* for( int ix = 0; ix < subject.length; ix++ )
+							{
+							
+							out.println(subject[ix]);
+							
+							} */
+                            %>
+                            
+                       
+                       <script>
+                      function garph()  { </script><%
+                       
+                    	/* fequency combobox   */
+                    	  try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Bar Chart"))
+                      
+                    	   {%>
+                           <form action="BarChartCombobox.jsp" method="post"  target="Machine">
+							<br> <input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							 <%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Pie Chart"))
+                      
+                    	   {%>
+							<form action="PieChartComboBox.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+							
+							
+							<%try{
+								 if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Line Chart"))
+                      
+                    	   {%>
+							<form action="LineChartCombobox.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							</form>
+						<%} }catch(Exception e){ }%>
+						
+						
+						
+						
+						
+						<!-- Activity frequency -->
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
+                      
+                    	   {%>
+							<form action="BarChartActivity.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Pie Chart"))
+                      
+                    	   {%>
+							<form action="PieChartActivity.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Line Chart"))
+                      
+                    	   {%>
+							<form action="LineChartActivity.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- machine frequency -->
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
+                      
+                    	   {%>
+							<form action="BarChartMachine.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Pie Chart"))
+                      
+                    	   {%>
+							<form action="PieChartMachine.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Line Chart"))
+                      
+                    	   {%>
+							<form action="LineChartMachine.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- Activity time -->
+						
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Bar Chart"))
+                      
+                    	   {%>
+							<form action="BarChartActivityTime.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Pie Chart"))
+                      
+                    	   {%>
+							<form action="PieChartActivityTime.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Line Chart"))
+                      
+                    	   {%>
+							<form action="LineChartActivityTime.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- Machine time -->
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Bar Chart"))
+                      
+                    	   {%>
+							<form action="BarChartMachineTime.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Pie Chart"))
+                      
+                    	   {%>
+							<form action="PieChartMachineTime.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Line Chart"))
+                      
+                    	   {%>
+							<form action="LineChartMachineTime.jsp" method="post" target="Machine">
+							<br><input type="submit" value="GO">
+							<br>
+							</form>
+							<%} }catch(Exception e){ }%>
+							
+							
+						<script> }  </script>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
                                 <!-- <div class="flot-chart-content" id="flot-pie-chart"></div> -->
                                 <!-- combo box selection activity -->
                                 <!-- data connection -->
-               	<script>
-	  function Send(frm){
-		  frm.action="01_BasicChart.jsp";
-		  frm.method="post";
-		  frm.submit();
-	  }
-	  </script>
-                <% 
-  
-  Connection conn = null; 
-String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
-String id = "cmpteam";                                                   
-String pw = "!cmpteam";                                                
-String Data_label = "";
-
-Statement stmt = null;
-Statement stmt1 = null;
-
-StringBuffer data = new StringBuffer();
-ArrayList<String> name = new ArrayList<String>();
-try{
-
-  
-	Class.forName("com.mysql.jdbc.Driver");   
-	conn=DriverManager.getConnection(url,id,pw);              
-
-	stmt = conn.createStatement();
-	
-	
-	//data initialization
-	if (data.length() > 0) {
-   data.append(',');
-}
-	data.append('[').append("'Activity & Machine'").append(',').append("'Frequency'").append(']');
-	//out.println("******* "+ data);
-	  // select activity input to graph
-  String activity=request.getParameter("activity");
-  //System.out.println(activity+"媛��������듬���);
-  //out.println(activity+"媛��������듬���);
-  
-   String q = "select count(*), activity, machine from bpi.manuf where activity = '"+activity+"' group by activity, machine";
-	ResultSet rs3=stmt.executeQuery(q);
-	while(rs3.next())
-	{
-		//out.println(" This is count "+rs3.getString(1));
-		//out.println(" between "+rs3.getString(3));
-		//out.println(" and "+activity + " /////////// ");%><br><%
-		data.append(',').append('[').append("'").append(activity).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
-	}
-	out.println();
-	rs3.close();
-	//out.println(" data : --- "+data.toString());
-
-		//Find the activity
-	 	//SELECT distinct activity from manuf
-	 	String query_str1 = "select distinct activity from bpi.manuf";
-		ResultSet rs1=stmt.executeQuery(query_str1);
-		int k=0;
-		%>
+     
 		
-                                <form name="act1">
-									<select name="activity" onchange="Send(act1)">
-									<%
-									while(rs1.next())
-									{
-										name.add(rs1.getString("activity"));
-										//out.println("arraylist : "+name.get(k));
-										if(activity==null){
-											%>
-											<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
-											<%
-										}
-										if(activity!=null){
-											if(activity.equals(rs1.getString("activity"))){
-												%>
-												<option value="<%=name.get(k)%>" selected><%=name.get(k) %></option>
-												<%	
-											}
-											else{
-												%>
-												<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
-												<%
-											}
-										}
-										k++;
-									}
-									rs1.close();
-									%>
-									</select>
-									</form>
                                 <!--  -->
                             </div>
                         </div>
@@ -432,20 +651,7 @@ try{
                 
                 
    
-                <%
-		//-------------------------
-	
-	     stmt.close();
-	     stmt1.close();
-	     conn.close();
-		
-		}catch(Exception e){                                                    
-
-			e.printStackTrace();
-
-		}
-
-        %>
+          
                
 </div>
                 <!--  -->
@@ -460,102 +666,14 @@ try{
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                            <script> function Frequency() {</script> Choose the Chart
-                           
-                           
-                           
-                            <form action="01_BasicChart.jsp">
                             
-                        
-                            
-							<!-- <input type="Submit" value="Bar Chart" name="act">
-							<input type="submit" value="Pie Chart"name="act"/>
-                           <input type="submit" value="Line Chart" name="act"/> -->
-                           
-                           
-                           
-                           <input type="submit" value="Bar Chart" onclick="MyBar()"/> 
-                          <input type="button" value="Pie Chart" onclick="MyPie()"/>
-                           <input type="submit" value="Line Chart" onclick="MyLine()"/>
-							</form>
-                           
-                            
-                      <!--   <input type="submit" value="Bar Chart" onclick="MyBar()"/> 
-                          <input type="button" value="Pie Chart" onclick="MyPie()"/>
-                           <input type="submit" value="Line Chart" onclick="MyLine()"/>  -->
-                              <script> } </script> 
+                               
+                               
+                               <iframe src="iframepage.jsp" name="Machine" style="width:600px; height:400px"></iframe>
                                
                                
                                
-                               
-                               
-                               
-                               <!-- google chart -->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-    function MyBar(){   
-    google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);      
-      var datajs = [<%=data.toString()%>];
-      alert(datajs);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(datajs);
-        var options = {
-          title: 'Bar Chart'
-        };
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    }
-    </script>
-<div id="chart_div" style="width: 600px; height: 300px;"></div>
-          
-                
-   <!-- --------------------------------------------------------------------------------------------- -->          
-                
                  
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>                  
-    <script type="text/javascript">
-    function MyPie(){   
-    google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      var datajs = [<%=data.toString()%>];
-      alert(datajs);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(datajs);
-        var options = {
-          title: 'Pie Chart'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
-    }
-    </script>
-<div id="piechart" style="width: 600px; height: 300px;"></div>
-
-                    
-  <!-- --------------------------------------------------------------------------------------------- -->          
-                    
-                     
-                         
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">     
-    function MyLine(){   
-    google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      var datajs = [<%=data.toString()%>];
-      alert(datajs);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(datajs);
-        var options = {
-          title: 'Line Chart'
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    }
-    </script>
-<div id="chart_div" style="width: 600; height: 300px;"></div>
 
                             <!--  -->
                             <!--   <div class="flot-chart-content" id="flot-line-chart"></div> -->
