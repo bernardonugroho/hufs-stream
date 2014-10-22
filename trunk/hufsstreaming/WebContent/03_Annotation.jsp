@@ -432,7 +432,7 @@
 									
 										stmt = conn.createStatement();
 										
-									 	String query_str2 = "select distinct caseid from bpi.manuf1";
+									 	String query_str2 = "select distinct caseid from bpi.manuf";
 									 	ResultSet rs2=stmt.executeQuery(query_str2);
 									 	%>
 									 	
@@ -480,7 +480,7 @@
 											 for ( int z = 0; z < chkbox.length; z++ )
 											 {
 										 ResultSet ci1;
-										String query_strc1 = "select * from bpi.manuf1 where caseid= '"+chkbox[z]+"' order by time asc ";	
+										String query_strc1 = "select * from bpi.manuf where caseid= '"+chkbox[z]+"' order by time asc ";	
 									 ci1=stmt.executeQuery(query_strc1); 	
 									 
 									 //1.  select each case
