@@ -65,7 +65,14 @@ try{
 		//out.println(" This is count "+rs3.getString(1));
 		//out.println(" between "+rs3.getString(3));
 		//out.println(" and "+activity + " /////////// ");
+		String a = "null";
+		if(rs3.getString(3).equals(a)){
+			continue;
+		}
+		else{
+		
 		data.append(',').append('[').append("'").append(activity).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+	}
 	}
 	//out.println();
 	rs3.close();

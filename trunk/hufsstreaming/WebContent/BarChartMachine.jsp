@@ -55,6 +55,8 @@ try{
 	rs1.close();
 	for (String mac : name)
 	{
+		//out.println(mac);
+		
 	String q = "select count(*) from bpi.manuf where machine='"+mac+"'";
 	//out.println(q);
 	ResultSet rs2=stmt.executeQuery(q);
@@ -65,7 +67,13 @@ try{
 	
 	//out.println(mac+" : "+countA);
 	rs2.close();
+	String a = "null";
+	if(mac.equals(a)){
+		continue;
+	}
+	else{
 	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
+	}
 	}
 	//out.println(data.toString());
 	
