@@ -65,7 +65,13 @@ try{
 	
 	//out.println(mac+" : "+countA);
 	rs2.close();
+	String a = "null";
+	if(mac.equals(a)){
+		continue;
+	}
+	else{
 	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
+	}
 	}
 	//out.println(data.toString());
 	
