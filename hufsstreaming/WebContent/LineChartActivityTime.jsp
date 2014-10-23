@@ -83,7 +83,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온�
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manu1 as a ";
+		query_str1+="FROM    bpi.manuf as a ";
 
 		query_str1+="LEFT JOIN bpi.manuf as b ";
 
