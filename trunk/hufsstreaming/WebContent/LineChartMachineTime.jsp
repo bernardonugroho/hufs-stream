@@ -135,16 +135,9 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
 			dataUtil.append('[').append("'Machine'").append(',').append("'Value'").append(']');
 			num++;
 		}
-		String a = "null";
-		if(Mac.get(num++-1).equals(a)){
-			continue;
-		}
-		else{
-		
 		dataUtil.append(',').append('[').append("'").append(Mac.get(num++-1));
 		num--;
 		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
-		}
 		//data label
 		
 		
@@ -169,8 +162,14 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
 		rs4.close(); 
 		
 		for(int k=0;k<Mac.size();k++){
-		//out.println(Mac.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");
+		//out.println(Mac.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");String a = "null";
+				String a = "null";	
+		if(Mac.get(k).equals(a)){
+				continue;
+			}
+			else{
 		data.append('[').append("'").append(Mac.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
 		}
 		stmt.close();
 	    conn.close();
