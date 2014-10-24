@@ -100,7 +100,7 @@ try{
         var data = google.visualization.arrayToDataTable(datajs);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Activities'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
