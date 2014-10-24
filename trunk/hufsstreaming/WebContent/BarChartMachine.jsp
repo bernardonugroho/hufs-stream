@@ -107,7 +107,7 @@ try{
         var data = google.visualization.arrayToDataTable(datajs);
 
         var options = {
-          title: 'My Daily Machines'
+          title: 'Machines'
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
