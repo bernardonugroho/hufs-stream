@@ -10,6 +10,12 @@
     
     
     <% 
+    String manuf = "bpi.manuf";
+    String activity = "activity";
+    String machine = "machine";
+    String caseid = "caseid";
+    String time = "time";
+    
     Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
 String id = "cmpteam";                                                   
@@ -40,14 +46,14 @@ try{
  	
  	//Find the machine
  	//SELECT distinct machine from manuf
- 	String query_str1 = "select distinct machine from bpi.manuf";
+ 	String query_str1 = "select distinct "+machine+" from "+manuf;
 	ResultSet rs1=stmt.executeQuery(query_str1);
 	
 	ArrayList<String> name = new ArrayList<String>();
 	int k=0;
 	while(rs1.next())
 	{
-		name.add(rs1.getString("machine"));
+		name.add(rs1.getString(machine));
 		//out.println("arraylist : "+name.get(k));
 		k++;
 	}
@@ -55,7 +61,7 @@ try{
 	rs1.close();
 	for (String mac : name)
 	{
-	String q = "select count(*) from bpi.manuf where machine='"+mac+"'";
+	String q = "select count(*) from "+manuf+" where "+machine+"='"+mac+"'";
 	//out.println(q);
 	ResultSet rs2=stmt.executeQuery(q);
 	int countA=0;

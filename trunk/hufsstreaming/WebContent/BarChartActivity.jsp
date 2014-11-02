@@ -9,6 +9,15 @@
     
     
     <% 
+    
+String manuf = "bpi.manuf";
+String activity = "activity";
+String machine = "machine";
+String caseid = "caseid";
+String time = "time";
+    
+    
+    
     Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
 String id = "cmpteam";                                                   
@@ -39,14 +48,14 @@ try{
  	
  	//Find the activity
  	//SELECT distinct activity from manuf
- 	String query_str1 = "select distinct activity from bpi.manuf";
+ 	String query_str1 = "select distinct "+ activity+" from "+ manuf;
 	ResultSet rs1=stmt.executeQuery(query_str1);
 	
 	ArrayList<String> name = new ArrayList<String>();
 	int k=0;
 	while(rs1.next())
 	{
-		name.add(rs1.getString("activity"));
+		name.add(rs1.getString(activity));
 		//out.println("arraylist : "+name.get(k));
 		k++;
 	}
@@ -55,7 +64,7 @@ try{
 	
 	for (String act : name)
 	{
-	String q = "select count(*) from bpi.manuf where activity='"+act+"'";
+	String q = "select count(*) from "+ manuf +" where "+ activity+"='"+act+"'";
 	//out.println(q);
 	ResultSet rs2=stmt.executeQuery(q);
 	int countA=0;
@@ -86,7 +95,6 @@ try{
 		e.printStackTrace();
 
 	}
-
 
 %>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>

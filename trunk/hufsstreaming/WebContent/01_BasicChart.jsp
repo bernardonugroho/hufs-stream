@@ -392,7 +392,7 @@
                         <div class="panel-body">
                             <div class="flot-chart">
                             
-                            <form action = "00_test.jsp">
+                            <form action = "01_BasicChart.jsp">
                             Select Activity or Machine<br/>
                         
                             <input type="checkbox" name="chex" value="Activity"> Activity

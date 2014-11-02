@@ -4,14 +4,14 @@
 <html>
 <head>
      <HEAD>
-        <TITLE>Line Chart</TITLE>
+        <TITLE>Bar Chart</TITLE>
     </HEAD>
     
   </head>
   
 	<script>
 	  function Send(frm){
-		  frm.action="LineChartCombobox.jsp";
+		  frm.action="PieChartComboBox.jsp";
 		  frm.method="post";
 		  frm.submit();
 	  }
@@ -22,6 +22,11 @@
   <% 
   
   
+  String manuf = "bpi.manuf";
+  String activity = "activity";
+  String machine = "machine";
+  String caseid = "caseid";
+  String time = "time";
   
   Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -54,18 +59,24 @@ try{
 	
 	
 	  // select activity input to graph
-  String activity=request.getParameter("activity");
+  String act = request.getParameter(activity);
   //System.out.println(activity+"가 선택되었습니다");
   //out.println(activity+"가 선택되었습니다");
   
-   String q = "select count(*), activity, machine from bpi.manuf where activity = '"+activity+"' group by activity, machine";
+   String q = "select count(*), activity, machine from "+manuf+" where "+activity+" = '"+act+"' group by "+activity+", "+machine;
 	ResultSet rs3=stmt.executeQuery(q);
 	while(rs3.next())
 	{
 		//out.println(" This is count "+rs3.getString(1));
 		//out.println(" between "+rs3.getString(3));
 		//out.println(" and "+activity + " /////////// ");
-		data.append(',').append('[').append("'").append(activity).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+		String a = "null";
+		if(rs3.getString(3).equals(a)){
+			continue;
+		}
+		else{
+		data.append(',').append('[').append("'").append(act).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+	}
 	}
 	//out.println();
 	rs3.close();
@@ -74,7 +85,7 @@ try{
 	
 		//Find the activity
 	 	//SELECT distinct activity from manuf
-	 	String query_str1 = "select distinct activity from bpi.manuf";
+	 	String query_str1 = "select distinct "+activity+" from "+manuf;
 		ResultSet rs1=stmt.executeQuery(query_str1);
 		int k=0;
 		%>
@@ -83,7 +94,7 @@ try{
 		<%
 		while(rs1.next())
 		{
-			name.add(rs1.getString("activity"));
+			name.add(rs1.getString(activity));
 			//out.println("arraylist : "+name.get(k));
 			if(activity==null){
 				%>
@@ -92,7 +103,7 @@ try{
 				
 			}
 			if(activity!=null){
-				if(activity.equals(rs1.getString("activity"))){
+				if(activity.equals(rs1.getString(activity))){
 					%>
 					<option value="<%=name.get(k)%>" selected><%=name.get(k) %></option>
 					<%	
