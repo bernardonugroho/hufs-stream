@@ -403,239 +403,32 @@
                             
                              
                             <br>Select Frequency or time<br>
-                            <input type="checkbox" name="chex" value="Frequency"> Frequency
+                            <input type="checkbox" name="chex" value="Frequency" > Frequency
                             <input type="checkbox" name="chex" value="Time"> time<br>
                             
                             
+                       
                              <br>Select Graph<br>
-                             <input type="checkbox" name="chex" value="Bar Chart"> Bar Chart<br>
-                            <input type="checkbox" name="chex" value="Pie Chart"> Pie Chart<br>
-                            <input type="checkbox" name="chex" value="Line Chart"> Line Chart<br>
-                            
-                             <input type="submit" value="ok" onclick="graph()">
+                             <input type="submit" name="chex" value="Bar Chart" onclick="graph()"> Bar Chart<br>
+                            <input type="submit" name="chex" value="Pie Chart" onclick="graph()"> Pie Chart<br>
+                            <input type="submit" name="chex" value="Line Chart" onclick="graph()"> Line Chart<br>
+                  
+                            <!-- <input type="submit" value="ok" onclick="graph()">--> 
                            
                             
                             <br>
                           </form>
                             <%String[] subject= request.getParameterValues("chex");
                            
-                            /* for( int ix = 0; ix < subject.length; ix++ )
+                            /*  for( int ix = 0; ix < subject.length; ix++ )
 							{
 							
 							out.println(subject[ix]);
 							
-							} */
+							}  */
                             %>
                             
                        
-                       <script>
-                      function garph()  { </script><%
-                       
-                    	/* fequency combobox   */
-                    	  try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Bar Chart"))
-                      
-                    	   {%>
-                           <form action="BarChartCombobox.jsp" method="post"  target="Machine">
-							<br> <input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-							
-							
-							
-							 <%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Pie Chart"))
-                      
-                    	   {%>
-							<form action="PieChartComboBox.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-							
-							
-							<%try{
-								 if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Line Chart"))
-                      
-                    	   {%>
-							<form action="LineChartCombobox.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							</form>
-						<%} }catch(Exception e){ }%>
-						
-						
-						
-						
-						
-						<!-- Activity frequency -->
-						
-						<%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
-                      
-                    	   {%>
-							<form action="BarChartActivity.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Pie Chart"))
-                      
-                    	   {%>
-							<form action="PieChartActivity.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Line Chart"))
-                      
-                    	   {%>
-							<form action="LineChartActivity.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							<!-- machine frequency -->
-						
-						<%try{
-                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
-                      
-                    	   {%>
-							<form action="BarChartMachine.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Pie Chart"))
-                      
-                    	   {%>
-							<form action="PieChartMachine.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Line Chart"))
-                      
-                    	   {%>
-							<form action="LineChartMachine.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-							
-							
-							
-							
-							
-							
-							
-							
-							<!-- Activity time -->
-						
-						
-						<%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Bar Chart"))
-                      
-                    	   {%>
-							<form action="BarChartActivityTime.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Pie Chart"))
-                      
-                    	   {%>
-							<form action="PieChartActivityTime.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Line Chart"))
-                      
-                    	   {%>
-							<form action="LineChartActivityTime.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							<!-- Machine time -->
-						
-						<%try{
-                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Bar Chart"))
-                      
-                    	   {%>
-							<form action="BarChartMachineTime.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Pie Chart"))
-                      
-                    	   {%>
-							<form action="PieChartMachineTime.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-						
-						<%try{
-                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Line Chart"))
-                      
-                    	   {%>
-							<form action="LineChartMachineTime.jsp" method="post" target="Machine">
-							<br><input type="submit" value="GO">
-							<br>
-							</form>
-							<%} }catch(Exception e){ }%>
-							
-							
-						<script> }  </script>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 						
                                 <!-- <div class="flot-chart-content" id="flot-pie-chart"></div> -->
                                 <!-- combo box selection activity -->
@@ -667,12 +460,2413 @@
                         <div class="panel-body">
                             <div class="flot-chart">
                             
-                               
-                               
-                               <iframe src="iframepage.jsp" name="Machine" style="width:600px; height:400px"></iframe>
-                               
-                               
-                               
+                       <script>
+                      function graph()  { </script><%
+                       
+                    	/* fequency combobox   */
+                    	  try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Bar Chart"))
+                      
+                    	   { %><script>
+                    	   function Send(frm){
+                 			  frm.action="01_BasicChart.jsp?chex=Activity&chex=Machine&chex=Frequency&chex=Bar+Chart";
+                 			  frm.method="post";
+                 			  frm.submit();
+                 		  }
+                 		  </script>
+                 	  
+                 	  <%
+                 		   String manuf = "bpi.manuf";
+String activity = "activity";
+String machine = "machine";
+String caseid = "caseid";
+String time = "time";
+
+Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+ArrayList<String> name = new ArrayList<String>();
+try{
+
+
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	
+	//data initialization
+	if (data.length() > 0) {
+data.append(',');
+}
+	data.append('[').append("'Activity & Machine'").append(',').append("'Frequency'").append(']');
+	//out.println("******* "+ data);
+
+	
+	
+	
+	  // select activity input to graph
+String act = request.getParameter(activity);
+//System.out.println(activity+"가 선택되었습니다");
+//out.println(activity+"가 선택되었습니다");
+
+String q = "select count(*), activity, machine from "+manuf+" where "+activity+" = '"+act+"' group by "+activity+", "+machine;
+	ResultSet rs3=stmt.executeQuery(q);
+	while(rs3.next())
+	{
+		//out.println(" This is count "+rs3.getString(1));
+		//out.println(" between "+rs3.getString(3));
+		//out.println(" and "+activity + " /////////// ");
+		String a = "null";
+		if(rs3.getString(3).equals(a)){
+			continue;
+		}
+		else{
+		data.append(',').append('[').append("'").append(act).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+	}
+	}
+	//out.println();
+	rs3.close();
+	//out.println(" data : --- "+data.toString());
+
+	
+		//Find the activity
+	 	//SELECT distinct activity from manuf
+	 	String query_str1 = "select distinct "+activity+" from "+manuf;
+		ResultSet rs1=stmt.executeQuery(query_str1);
+		int k=0;
+		%>
+		<form name="act1">
+		<select name="activity" onchange="Send(act1)">
+		<%
+		while(rs1.next())
+		{
+			name.add(rs1.getString(activity));
+			//out.println("arraylist : "+name.get(k));
+			if(activity==null){
+				%>
+				<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+				<%
+				
+			}
+			if(activity!=null){
+				if(activity.equals(rs1.getString(activity))){
+					%>
+					<option value="<%=name.get(k)%>" selected><%=name.get(k) %></option>
+					<%	
+				}
+				else{
+					%>
+					<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+					<%
+				}
+				
+			}
+			
+			
+			k++;
+		}
+		rs1.close();
+		%>
+		</select>
+		</form>
+		
+	
+				<%
+
+		//--------------------------
+		
+
+	     stmt.close();
+	     stmt1.close();
+	     conn.close();
+		
+		}catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+
+
+		
+		
+		
+
+	
+
+     %>
+ 
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   
+   var datajs = [<%=data.toString()%>];
+   alert(datajs);
+   function drawChart() {
+
+     var data = google.visualization.arrayToDataTable(datajs);
+
+     var options = {
+       title: 'Activities & Machines'
+     };
+
+     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+     chart.draw(data, options);
+   }
+ </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							 <%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Pie Chart"))
+                      
+                    	   {   %><script>
+                    	   function Send(frm){
+                    			  frm.action="01_BasicChart.jsp?chex=Activity&chex=Machine&chex=Frequency&chex=Pie+Chart";
+                    			  frm.method="post";
+                    			  frm.submit();
+                    		  }
+                    		  </script>
+                    	  
+                    	  <%
+                    		   String manuf = "bpi.manuf";
+  String activity = "activity";
+  String machine = "machine";
+  String caseid = "caseid";
+  String time = "time";
+  
+  Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+ArrayList<String> name = new ArrayList<String>();
+try{
+
+  
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	
+	//data initialization
+	if (data.length() > 0) {
+   data.append(',');
+}
+	data.append('[').append("'Activity & Machine'").append(',').append("'Frequency'").append(']');
+	//out.println("******* "+ data);
+  
+	
+	
+	
+	  // select activity input to graph
+  String act = request.getParameter(activity);
+  //System.out.println(activity+"가 선택되었습니다");
+  //out.println(activity+"가 선택되었습니다");
+  
+   String q = "select count(*), activity, machine from "+manuf+" where "+activity+" = '"+act+"' group by "+activity+", "+machine;
+	ResultSet rs3=stmt.executeQuery(q);
+	while(rs3.next())
+	{
+		//out.println(" This is count "+rs3.getString(1));
+		//out.println(" between "+rs3.getString(3));
+		//out.println(" and "+activity + " /////////// ");
+		String a = "null";
+		if(rs3.getString(3).equals(a)){
+			continue;
+		}
+		else{
+		data.append(',').append('[').append("'").append(act).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+	}
+	}
+	//out.println();
+	rs3.close();
+	//out.println(" data : --- "+data.toString());
+
+	
+		//Find the activity
+	 	//SELECT distinct activity from manuf
+	 	String query_str1 = "select distinct "+activity+" from "+manuf;
+		ResultSet rs1=stmt.executeQuery(query_str1);
+		int k=0;
+		%>
+		<form name="act1">
+		<select name="activity" onchange="Send(act1)">
+		<%
+		while(rs1.next())
+		{
+			name.add(rs1.getString(activity));
+			//out.println("arraylist : "+name.get(k));
+			if(activity==null){
+				%>
+				<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+				<%
+				
+			}
+			if(activity!=null){
+				if(activity.equals(rs1.getString(activity))){
+					%>
+					<option value="<%=name.get(k)%>" selected><%=name.get(k) %></option>
+					<%	
+				}
+				else{
+					%>
+					<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+					<%
+				}
+				
+			}
+			
+			
+			k++;
+		}
+		rs1.close();
+		%>
+		</select>
+		</form>
+		
+	
+				<%
+
+		//--------------------------
+		
+
+	     stmt.close();
+	     stmt1.close();
+	     conn.close();
+		
+		}catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+
+
+		
+		
+		
+
+	
+
+        %>
+    
+ 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activities & Machines'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+				
+							
+							
+							<%try{
+								 if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Line Chart"))
+                      
+                    	   {%><script>
+                    	   function Send(frm){
+                 			  frm.action="01_BasicChart.jsp?chex=Activity&chex=Machine&chex=Frequency&chex=Line+Chart";
+                 			  frm.method="post";
+                 			  frm.submit();
+                 		  }
+                 		  </script>
+                 	  
+                 	  <%
+                 		   String manuf = "bpi.manuf";
+String activity = "activity";
+String machine = "machine";
+String caseid = "caseid";
+String time = "time";
+
+Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+ArrayList<String> name = new ArrayList<String>();
+try{
+
+
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	
+	//data initialization
+	if (data.length() > 0) {
+data.append(',');
+}
+	data.append('[').append("'Activity & Machine'").append(',').append("'Frequency'").append(']');
+	//out.println("******* "+ data);
+
+	
+	
+	
+	  // select activity input to graph
+String act = request.getParameter(activity);
+//System.out.println(activity+"가 선택되었습니다");
+//out.println(activity+"가 선택되었습니다");
+
+String q = "select count(*), activity, machine from "+manuf+" where "+activity+" = '"+act+"' group by "+activity+", "+machine;
+	ResultSet rs3=stmt.executeQuery(q);
+	while(rs3.next())
+	{
+		//out.println(" This is count "+rs3.getString(1));
+		//out.println(" between "+rs3.getString(3));
+		//out.println(" and "+activity + " /////////// ");
+		String a = "null";
+		if(rs3.getString(3).equals(a)){
+			continue;
+		}
+		else{
+		data.append(',').append('[').append("'").append(act).append(" & ").append(rs3.getString(3)).append("'").append(',').append(rs3.getString(1)).append(']');
+	}
+	}
+	//out.println();
+	rs3.close();
+	//out.println(" data : --- "+data.toString());
+
+	
+		//Find the activity
+	 	//SELECT distinct activity from manuf
+	 	String query_str1 = "select distinct "+activity+" from "+manuf;
+		ResultSet rs1=stmt.executeQuery(query_str1);
+		int k=0;
+		%>
+		<form name="act1">
+		<select name="activity" onchange="Send(act1)">
+		<%
+		while(rs1.next())
+		{
+			name.add(rs1.getString(activity));
+			//out.println("arraylist : "+name.get(k));
+			if(activity==null){
+				%>
+				<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+				<%
+				
+			}
+			if(activity!=null){
+				if(activity.equals(rs1.getString(activity))){
+					%>
+					<option value="<%=name.get(k)%>" selected><%=name.get(k) %></option>
+					<%	
+				}
+				else{
+					%>
+					<option value="<%=name.get(k)%>" ><%=name.get(k) %></option>
+					<%
+				}
+				
+			}
+			
+			
+			k++;
+		}
+		rs1.close();
+		%>
+		</select>
+		</form>
+		
+	
+				<%
+
+		//--------------------------
+		
+
+	     stmt.close();
+	     stmt1.close();
+	     conn.close();
+		
+		}catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+
+
+		
+		
+		
+
+	
+
+     %>
+ 
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   
+   var datajs = [<%=data.toString()%>];
+   alert(datajs);
+   function drawChart() {
+
+     var data = google.visualization.arrayToDataTable(datajs);
+
+     var options = {
+       title: 'Activities & Machines'
+     };
+
+     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+     chart.draw(data, options);
+   }
+ </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+						
+						
+						
+						
+						<!-- Activity frequency -->
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
+                      
+                    	   {
+    
+String manuf = "bpi.manuf";
+String activity = "activity";
+String machine = "machine";
+String caseid = "caseid";
+String time = "time";
+    
+    
+    
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+     data.append(',');
+ }
+ 	data.append('[').append("'Activity'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
+
+ 	
+ 	
+ 	//Find the activity
+ 	//SELECT distinct activity from manuf
+ 	String query_str1 = "select distinct "+ activity+" from "+ manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(activity));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	
+	for (String act : name)
+	{
+	String q = "select count(*) from "+ manuf +" where "+ activity+"='"+act+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(act+" : "+countA);
+	rs2.close();
+	data.append('[').append("'").append(act).append("'").append(',').append(countA).append(']').append(',');
+	}
+	//out.println(data.toString());
+	
+	
+	//------------------------------		
+	 //------------------------------
+	 //out.println(data);
+	//--------------------------
+	
+	
+
+     stmt.close();
+     stmt1.close();
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activities'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							
+							
+							<%} }catch(Exception e){ }%>
+						
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Pie Chart"))
+                      
+                    	   {
+    
+String manuf = "bpi.manuf";
+String activity = "activity";
+String machine = "machine";
+String caseid = "caseid";
+String time = "time";
+    
+    
+    
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+     data.append(',');
+ }
+ 	data.append('[').append("'Activity'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
+
+ 	
+ 	
+ 	//Find the activity
+ 	//SELECT distinct activity from manuf
+ 	String query_str1 = "select distinct "+ activity+" from "+ manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(activity));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	
+	for (String act : name)
+	{
+	String q = "select count(*) from "+ manuf +" where "+ activity+"='"+act+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(act+" : "+countA);
+	rs2.close();
+	data.append('[').append("'").append(act).append("'").append(',').append(countA).append(']').append(',');
+	}
+	//out.println(data.toString());
+	
+	
+	//------------------------------		
+	 //------------------------------
+	 //out.println(data);
+	//--------------------------
+	
+	
+
+     stmt.close();
+     stmt1.close();
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 550px; height: 350px;"></div>
+							
+							<%} }catch(Exception e){ }%>
+							
+							<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Line Chart"))
+                      
+                    	   {
+    
+String manuf = "bpi.manuf";
+String activity = "activity";
+String machine = "machine";
+String caseid = "caseid";
+String time = "time";
+    
+    
+    
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+     data.append(',');
+ }
+ 	data.append('[').append("'Activity'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
+
+ 	
+ 	
+ 	//Find the activity
+ 	//SELECT distinct activity from manuf
+ 	String query_str1 = "select distinct "+ activity+" from "+ manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(activity));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	
+	for (String act : name)
+	{
+	String q = "select count(*) from "+ manuf +" where "+ activity+"='"+act+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(act+" : "+countA);
+	rs2.close();
+	data.append('[').append("'").append(act).append("'").append(',').append(countA).append(']').append(',');
+	}
+	//out.println(data.toString());
+	
+	
+	//------------------------------		
+	 //------------------------------
+	 //out.println(data);
+	//--------------------------
+	
+	
+
+     stmt.close();
+     stmt1.close();
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activities'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							
+							
+							<%} }catch(Exception e){ }%>
+                    		   						
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- machine frequency -->
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
+                      
+                    	   {
+    String manuf = "bpi.manuf";
+    String activity = "activity";
+    String machine = "machine";
+    String caseid = "caseid";
+    String time = "time";
+    
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+     data.append(',');
+ 	}
+ 	data.append('[').append("'Machine'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
+
+ 	
+ 	
+ 	//Find the machine
+ 	//SELECT distinct machine from manuf
+ 	String query_str1 = "select distinct "+machine+" from "+manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(machine));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	for (String mac : name)
+	{
+	String q = "select count(*) from "+manuf+" where "+machine+"='"+mac+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(mac+" : "+countA);
+	rs2.close();
+	String a = "null";
+	if(mac.equals(a)){
+		continue;
+	}
+	else{
+	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
+	}
+	}
+	//out.println(data.toString());
+	
+	//------------------------------		
+	 //------------------------------
+	// out.println(data);
+	//--------------------------
+	
+
+     stmt.close();
+     stmt1.close();
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Machines'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+						
+						
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Pie Chart"))
+                      
+                    	   
+                    	   {
+    String manuf = "bpi.manuf";
+    String activity = "activity";
+    String machine = "machine";
+    String caseid = "caseid";
+    String time = "time";
+    
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+     data.append(',');
+ 	}
+ 	data.append('[').append("'Machine'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
+
+ 	
+ 	
+ 	//Find the machine
+ 	//SELECT distinct machine from manuf
+ 	String query_str1 = "select distinct "+machine+" from "+manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(machine));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	for (String mac : name)
+	{
+	String q = "select count(*) from "+manuf+" where "+machine+"='"+mac+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(mac+" : "+countA);
+	rs2.close();
+	String a = "null";
+	if(mac.equals(a)){
+		continue;
+	}
+	else{
+	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
+	}
+	}
+	//out.println(data.toString());
+	
+	//------------------------------		
+	 //------------------------------
+	// out.println(data);
+	//--------------------------
+	
+
+     stmt.close();
+     stmt1.close();
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Machines'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							
+							
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Line Chart"))
+                      
+                    	   
+                    	   {
+    String manuf = "bpi.manuf";
+    String activity = "activity";
+    String machine = "machine";
+    String caseid = "caseid";
+    String time = "time";
+    
+    Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+  
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+    
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+     data.append(',');
+ 	}
+ 	data.append('[').append("'Machine'").append(',').append("'Frequency'").append(']').append(',');
+ 	//out.println("******* "+ data);
+
+ 	
+ 	
+ 	//Find the machine
+ 	//SELECT distinct machine from manuf
+ 	String query_str1 = "select distinct "+machine+" from "+manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(machine));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	for (String mac : name)
+	{
+	String q = "select count(*) from "+manuf+" where "+machine+"='"+mac+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(mac+" : "+countA);
+	rs2.close();
+	String a = "null";
+	if(mac.equals(a)){
+		continue;
+	}
+	else{
+	data.append('[').append("'").append(mac).append("'").append(',').append(countA).append(']').append(',');
+	}
+	}
+	//out.println(data.toString());
+	
+	//------------------------------		
+	 //------------------------------
+	// out.println(data);
+	//--------------------------
+	
+
+     stmt.close();
+     stmt1.close();
+     conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Machines'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							
+							
+							
+							
+							<!-- Activity time -->
+						
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Bar Chart"))
+                      
+                    	   {Connection conn = null; 
+	String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+	String id = "cmpteam";                                                   
+	String pw = "!cmpteam";                                                
+	String Data_label = "";
+	  
+	Statement stmt = null;
+
+	StringBuffer data = new StringBuffer();
+	List dataList = new ArrayList();
+	ArrayList Act = new ArrayList();
+	StringBuffer dataUtil = new StringBuffer();
+
+
+	try{
+
+	    
+		Class.forName("com.mysql.jdbc.Driver");   
+		conn=DriverManager.getConnection(url,id,pw);              
+
+		stmt = conn.createStatement();
+		
+		
+		//data initialization
+		if (data.length() > 0) {
+	     data.append(',');
+	 }
+	 	data.append('[').append("'Activity'").append(',').append("'Time'").append(']').append(',');
+	 	//out.println("******* "+ data);
+
+		
+		
+		
+String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온다
+		
+		ResultSet rs2 =  stmt.executeQuery(q); 
+		
+		while(rs2.next()){
+			Act.add(rs2.getString("activity")); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		
+		
+		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
+		
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+				
+	 	ResultSet rs4 = stmt.executeQuery(q2);
+	 	int TotalActTime =0;
+	 	while(rs4.next()){
+		TotalActTime = rs4.getInt("TotalactTime");  // 쿼리문 써서 게산 
+	 	//out.println("TotalActTime is "+TotalActTime);
+	 	}
+	 	
+	 	int num = 0;
+		System.out.println(Act.size());
+		//준비된 어레이리스트를 사용해서 넣어준다 
+		for (int j =0 ; j<Act.size() ;j++){
+			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
+		String query_str1 = "SELECT  a.caseid ,a.activity, ";
+
+		query_str1+="STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') as 1stTime, ";
+		        
+		query_str1+="MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) as 2nd, ";
+		        
+		query_str1+="case ";  
+
+		query_str1+="when MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) = null then STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="end as 2ndTime, ";
+
+		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
+
+		query_str1+="FROM    bpi.manuf as a ";
+
+		query_str1+="LEFT JOIN bpi.manuf as b ";
+
+		query_str1+="ON a.caseid = b.caseid ";
+
+		query_str1+="AND STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s') > STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+		
+		query_str1+="having activity = '"+ Act.get(j) +"'";
+		
+		ResultSet rs1 = stmt.executeQuery(query_str1);
+		
+		int ValueTime = 0;
+		int TotalTime = 0;
+		
+		
+		while(rs1.next()){
+			ValueTime = rs1.getInt("TimeDiff");
+			
+			TotalTime = TotalTime + ValueTime;
+		}
+		rs1.close();
+		
+		
+		int countNum=0;
+		String q5 = "Select time from bpi.manuf where activity = '"+Act.get(j)+"'";
+		ResultSet rs5 = stmt.executeQuery(q5);
+		while(rs5.next()){
+			countNum++;
+		}
+		
+		int TotalTime2 = TotalTime/countNum;
+		
+		int util = TotalTime2*100/TotalActTime;
+		
+		
+		
+		Integer.toString(TotalTime2);
+		dataList.add(TotalTime2);
+		
+		
+		if (num==0)
+		{
+			dataUtil.append('[').append("'Activity'").append(',').append("'Value'").append(']');
+			num++;
+		}
+		dataUtil.append(',').append('[').append("'").append(Act.get(num++-1));
+		num--;
+		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
+		
+		
+		
+		
+	     
+		
+		 
+		}
+		
+	 
+		
+		rs2.close();
+		rs4.close(); 
+		
+		for(int k=0;k<Act.size();k++){
+		//out.println(Act.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");
+		data.append('[').append("'").append(Act.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
+		stmt.close();
+	    conn.close();
+	    
+	   // out.println("1");
+	   
+		}//for loop 이까지
+		
+	catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+	//out.println(dataUtil);
+	
+	
+	
+	%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activity time'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Pie Chart"))
+                      
+                    	   {Connection conn = null; 
+	String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+	String id = "cmpteam";                                                   
+	String pw = "!cmpteam";                                                
+	String Data_label = "";
+	  
+	Statement stmt = null;
+
+	StringBuffer data = new StringBuffer();
+	List dataList = new ArrayList();
+	ArrayList Act = new ArrayList();
+	StringBuffer dataUtil = new StringBuffer();
+
+
+	try{
+
+	    
+		Class.forName("com.mysql.jdbc.Driver");   
+		conn=DriverManager.getConnection(url,id,pw);              
+
+		stmt = conn.createStatement();
+		
+		
+		//data initialization
+		if (data.length() > 0) {
+	     data.append(',');
+	 }
+	 	data.append('[').append("'Activity'").append(',').append("'Time'").append(']').append(',');
+	 	//out.println("******* "+ data);
+
+		
+		
+		
+String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온다
+		
+		ResultSet rs2 =  stmt.executeQuery(q); 
+		
+		while(rs2.next()){
+			Act.add(rs2.getString("activity")); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		
+		
+		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
+		
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+				
+	 	ResultSet rs4 = stmt.executeQuery(q2);
+	 	int TotalActTime =0;
+	 	while(rs4.next()){
+		TotalActTime = rs4.getInt("TotalactTime");  // 쿼리문 써서 게산 
+	 	//out.println("TotalActTime is "+TotalActTime);
+	 	}
+	 	
+	 	int num = 0;
+		System.out.println(Act.size());
+		//준비된 어레이리스트를 사용해서 넣어준다 
+		for (int j =0 ; j<Act.size() ;j++){
+			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
+		String query_str1 = "SELECT  a.caseid ,a.activity, ";
+
+		query_str1+="STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') as 1stTime, ";
+		        
+		query_str1+="MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) as 2nd, ";
+		        
+		query_str1+="case ";  
+
+		query_str1+="when MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) = null then STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="end as 2ndTime, ";
+
+		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
+
+		query_str1+="FROM    bpi.manuf as a ";
+
+		query_str1+="LEFT JOIN bpi.manuf as b ";
+
+		query_str1+="ON a.caseid = b.caseid ";
+
+		query_str1+="AND STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s') > STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+		
+		query_str1+="having activity = '"+ Act.get(j) +"'";
+		
+		ResultSet rs1 = stmt.executeQuery(query_str1);
+		
+		int ValueTime = 0;
+		int TotalTime = 0;
+		
+		
+		while(rs1.next()){
+			ValueTime = rs1.getInt("TimeDiff");
+			
+			TotalTime = TotalTime + ValueTime;
+		}
+		rs1.close();
+		
+		
+		int countNum=0;
+		String q5 = "Select time from bpi.manuf where activity = '"+Act.get(j)+"'";
+		ResultSet rs5 = stmt.executeQuery(q5);
+		while(rs5.next()){
+			countNum++;
+		}
+		
+		int TotalTime2 = TotalTime/countNum;
+		
+		int util = TotalTime2*100/TotalActTime;
+		
+		
+		
+		Integer.toString(TotalTime2);
+		dataList.add(TotalTime2);
+		
+		
+		if (num==0)
+		{
+			dataUtil.append('[').append("'Activity'").append(',').append("'Value'").append(']');
+			num++;
+		}
+		dataUtil.append(',').append('[').append("'").append(Act.get(num++-1));
+		num--;
+		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
+		
+		
+		
+		
+	     
+		
+		 
+		}
+		
+	 
+		
+		rs2.close();
+		rs4.close(); 
+		
+		for(int k=0;k<Act.size();k++){
+		//out.println(Act.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");
+		data.append('[').append("'").append(Act.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
+		stmt.close();
+	    conn.close();
+	    
+	   // out.println("1");
+	   
+		}//for loop 이까지
+		
+	catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+	//out.println(dataUtil);
+	
+	
+	
+	%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activity time'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Activity") && subject[1].equals("Time") && subject[2].equals("Line Chart"))
+                      
+                    	   {Connection conn = null; 
+	String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+	String id = "cmpteam";                                                   
+	String pw = "!cmpteam";                                                
+	String Data_label = "";
+	  
+	Statement stmt = null;
+
+	StringBuffer data = new StringBuffer();
+	List dataList = new ArrayList();
+	ArrayList Act = new ArrayList();
+	StringBuffer dataUtil = new StringBuffer();
+
+
+	try{
+
+	    
+		Class.forName("com.mysql.jdbc.Driver");   
+		conn=DriverManager.getConnection(url,id,pw);              
+
+		stmt = conn.createStatement();
+		
+		
+		//data initialization
+		if (data.length() > 0) {
+	     data.append(',');
+	 }
+	 	data.append('[').append("'Activity'").append(',').append("'Time'").append(']').append(',');
+	 	//out.println("******* "+ data);
+
+		
+		
+		
+String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온다
+		
+		ResultSet rs2 =  stmt.executeQuery(q); 
+		
+		while(rs2.next()){
+			Act.add(rs2.getString("activity")); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		
+		
+		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
+		
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+				
+	 	ResultSet rs4 = stmt.executeQuery(q2);
+	 	int TotalActTime =0;
+	 	while(rs4.next()){
+		TotalActTime = rs4.getInt("TotalactTime");  // 쿼리문 써서 게산 
+	 	//out.println("TotalActTime is "+TotalActTime);
+	 	}
+	 	
+	 	int num = 0;
+		System.out.println(Act.size());
+		//준비된 어레이리스트를 사용해서 넣어준다 
+		for (int j =0 ; j<Act.size() ;j++){
+			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
+		String query_str1 = "SELECT  a.caseid ,a.activity, ";
+
+		query_str1+="STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') as 1stTime, ";
+		        
+		query_str1+="MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) as 2nd, ";
+		        
+		query_str1+="case ";  
+
+		query_str1+="when MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) = null then STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="end as 2ndTime, ";
+
+		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
+
+		query_str1+="FROM    bpi.manuf as a ";
+
+		query_str1+="LEFT JOIN bpi.manuf as b ";
+
+		query_str1+="ON a.caseid = b.caseid ";
+
+		query_str1+="AND STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s') > STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+		
+		query_str1+="having activity = '"+ Act.get(j) +"'";
+		
+		ResultSet rs1 = stmt.executeQuery(query_str1);
+		
+		int ValueTime = 0;
+		int TotalTime = 0;
+		
+		
+		while(rs1.next()){
+			ValueTime = rs1.getInt("TimeDiff");
+			
+			TotalTime = TotalTime + ValueTime;
+		}
+		rs1.close();
+		
+		
+		int countNum=0;
+		String q5 = "Select time from bpi.manuf where activity = '"+Act.get(j)+"'";
+		ResultSet rs5 = stmt.executeQuery(q5);
+		while(rs5.next()){
+			countNum++;
+		}
+		
+		int TotalTime2 = TotalTime/countNum;
+		
+		int util = TotalTime2*100/TotalActTime;
+		
+		
+		
+		Integer.toString(TotalTime2);
+		dataList.add(TotalTime2);
+		
+		
+		if (num==0)
+		{
+			dataUtil.append('[').append("'Activity'").append(',').append("'Value'").append(']');
+			num++;
+		}
+		dataUtil.append(',').append('[').append("'").append(Act.get(num++-1));
+		num--;
+		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
+		
+		
+		
+		
+	     
+		
+		 
+		}
+		
+	 
+		
+		rs2.close();
+		rs4.close(); 
+		
+		for(int k=0;k<Act.size();k++){
+		//out.println(Act.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");
+		data.append('[').append("'").append(Act.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
+		stmt.close();
+	    conn.close();
+	    
+	   // out.println("1");
+	   
+		}//for loop 이까지
+		
+	catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+	//out.println(dataUtil);
+	
+	
+	
+	%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Activity time'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- Machine time -->
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Bar Chart"))
+                      
+                    	   {Connection conn = null; 
+	String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+	String id = "cmpteam";                                                   
+	String pw = "!cmpteam";                                                
+	String Data_label = "";
+	  
+	Statement stmt = null;
+
+	StringBuffer data = new StringBuffer();
+	List dataList = new ArrayList();
+	ArrayList Mac = new ArrayList();
+	StringBuffer dataUtil = new StringBuffer();
+
+
+	try{
+
+	    
+		Class.forName("com.mysql.jdbc.Driver");   
+		conn=DriverManager.getConnection(url,id,pw);              
+
+		stmt = conn.createStatement();
+		
+		
+		//data initialization
+		if (data.length() > 0) {
+	     data.append(',');
+	 }
+	 	data.append('[').append("'Machine'").append(',').append("'Time'").append(']').append(',');
+	 	//out.println("******* "+ data);
+
+		
+		//System.out.println(event1);
+		
+String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
+		
+		ResultSet rs2 =  stmt.executeQuery(q); 
+		
+		while(rs2.next()){
+			Mac.add(rs2.getString("machine")); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		
+		//System.out.println(Act);
+		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
+		
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+				
+	 	ResultSet rs4 = stmt.executeQuery(q2);
+	 	int TotalActTime =0;
+	 	while(rs4.next()){
+		TotalActTime = rs4.getInt("TotalactTime");  // 쿼리문 써서 게산 
+	 	//out.println("TotalActTime is "+TotalActTime);
+	 	}
+	 	
+	 	int num = 0;
+		System.out.println(Mac.size());
+		//준비된 어레이리스트를 사용해서 넣어준다 
+		for (int j =0 ; j<Mac.size() ;j++){
+			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
+		String query_str1 = "SELECT  a.caseid ,a.machine, ";
+
+		query_str1+="STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') as 1stTime, ";
+		        
+		query_str1+="MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) as 2nd, ";
+		        
+		query_str1+="case ";  
+
+		query_str1+="when MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) = null then STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="end as 2ndTime, ";
+
+		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
+
+		query_str1+="FROM    bpi.manuf as a ";
+
+		query_str1+="LEFT JOIN bpi.manuf as b ";
+
+		query_str1+="ON a.caseid = b.caseid ";
+
+		query_str1+="AND STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s') > STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+		
+		query_str1+="having machine = '"+ Mac.get(j) +"'";
+		//System.out.println(Mac.get(j));
+		ResultSet rs1 = stmt.executeQuery(query_str1);
+		
+		int ValueTime = 0;
+		int TotalTime = 0;
+		
+		
+		while(rs1.next()){
+			ValueTime = rs1.getInt("TimeDiff");
+			//out.println(ValueTime);
+			TotalTime = TotalTime + ValueTime;
+		}
+		rs1.close();
+		
+		
+		int countNum=0;
+		String q5 = "Select time from bpi.manuf where machine = '"+Mac.get(j)+"'";
+		ResultSet rs5 = stmt.executeQuery(q5);
+		while(rs5.next()){
+			countNum++;
+		}
+		//out.println(countNum+"/");
+		//out.println(TotalTime+"/");
+		int TotalTime2 = TotalTime/countNum;
+		//out.println(TotalTime2+"/");
+		//out.println(TotalActTime);
+		int util = TotalTime2*100/TotalActTime;
+		
+		// mean 이용 or median 이용
+		// mean 평균구하는것  
+		// median 중심값 구하는거 
+		
+		Integer.toString(TotalTime2);
+		dataList.add(TotalTime2);
+		//first label
+		
+		if (num==0)
+		{
+			dataUtil.append('[').append("'Machine'").append(',').append("'Value'").append(']');
+			num++;
+		}
+		dataUtil.append(',').append('[').append("'").append(Mac.get(num++-1));
+		num--;
+		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
+		//data label
+		
+		
+		/* //use arraylist
+		//data.append('[').append("'Activity'").append(',').append("'Time'").append(']').append(',');
+		data.append('[').append(Act.get(j)+"(%)Util +").append(',').append(util).append(']');
+	 	//out.println("Activity B - Utilisation "+ data+"%");
+	 	out.println(data);
+	 	out.println(" ");
+		dataList.add(data); */
+		
+		 
+		//rs2.close(); //******
+	     
+		
+		 
+		}
+		
+	 
+		
+		rs2.close();
+		rs4.close(); 
+		
+		for(int k=0;k<Mac.size();k++){
+		//out.println(Mac.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");String a = "null";
+				String a = "null";	
+		if(Mac.get(k).equals(a)){
+				continue;
+			}
+			else{
+		data.append('[').append("'").append(Mac.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
+		}
+		stmt.close();
+	    conn.close();
+	    
+	   // out.println("1");
+	   
+		}//for loop 이까지
+		
+	catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+	//out.println(dataUtil);
+	
+	
+	
+	%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Machine time'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Pie Chart"))
+                      
+                    	   {Connection conn = null; 
+	String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+	String id = "cmpteam";                                                   
+	String pw = "!cmpteam";                                                
+	String Data_label = "";
+	  
+	Statement stmt = null;
+
+	StringBuffer data = new StringBuffer();
+	List dataList = new ArrayList();
+	ArrayList Mac = new ArrayList();
+	StringBuffer dataUtil = new StringBuffer();
+
+
+	try{
+
+	    
+		Class.forName("com.mysql.jdbc.Driver");   
+		conn=DriverManager.getConnection(url,id,pw);              
+
+		stmt = conn.createStatement();
+		
+		
+		//data initialization
+		if (data.length() > 0) {
+	     data.append(',');
+	 }
+	 	data.append('[').append("'Machine'").append(',').append("'Time'").append(']').append(',');
+	 	//out.println("******* "+ data);
+
+		
+		//System.out.println(event1);
+		
+String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
+		
+		ResultSet rs2 =  stmt.executeQuery(q); 
+		
+		while(rs2.next()){
+			Mac.add(rs2.getString("machine")); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		
+		//System.out.println(Act);
+		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
+		
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+				
+	 	ResultSet rs4 = stmt.executeQuery(q2);
+	 	int TotalActTime =0;
+	 	while(rs4.next()){
+		TotalActTime = rs4.getInt("TotalactTime");  // 쿼리문 써서 게산 
+	 	//out.println("TotalActTime is "+TotalActTime);
+	 	}
+	 	
+	 	int num = 0;
+		System.out.println(Mac.size());
+		//준비된 어레이리스트를 사용해서 넣어준다 
+		for (int j =0 ; j<Mac.size() ;j++){
+			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
+		String query_str1 = "SELECT  a.caseid ,a.machine, ";
+
+		query_str1+="STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') as 1stTime, ";
+		        
+		query_str1+="MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) as 2nd, ";
+		        
+		query_str1+="case ";  
+
+		query_str1+="when MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) = null then STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="end as 2ndTime, ";
+
+		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
+
+		query_str1+="FROM    bpi.manuf as a ";
+
+		query_str1+="LEFT JOIN bpi.manuf as b ";
+
+		query_str1+="ON a.caseid = b.caseid ";
+
+		query_str1+="AND STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s') > STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+		
+		query_str1+="having machine = '"+ Mac.get(j) +"'";
+		//System.out.println(Mac.get(j));
+		ResultSet rs1 = stmt.executeQuery(query_str1);
+		
+		int ValueTime = 0;
+		int TotalTime = 0;
+		
+		
+		while(rs1.next()){
+			ValueTime = rs1.getInt("TimeDiff");
+			//out.println(ValueTime);
+			TotalTime = TotalTime + ValueTime;
+		}
+		rs1.close();
+		
+		
+		int countNum=0;
+		String q5 = "Select time from bpi.manuf where machine = '"+Mac.get(j)+"'";
+		ResultSet rs5 = stmt.executeQuery(q5);
+		while(rs5.next()){
+			countNum++;
+		}
+		//out.println(countNum+"/");
+		//out.println(TotalTime+"/");
+		int TotalTime2 = TotalTime/countNum;
+		//out.println(TotalTime2+"/");
+		//out.println(TotalActTime);
+		int util = TotalTime2*100/TotalActTime;
+		
+		// mean 이용 or median 이용
+		// mean 평균구하는것  
+		// median 중심값 구하는거 
+		
+		Integer.toString(TotalTime2);
+		dataList.add(TotalTime2);
+		//first label
+		
+		if (num==0)
+		{
+			dataUtil.append('[').append("'Machine'").append(',').append("'Value'").append(']');
+			num++;
+		}
+		dataUtil.append(',').append('[').append("'").append(Mac.get(num++-1));
+		num--;
+		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
+		//data label
+		
+		
+		/* //use arraylist
+		//data.append('[').append("'Activity'").append(',').append("'Time'").append(']').append(',');
+		data.append('[').append(Act.get(j)+"(%)Util +").append(',').append(util).append(']');
+	 	//out.println("Activity B - Utilisation "+ data+"%");
+	 	out.println(data);
+	 	out.println(" ");
+		dataList.add(data); */
+		
+		 
+		//rs2.close(); //******
+	     
+		
+		 
+		}
+		
+	 
+		
+		rs2.close();
+		rs4.close(); 
+		
+		for(int k=0;k<Mac.size();k++){
+		//out.println(Mac.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");String a = "null";
+				String a = "null";	
+		if(Mac.get(k).equals(a)){
+				continue;
+			}
+			else{
+		data.append('[').append("'").append(Mac.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
+		}
+		stmt.close();
+	    conn.close();
+	    
+	   // out.println("1");
+	   
+		}//for loop 이까지
+		
+	catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+	//out.println(dataUtil);
+	
+	
+	
+	%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Machine time'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+						
+						<%try{
+                    	   if(subject[0].equals("Machine") && subject[1].equals("Time") && subject[2].equals("Line Chart"))
+                      
+                    	   {Connection conn = null; 
+	String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+	String id = "cmpteam";                                                   
+	String pw = "!cmpteam";                                                
+	String Data_label = "";
+	  
+	Statement stmt = null;
+
+	StringBuffer data = new StringBuffer();
+	List dataList = new ArrayList();
+	ArrayList Mac = new ArrayList();
+	StringBuffer dataUtil = new StringBuffer();
+
+
+	try{
+
+	    
+		Class.forName("com.mysql.jdbc.Driver");   
+		conn=DriverManager.getConnection(url,id,pw);              
+
+		stmt = conn.createStatement();
+		
+		
+		//data initialization
+		if (data.length() > 0) {
+	     data.append(',');
+	 }
+	 	data.append('[').append("'Machine'").append(',').append("'Time'").append(']').append(',');
+	 	//out.println("******* "+ data);
+
+		
+		//System.out.println(event1);
+		
+String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
+		
+		ResultSet rs2 =  stmt.executeQuery(q); 
+		
+		while(rs2.next()){
+			Mac.add(rs2.getString("machine")); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		
+		//System.out.println(Act);
+		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
+		
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+				
+	 	ResultSet rs4 = stmt.executeQuery(q2);
+	 	int TotalActTime =0;
+	 	while(rs4.next()){
+		TotalActTime = rs4.getInt("TotalactTime");  // 쿼리문 써서 게산 
+	 	//out.println("TotalActTime is "+TotalActTime);
+	 	}
+	 	
+	 	int num = 0;
+		System.out.println(Mac.size());
+		//준비된 어레이리스트를 사용해서 넣어준다 
+		for (int j =0 ; j<Mac.size() ;j++){
+			/* -> 어레이리스트의 길이만큼 반복시킨다 왜 ? 쿼리문을 돌리기위해 */
+		String query_str1 = "SELECT  a.caseid ,a.machine, ";
+
+		query_str1+="STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') as 1stTime, ";
+		        
+		query_str1+="MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) as 2nd, ";
+		        
+		query_str1+="case ";  
+
+		query_str1+="when MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s')) = null then STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="end as 2ndTime, ";
+
+		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
+
+		query_str1+="FROM    bpi.manuf as a ";
+
+		query_str1+="LEFT JOIN bpi.manuf as b ";
+
+		query_str1+="ON a.caseid = b.caseid ";
+
+		query_str1+="AND STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s') > STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+
+		query_str1+="GROUP BY a.caseid, a.activity, STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s') ";
+		
+		query_str1+="having machine = '"+ Mac.get(j) +"'";
+		//System.out.println(Mac.get(j));
+		ResultSet rs1 = stmt.executeQuery(query_str1);
+		
+		int ValueTime = 0;
+		int TotalTime = 0;
+		
+		
+		while(rs1.next()){
+			ValueTime = rs1.getInt("TimeDiff");
+			//out.println(ValueTime);
+			TotalTime = TotalTime + ValueTime;
+		}
+		rs1.close();
+		
+		
+		int countNum=0;
+		String q5 = "Select time from bpi.manuf where machine = '"+Mac.get(j)+"'";
+		ResultSet rs5 = stmt.executeQuery(q5);
+		while(rs5.next()){
+			countNum++;
+		}
+		//out.println(countNum+"/");
+		//out.println(TotalTime+"/");
+		int TotalTime2 = TotalTime/countNum;
+		//out.println(TotalTime2+"/");
+		//out.println(TotalActTime);
+		int util = TotalTime2*100/TotalActTime;
+		
+		// mean 이용 or median 이용
+		// mean 평균구하는것  
+		// median 중심값 구하는거 
+		
+		Integer.toString(TotalTime2);
+		dataList.add(TotalTime2);
+		//first label
+		
+		if (num==0)
+		{
+			dataUtil.append('[').append("'Machine'").append(',').append("'Value'").append(']');
+			num++;
+		}
+		dataUtil.append(',').append('[').append("'").append(Mac.get(num++-1));
+		num--;
+		dataUtil.append("'").append(',').append(dataList.get(num++-1)).append(']');
+		//data label
+		
+		
+		/* //use arraylist
+		//data.append('[').append("'Activity'").append(',').append("'Time'").append(']').append(',');
+		data.append('[').append(Act.get(j)+"(%)Util +").append(',').append(util).append(']');
+	 	//out.println("Activity B - Utilisation "+ data+"%");
+	 	out.println(data);
+	 	out.println(" ");
+		dataList.add(data); */
+		
+		 
+		//rs2.close(); //******
+	     
+		
+		 
+		}
+		
+	 
+		
+		rs2.close();
+		rs4.close(); 
+		
+		for(int k=0;k<Mac.size();k++){
+		//out.println(Mac.get(k)+" 's Averagetime is = "+dataList.get(k)+""+"<BR>");String a = "null";
+				String a = "null";	
+		if(Mac.get(k).equals(a)){
+				continue;
+			}
+			else{
+		data.append('[').append("'").append(Mac.get(k)).append("'").append(',').append(dataList.get(k)).append(']').append(',');
+		}
+		}
+		stmt.close();
+	    conn.close();
+	    
+	   // out.println("1");
+	   
+		}//for loop 이까지
+		
+	catch(Exception e){                                                    
+
+			e.printStackTrace();
+
+		}
+	//out.println(dataUtil);
+	
+	
+	
+	%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+   google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      var datajs = [<%=data.toString()%>];
+      alert(datajs);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(datajs);
+
+        var options = {
+          title: 'Machine time'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div" style="width: 550px; height: 350px;"></div>
+							<%} }catch(Exception e){ }%>
+							
+							
+						<script> }  </script>
+						
+						
+						
+						
                  
 
                             <!--  -->
