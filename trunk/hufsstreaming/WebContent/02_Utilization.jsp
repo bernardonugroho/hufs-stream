@@ -309,93 +309,56 @@
 			%>
 
 			<!--@@@@@@@@@@@@@@@@ DB 접속 & 데이터 페이지에 띄우기 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-			
+
 			<!--@@@@@@@@@@@@@@@@@@ 첫번째 row 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 			<div class="row">
 
-			<!--@@@@@@@@@@@@@@@@@@ 가우지 그래프 띄우는 창 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+				<!--@@@@@@@@@@@@@@@@@@ 가우지 그래프 띄우는 창 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><strong>Result show up page (Gauge Chart)</strong></div>
+						<div class="panel-heading">
+							<strong>Result show up page (Gauge Chart)</strong>
+						</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form></form>
 							<div class="panel-body">
 								<div class="flot-chart">
-								
-									<iframe src="GaugeChartIframepage.jsp" name="Machine" frameborder="0" marginwidth="0", marginheight="0"
-									allowtransparency	style="width: 950px; height: 400px";></iframe>
 
-									
+									<iframe src="./GaugeChart/GaugeChartIframepage.jsp" name="Machine"
+										frameborder="0" marginwidth="0" , marginheight="0"
+										allowtransparency style="width: 950px; height: 400px";></iframe>
+
+
 									<div class="progress">
-  <div class="bar" style="width: 60%;"></div>
-</div>
-
-								</div>
-							</div>
-							<!-- /.panel-body -->
-						</div>
-						<!-- /.panel -->
-					</div>
-
-				</div>
-			<!--@@@@@@@@@@@@@@@@@@ 가우지 그래프 띄우는 창  끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-			
-			</div>
-			
-			<!--@@@@@@@@@@@@@@@@@@ 첫번째 row 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-			
-			
-			<!--@@@@@@@@@@@@@@@@@@ 두번째 row 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-			<div class="row">
-			
-			<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Machine Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-				<div class="col-lg-4">
-					<div class="panel panel-default">
-						<div class="panel-heading"><strong>Machine Selection</strong></div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<form></form>
-							<div class="panel-body ">
-								<div class="flot-chart">
-
-									<div style="overflow: scroll; width: 290px; height: 400px; padding: 10px; ">
-										<form action="GaugeChartMachineUtil.jsp" method="post"
-											target="Machine">
-											<%
-												for (int si = 0; si < GOGO.size(); si++) {
-											%>
-											<input name="checkbox1" type="checkbox"
-												value="<%=GOGO.get(si)%>"></input><%=GOGO.get(si)%></br>
-
-											<%
-												}
-											%>
-											<input type="submit" value="       Analyze       ">
-											<%
-												rs2.close();
-											%>
-										</form>
+										<div class="bar" style="width: 60%;"></div>
 									</div>
 
-
 								</div>
 							</div>
 							<!-- /.panel-body -->
 						</div>
 						<!-- /.panel -->
 					</div>
+
 				</div>
+				<!--@@@@@@@@@@@@@@@@@@ 가우지 그래프 띄우는 창  끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
-				<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Machine Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-			
+			</div>
+
+			<!--@@@@@@@@@@@@@@@@@@ 첫번째 row 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
 
-				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-			
-				<div class="col-lg-4">
+			<!--@@@@@@@@@@@@@@@@@@ 두번째 row 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			<div class="row">
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Caseid Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+				<div class="col-lg-3">
 					<div class="panel panel-default">
-						<div class="panel-heading"><strong>Activity Selection</strong></div>
+						<div class="panel-heading">
+							<strong>CaseID Selection</strong>
+						</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form></form>
@@ -403,55 +366,7 @@
 								<div class="flot-chart">
 
 									<div
-										style="overflow: scroll; width: 290px; height: 400px; padding: 10px;">
-										<%
-											String query_str3 = "select distinct activity from bpi.manuf";
-											ResultSet rs3 = stmt.executeQuery(query_str3);
-											ArrayList GOGO2 = new ArrayList();
-											while (rs3.next()) {
-												GOGO2.add(rs3.getString(1));
-											}
-										%>
-										<form action="GaugeChartActivityUtil.jsp" method="post"
-											target="Machine">
-											<%
-												for (int si2 = 0; si2 < GOGO2.size(); si2++) {
-											%>
-											<input name="checkbox1" type="checkbox"
-												value="<%=GOGO2.get(si2)%>"></input><%=GOGO2.get(si2)%></br>
-
-											<%
-												}
-											%>
-											<input type="submit" value="       Analyze       ">
-											<%
-												rs3.close();
-											%>
-										</form>
-									</div>
-								</div>
-							</div>
-							<!-- /.panel-body -->
-						</div>
-						<!-- /.panel -->
-					</div>
-				</div>
-
-				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-			
-			
-				<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Caseid Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-	
-				<div class="col-lg-4">
-					<div class="panel panel-default">
-						<div class="panel-heading"><strong>CaseID Selection</strong></div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<form></form>
-							<div class="panel-body">
-								<div class="flot-chart">
-
-									<div style="overflow: scroll; width: 290px; height: 400px; padding: 10px;">
+										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
 
 										<%
 											String query_str4 = "select distinct caseid from bpi.manuf";
@@ -461,7 +376,7 @@
 												GOGO3.add(rs4.getString(1));
 											}
 										%>
-										<form action="GaugeChartProductivity.jsp" method="post"
+										<form action="./GaugeChart/GaugeChartProductivity.jsp" method="post"
 											target="Machine">
 											<%
 												for (int si3 = 0; si3 < GOGO3.size(); si3++) {
@@ -472,13 +387,14 @@
 											<%
 												}
 											%>
-											<input type="submit" value="       Analyze       ">
-											
+											</div>
+											<input type="submit" value="                Analyze               ">
+
 											<%
 												rs4.close();
 											%>
 										</form>
-									</div>
+									
 								</div>
 							</div>
 							<!-- /.panel-body -->
@@ -486,9 +402,158 @@
 						<!-- /.panel -->
 					</div>
 				</div>
-			
-			<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Caseid Select 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-	
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Caseid Select 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong>Activity Selection</strong>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body">
+								<div class="flot-chart">
+
+									<div
+										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
+										<%
+											String query_str3 = "select distinct activity from bpi.manuf";
+											ResultSet rs3 = stmt.executeQuery(query_str3);
+											ArrayList GOGO2 = new ArrayList();
+											while (rs3.next()) {
+												GOGO2.add(rs3.getString(1));
+											}
+										%>
+										<form action="./GaugeChart/GaugeChartActivityUtil.jsp" method="post"
+											target="Machine">
+											<%
+												for (int si2 = 0; si2 < GOGO2.size(); si2++) {
+											%>
+											<input name="checkbox1" type="checkbox"
+												value="<%=GOGO2.get(si2)%>"></input><%=GOGO2.get(si2)%></br>
+
+											<%
+												}
+											%>
+											</div>
+											<input type="submit" value="               Analyze               ">
+											<%
+												rs3.close();
+											%>
+										</form>
+									
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Machine Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong>Machine Selection</strong>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body ">
+								<div class="flot-chart">
+
+									<div
+										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
+										<form action="./GaugeChart/GaugeChartMachineUtil.jsp" method="post"
+											target="Machine">
+											<%
+												for (int si = 0; si < GOGO.size(); si++) {
+											%>
+											<input name="checkbox1" type="checkbox"
+												value="<%=GOGO.get(si)%>"></input><%=GOGO.get(si)%></br>
+
+											<%
+												}
+											%>
+											</div>
+											<input type="submit" value="               Analyze               ">
+											<%
+												rs2.close();
+											%>
+										</form>
+									
+
+
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Machine Select 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 4 Quantity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong>Quantity Selection</strong>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body ">
+								<div class="flot-chart">
+
+									<%
+										String query_str5 = "select distinct quantity from bpi.manuf";
+										ResultSet rs5 = stmt.executeQuery(query_str5);
+										ArrayList GOGO5 = new ArrayList();
+										while (rs5.next()) {
+											GOGO5.add(rs5.getString(1));
+										}
+									%>
+									<div
+										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
+										<form action="GaugeChartQuantity.jsp" method="post"
+											target="Machine">
+											<%
+												for (int si5 = 0; si5 < GOGO5.size(); si5++) {
+											%>
+											<input name="checkbox1" type="checkbox"
+												value="<%=GOGO5.get(si5)%>"></input><%=GOGO5.get(si5)%></br>
+
+											<%
+												}
+											%>
+											</div>
+											<input type="submit" value="               Analyze               ">
+											<%
+												rs5.close();
+											%>
+										</form>
+									
+
+
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 4 Quantity Select 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+
 			</div>
 			<!--@@@@@@@@@@@@@@@@@@ 두번째 row 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
