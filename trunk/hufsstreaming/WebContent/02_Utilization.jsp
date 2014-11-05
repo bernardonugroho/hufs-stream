@@ -257,7 +257,7 @@
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Dashboard<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="01_BasicChart.jsp">Basic Charts</a></li>
+								<li><a href="01_BasicChart.jsp">Bar Charts</a></li>
 								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
 								<li><a href="03_Annotation.jsp">Annotation Charts</a></li>
 							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
@@ -286,184 +286,213 @@
 			<!-- utilization code -->
 
 
-			<!--  -->
+			<!--@@@@@@@@@@@@@@@@ DB 접속 & 데이터 페이지에 띄우기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+			<%
+				Connection conn = null;
+				String url = "jdbc:mysql://203.253.70.34:3306/bpi";
+				String id = "cmpteam";
+				String pw = "!cmpteam";
+				String Data_label = "";
 
+				Statement stmt = null;
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(url, id, pw);
 
+				stmt = conn.createStatement();
 
+				String query_str2 = "select distinct machine from bpi.manuf";
+				ResultSet rs2 = stmt.executeQuery(query_str2);
+				ArrayList GOGO = new ArrayList();
+				while (rs2.next()) {
+					GOGO.add(rs2.getString(1));
+				}
+			%>
 
-
-
-			<!-- finishing utilization code -->
-			<!-- /.row -->
+			<!--@@@@@@@@@@@@@@@@ DB 접속 & 데이터 페이지에 띄우기 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+			
+			<!--@@@@@@@@@@@@@@@@@@ 첫번째 row 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 			<div class="row">
 
-				<div class="col-lg-2">
+			<!--@@@@@@@@@@@@@@@@@@ 가우지 그래프 띄우는 창 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">Condition</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<div class="flot-chart">
-
-								<%
-									Connection conn = null;
-									String url = "jdbc:mysql://203.253.70.34:3306/bpi";
-									String id = "cmpteam";
-									String pw = "!cmpteam";
-									String Data_label = "";
-
-									Statement stmt = null;
-									Class.forName("com.mysql.jdbc.Driver");
-									conn = DriverManager.getConnection(url, id, pw);
-
-									stmt = conn.createStatement();
-
-									String query_str2 = "select distinct machine from bpi.manuf";
-									ResultSet rs2 = stmt.executeQuery(query_str2);
-									ArrayList GOGO = new ArrayList();
-									while (rs2.next()) {
-										GOGO.add(rs2.getString(1));
-									}
-								%>
-
-								<!-- 여기다가 버튼을 넣어서 해야되는데 쉬바 -->
-
-								<form action="MachineNetWork.jsp" method="post" target="Machine">
-									<%
-										for (int si = 0; si < GOGO.size(); si++) {
-									%>
-									<input name="checkbox1" type="checkbox"
-										value="<%=GOGO.get(si)%>"></input><%=GOGO.get(si)%></br>
-
-									<%
-										}
-									%>
-									<input type="submit" value="Show checked">
-									<%
-										rs2.close();
-									%>
-								</form>
-
-
-
-								<%
-									String query_str3 = "select distinct activity from bpi.manuf";
-									ResultSet rs3 = stmt.executeQuery(query_str3);
-									ArrayList GOGO2 = new ArrayList();
-									while (rs3.next()) {
-										GOGO2.add(rs3.getString(1));
-									}
-								%>
-								<form action="AcitivtyNetwork.jsp" method="post"
-									target="Machine">
-									<%
-										for (int si2 = 0; si2 < GOGO2.size(); si2++) {
-									%>
-									<input name="checkbox1" type="checkbox"
-										value="<%=GOGO2.get(si2)%>"></input><%=GOGO2.get(si2)%></br>
-
-									<%
-										}
-									%>
-									<input type="submit" value="Show checked">
-									<%
-										rs3.close();
-									%>
-								</form>
-
-
-
-								<%
-									String query_str4 = "select distinct caseid from bpi.manuf";
-									ResultSet rs4 = stmt.executeQuery(query_str4);
-									ArrayList GOGO3 = new ArrayList();
-									while (rs4.next()) {
-										GOGO3.add(rs4.getString(1));
-									}
-								%>
-								<form action="CaparateNetwork.jsp" method="post"
-									target="Machine">
-									<%
-										for (int si3 = 0; si3 < GOGO3.size(); si3++) {
-									%>
-									<input name="checkbox1" type="checkbox"
-										value="<%=GOGO3.get(si3)%>"></input><%=GOGO3.get(si3)%></br>
-
-									<%
-										}
-									%>
-									<input type="submit" value="Show checked">
-									<%
-										rs4.close();
-									%>
-								</form>
-
-								<!--  왜안될까 ㅜㅜㅜㅜ -->
-
-
-								<div class="flot-chart-content" id="flot-line-chart-multi">
-								</div>
-							</div>
-						</div>
-						<!-- /.panel-body -->
-					</div>
-					<!-- /.panel -->
-				</div>
-
-
-
-
-
-				<!--  여기가 머신 유틸리제이션 나오는 코드  -->
-
-
-				<div class="col-lg-9">
-					<div class="panel panel-default">
-						<div class="panel-heading">Gauge Chart Examples</div>
+						<div class="panel-heading"><strong>Result show up page (Gauge Chart)</strong></div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form></form>
-							<div class="flot-chart">
-								<iframe src="iframepage.jsp" name="Machine"
-									style="width: 700px; height: 400px"></iframe>
+							<div class="panel-body">
+								<div class="flot-chart">
+								
+									<iframe src="GaugeChartIframepage.jsp" name="Machine" frameborder="0" marginwidth="0", marginheight="0"
+									allowtransparency	style="width: 950px; height: 400px";></iframe>
 
-								<!-- <div id="chart_div" style="width: 800px; height: 250px;"></div> -->
+									
+									<div class="progress">
+  <div class="bar" style="width: 60%;"></div>
+</div>
 
+								</div>
 							</div>
+							<!-- /.panel-body -->
 						</div>
-						<!-- /.panel-body -->
+						<!-- /.panel -->
 					</div>
-					<!-- /.panel -->
+
 				</div>
-				<!-- /.col-lg-12 -->
-
-
-				<!--  여기부터는 엑티비티 유틸리제이션 나오는 코드 -->
-
-
-
-
-
-
-
-
-
-
-
-
-				<!--  여기는 퀀티티 유틸리제이션 나오는 코드 -->
-
-
-
-
-				<!-- /.col-lg-6 -->
-
-				<!-- /.col-lg-6 -->
-
-				<!-- /.col-lg-6 -->
-
-				<!-- /.col-lg-6 -->
+			<!--@@@@@@@@@@@@@@@@@@ 가우지 그래프 띄우는 창  끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
 			</div>
-			<!-- /.row -->
+			
+			<!--@@@@@@@@@@@@@@@@@@ 첫번째 row 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+			
+			<!--@@@@@@@@@@@@@@@@@@ 두번째 row 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			<div class="row">
+			
+			<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Machine Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>Machine Selection</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body ">
+								<div class="flot-chart">
+
+									<div style="overflow: scroll; width: 290px; height: 400px; padding: 10px; ">
+										<form action="GaugeChartMachineUtil.jsp" method="post"
+											target="Machine">
+											<%
+												for (int si = 0; si < GOGO.size(); si++) {
+											%>
+											<input name="checkbox1" type="checkbox"
+												value="<%=GOGO.get(si)%>"></input><%=GOGO.get(si)%></br>
+
+											<%
+												}
+											%>
+											<input type="submit" value="       Analyze       ">
+											<%
+												rs2.close();
+											%>
+										</form>
+									</div>
+
+
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Machine Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>Activity Selection</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body">
+								<div class="flot-chart">
+
+									<div
+										style="overflow: scroll; width: 290px; height: 400px; padding: 10px;">
+										<%
+											String query_str3 = "select distinct activity from bpi.manuf";
+											ResultSet rs3 = stmt.executeQuery(query_str3);
+											ArrayList GOGO2 = new ArrayList();
+											while (rs3.next()) {
+												GOGO2.add(rs3.getString(1));
+											}
+										%>
+										<form action="GaugeChartActivityUtil.jsp" method="post"
+											target="Machine">
+											<%
+												for (int si2 = 0; si2 < GOGO2.size(); si2++) {
+											%>
+											<input name="checkbox1" type="checkbox"
+												value="<%=GOGO2.get(si2)%>"></input><%=GOGO2.get(si2)%></br>
+
+											<%
+												}
+											%>
+											<input type="submit" value="       Analyze       ">
+											<%
+												rs3.close();
+											%>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+			
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Caseid Select 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+	
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>CaseID Selection</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body">
+								<div class="flot-chart">
+
+									<div style="overflow: scroll; width: 290px; height: 400px; padding: 10px;">
+
+										<%
+											String query_str4 = "select distinct caseid from bpi.manuf";
+											ResultSet rs4 = stmt.executeQuery(query_str4);
+											ArrayList GOGO3 = new ArrayList();
+											while (rs4.next()) {
+												GOGO3.add(rs4.getString(1));
+											}
+										%>
+										<form action="GaugeChartProductivity.jsp" method="post"
+											target="Machine">
+											<%
+												for (int si3 = 0; si3 < GOGO3.size(); si3++) {
+											%>
+											<input name="checkbox1" type="checkbox"
+												value="<%=GOGO3.get(si3)%>"></input><%=GOGO3.get(si3)%></br>
+
+											<%
+												}
+											%>
+											<input type="submit" value="       Analyze       ">
+											
+											<%
+												rs4.close();
+											%>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+			
+			<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Caseid Select 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+	
+			</div>
+			<!--@@@@@@@@@@@@@@@@@@ 두번째 row 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+
 		</div>
 		<!-- /#page-wrapper -->
 
