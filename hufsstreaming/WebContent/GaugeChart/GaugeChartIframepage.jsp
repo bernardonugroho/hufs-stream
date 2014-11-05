@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor="white">
-hihihihihihihihihii
+Chart show up page
 </body>
 
 </html>
