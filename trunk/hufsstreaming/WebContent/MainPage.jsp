@@ -355,7 +355,7 @@
 		while(rs1.next()){
 			Totalnum=rs1.getInt("Total"); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
 		}
-		System.out.println(Totalnum);
+		//System.out.println(Totalnum);
 		rs1.close();%>
 									
 									<%=Totalnum %></div>
@@ -387,7 +387,7 @@
 		while(rs2.next()){
 			Caseidnum=rs2.getInt("Caseid");
 		}
-		System.out.println(Caseidnum);
+		//System.out.println(Caseidnum);
 		rs2.close();%>
 									<%=Caseidnum %></div>
 									<div>Total Caseid</div>
@@ -418,7 +418,7 @@
 		while(rs3.next()){
 			Machinenum=rs3.getInt("Machine");
 		}
-		System.out.println(Machinenum);
+		//System.out.println(Machinenum);
 		rs3.close();%>
 									<%=Machinenum %></div>
 									<div>Total Machine</div>
@@ -449,7 +449,7 @@
 		while(rs4.next()){
 			Actnum=rs4.getInt("Activity");
 		}
-		System.out.println(Actnum);
+		//System.out.println(Actnum);
 		rs4.close();%>
 									<%=Actnum %></div>
 									<div>Total Activity</div>
