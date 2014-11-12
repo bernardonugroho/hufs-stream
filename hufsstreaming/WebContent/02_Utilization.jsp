@@ -303,7 +303,7 @@
 
 				stmt = conn.createStatement();
 
-				String query_str2 = "select distinct machine from "+Database+" ";
+				String query_str2 = "select distinct machine from "+Database+" order by machine asc ";
 				ResultSet rs2 = stmt.executeQuery(query_str2);
 				ArrayList GOGO = new ArrayList();
 				while (rs2.next()) {
@@ -372,7 +372,7 @@
 										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
 
 										<%
-											String query_str4 = "select distinct caseid from "+Database+" ";
+											String query_str4 = "select distinct caseid from "+Database+" order by caseid asc";
 											ResultSet rs4 = stmt.executeQuery(query_str4);
 											ArrayList GOGO3 = new ArrayList();
 											while (rs4.next()) {
@@ -424,7 +424,7 @@
 									<div
 										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
 										<%
-											String query_str3 = "select distinct activity from "+Database+" ";
+											String query_str3 = "select distinct activity from "+Database+" order by activity asc ";
 											ResultSet rs3 = stmt.executeQuery(query_str3);
 											ArrayList GOGO2 = new ArrayList();
 											while (rs3.next()) {
@@ -517,7 +517,7 @@
 								<div class="flot-chart">
 
 									<%
-										String query_str5 = "select distinct quantity from "+Database+" ";
+										String query_str5 = "select distinct quantity from "+Database+" order by quantity asc";
 										ResultSet rs5 = stmt.executeQuery(query_str5);
 										ArrayList GOGO5 = new ArrayList();
 										while (rs5.next()) {
