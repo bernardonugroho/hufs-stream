@@ -400,6 +400,7 @@
                         <div class="panel-body">
                             <div class="flot-chart">
                               <%
+                              
                               String chkbox[] = request.getParameterValues("chex");
                               StringBuffer data1 = new StringBuffer();
                               %>
@@ -467,8 +468,8 @@
                             <div style="overflow: scroll; width: 290px; height: 360px; padding: 5px; ">
                             
                                    <%  
-                                   
-                                   String manuf = "bpi.manuf";
+                                   String FileName= (String) session.getAttribute("FileName");
+                                   String manuf = FileName;
                                    String inactivity = "activity";
                                    String inmachine = "machine";
                                    String incaseid = "caseid";
