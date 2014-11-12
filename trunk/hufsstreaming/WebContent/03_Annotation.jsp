@@ -390,8 +390,79 @@
             <!-- This is the database connection close statements -->
             <!-- /.row -->
             <div class="row">
+               <!-- /.col-lg-12 -->
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           Annotation Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                              
+                              
+                              
+                              <%
+                              String chkbox[] = request.getParameterValues("chex");
+                              StringBuffer data1 = new StringBuffer();
+                              %>
+                              
+                              <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+										    <script type='text/javascript'>
+										    <%if(data1.length()<1){
+										    out.print("empty");
+										    }else{
+										    %>
+										    
+										    
+										    
+										      google.load('visualization', '1', {'packages':['annotationchart']});
+										      google.setOnLoadCallback(drawChart);
+										      var datajs = [<%=data1.toString()%>];
+										      
+										      var msi= <%=chkbox.length%>;     
+										      var ii=0;
+										     
+										     
+										
+										      function drawChart() {    
+										    	  var data = new google.visualization.DataTable();
+										          data.addColumn('datetime', 'Date');
+										          while(ii<msi){
+										          data.addColumn('number', 'Quantity');
+										          data.addColumn('string', 'Activity');
+										          data.addColumn('string', 'Machine');
+										          ii++;  
+										    	 }
+										          
+										          
+										           data.addRows(datajs);
+										        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+										
+										        var options = {
+										                displayAnnotations: true,
+										                chart: { interpolateNulls: true }
+										              };
+										        chart.draw(data, options);
+										      }
+											      
+										    <%}%>
+											    </script>
+											  <div id='chart_div' style='width: 1150px; height: 400px;'></div>
+                                                       
+                              
+                                
+                              <!-- chex -->
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                            
+            
              <!-- /.col-lg-12 -->
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Condition
@@ -399,8 +470,17 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                            <input type="text"/></br>
-                                   <% 
+                            
+                            <div style="overflow: scroll; width: 290px; height: 360px; padding: 5px; ">
+                            
+                                   <%  
+                                   
+                                   String manuf = "bpi.manuf";
+                                   String inactivity = "activity";
+                                   String inmachine = "machine";
+                                   String incaseid = "caseid";
+                                   String intime = "time";
+                                  
 									    Connection conn = null; 
 									String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
 									String id = "cmpteam";                                                   
@@ -411,7 +491,7 @@
 									Statement stmt1 = null;
 									
 									
-									StringBuffer data1 = new StringBuffer();
+									//StringBuffer data1 = new StringBuffer();
 									
 									String date=null;
 									String caseid =null;
@@ -432,7 +512,7 @@
 									
 										stmt = conn.createStatement();
 										
-									 	String query_str2 = "select distinct caseid from bpi.manuf";
+									 	String query_str2 = "select distinct caseid from "+manuf+"";
 									 	ResultSet rs2=stmt.executeQuery(query_str2);
 									 	%>
 									 	
@@ -441,9 +521,13 @@
 									    
 									        <input type="checkbox" name="chex" value="<%=rs2.getInt(1)%>"><%=rs2.getInt(1)%> </input></br>
 									        <%} rs2.beforeFirst(); %>
+									        </div>
 									        <input type="submit" value="ok">
-									        <%String chkbox[] = request.getParameterValues("chex");
-									        out.println(request.getParameter("chex"));
+									       
+									       
+									       <%
+									     // String chkbox[] = request.getParameterValues("chex");
+									        
 									        out.println("<BR>"); %>
 									        </form>
 									        
@@ -454,11 +538,11 @@
 									        
 											for( int z = 0; z < chkbox.length; z++ )
 											{
-											out.println(chkbox[z]);
+											out.println(chkbox[z]+",");
 											
 											}
-											 out.println("<BR>");
-											 out.println("length is :"+chkbox.length);
+											 
+											 out.println("Length is : "+chkbox.length);
 											 out.println("<BR>");
 										      
 											if(request.getParameter("chex") == null )
@@ -480,7 +564,7 @@
 											 for ( int z = 0; z < chkbox.length; z++ )
 											 {
 										 ResultSet ci1;
-										String query_strc1 = "select * from bpi.manuf where caseid= '"+chkbox[z]+"' order by time asc ";	
+										String query_strc1 = "select * from bpi.manuf where "+incaseid+"= '"+chkbox[z]+"' order by time asc ";	
 									 ci1=stmt.executeQuery(query_strc1); 	
 									 
 									 //1.  select each case
@@ -538,11 +622,11 @@
 										//caseid = rs1.getString("caseid");
 										//data.append("'").append(caseid).append("'").append(',');
 										//activity
-										activity = ci1.getString("activity");
+										activity = ci1.getString(inactivity);
 										data1.append("'").append(activity).append("'").append(',');
 										//data1.append(" '").append("abc").append("'").append(',');
 										//machine
-										machine = ci1.getString("machine");
+										machine = ci1.getString(inmachine);
 										data1.append("'").append(machine).append("'");
 										//data1.append(" '").append("def").append( "'").append(']');
 									
@@ -601,19 +685,8 @@
                     <!-- /.panel -->
                 </div>
                 
-                
-                <div class="col-lg-8">
-                
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Annotation Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                              		    
-	                                
-                                			<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+                <!-- Ãâ·ÂÃ¢ -->
+                	<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
 										    <script type='text/javascript'>
 										      google.load('visualization', '1', {'packages':['annotationchart']});
 										      google.setOnLoadCallback(drawChart);
@@ -633,26 +706,42 @@
 										          data.addColumn('string', 'Machine');
 										          ii++;  
 										    	 }
+										      
 										          
 										          
-										           data.addRows(datajs);
-										        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
-										
-										        var options = {
-										                displayAnnotations: true,
-										                chart: { interpolateNulls: true }
-										              };
-										        chart.draw(data, options);
-										      }
-											      
-											      
+											     data.addRows(datajs);
+											        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+											
+											        var options = {
+											                displayAnnotations: true,
+											                chart: { interpolateNulls: true }
+											              };
+											        chart.draw(data, options);
+											      } 
 											    </script>
-											  <div id='chart_div' style='width: 600px; height: 400px;'></div>
+											    
+										
+											      
+											  <div id='chart_div' style='width: 1150px; height: 400px;'></div>
                                 			
                                 	<%
                                 }
                                 catch(Exception e){ }
                                 		%>
+                
+                <div class="col-lg-12">
+                
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Annotation Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                            
+                              		    
+	                                
+                                		
     <center>
     
   
