@@ -27,7 +27,9 @@
 
 
 <%
-String Database = "manuf";
+String FileName = (String) session.getAttribute("FileName");
+
+String Database = FileName;
 String activity = "activty";
 String caseid = "caseid";
 String machine = "machine";

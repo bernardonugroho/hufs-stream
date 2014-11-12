@@ -30,8 +30,9 @@
 
 	<%
 	//Local variable
+	String FileName = (String) session.getAttribute("FileName");
 	
-	String Database = "manuf";
+	String Database = FileName;
 	String activity = "activty";
 	String caseid = "caseid";
 	String machine = "machine";
@@ -258,5 +259,5 @@
 <br>
 <Br>
 <br>
-¡Ø Chart Based on Percentage
-</html>
+<!-- ¡Ø Chart Based on Percentage
+ --></html>

@@ -27,18 +27,20 @@
 <body>
 
 	<%
+		String FileName = (String) session.getAttribute("FileName");
+	
 		String[] check = request.getParameterValues("checkbox1");
 		for (int i = 0; i < check.length; i++) {
 			out.println("Activity -"+check[i]+"-"+" ,");
 		}
 		out.println("'s Utilization");
 		out.println("<BR>");
-		out.println("Chart Based on Percentage");
+		//out.println("Chart Based on Percentage");
 	%>
 
 	<%
 	//Local variable 
-	String Database = "manuf";
+	String Database = FileName;
 	String activity = "activty";
 	String caseid = "caseid";
 	String machine = "machine";

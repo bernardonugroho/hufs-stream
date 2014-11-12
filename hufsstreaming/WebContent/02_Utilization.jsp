@@ -46,6 +46,7 @@
 
 <body>
 
+
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -288,6 +289,8 @@
 
 			<!--@@@@@@@@@@@@@@@@ DB 접속 & 데이터 페이지에 띄우기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 			<%
+			String FileName = (String) session.getAttribute("FileName");
+			String Database = FileName;
 				Connection conn = null;
 				String url = "jdbc:mysql://203.253.70.34:3306/bpi";
 				String id = "cmpteam";
@@ -300,7 +303,7 @@
 
 				stmt = conn.createStatement();
 
-				String query_str2 = "select distinct machine from bpi.manuf";
+				String query_str2 = "select distinct machine from "+Database+" ";
 				ResultSet rs2 = stmt.executeQuery(query_str2);
 				ArrayList GOGO = new ArrayList();
 				while (rs2.next()) {
@@ -369,7 +372,7 @@
 										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
 
 										<%
-											String query_str4 = "select distinct caseid from bpi.manuf";
+											String query_str4 = "select distinct caseid from "+Database+" ";
 											ResultSet rs4 = stmt.executeQuery(query_str4);
 											ArrayList GOGO3 = new ArrayList();
 											while (rs4.next()) {
@@ -421,7 +424,7 @@
 									<div
 										style="overflow: scroll; width: 200px; height: 400px; padding: 10px;">
 										<%
-											String query_str3 = "select distinct activity from bpi.manuf";
+											String query_str3 = "select distinct activity from "+Database+" ";
 											ResultSet rs3 = stmt.executeQuery(query_str3);
 											ArrayList GOGO2 = new ArrayList();
 											while (rs3.next()) {
@@ -514,7 +517,7 @@
 								<div class="flot-chart">
 
 									<%
-										String query_str5 = "select distinct quantity from bpi.manuf";
+										String query_str5 = "select distinct quantity from "+Database+" ";
 										ResultSet rs5 = stmt.executeQuery(query_str5);
 										ArrayList GOGO5 = new ArrayList();
 										while (rs5.next()) {
