@@ -383,75 +383,11 @@
             <div class="row">
                 
                 </div>
-                <div class="col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Select option
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                            
-                            <form action = "01_BasicChart.jsp">
-                            Select Activity or Machine<br/>
-                        
-                            <input type="checkbox" name="chex" value="Activity"> Activity
-                            <input type="checkbox" name="chex" value="Machine"> Machine
-                             
-                            <br>
-                            
-                            
-                             
-                            <br>Select Frequency or time<br>
-                            <input type="checkbox" name="chex" value="Frequency" > Frequency
-                            <input type="checkbox" name="chex" value="Time"> time<br>
-                            
-                            
-                       
-                             <br>Select Graph<br>
-                             <input type="submit" name="chex" value="Bar Chart" onclick="graph()"> Bar Chart<br>
-                            <input type="submit" name="chex" value="Pie Chart" onclick="graph()"> Pie Chart<br>
-                            <input type="submit" name="chex" value="Line Chart" onclick="graph()"> Line Chart<br>
-                  
-                            <!-- <input type="submit" value="ok" onclick="graph()">--> 
-                           
-                            
-                            <br>
-                          </form>
-                            <%String[] subject= request.getParameterValues("chex");
-                           
-                            /*  for( int ix = 0; ix < subject.length; ix++ )
-							{
-							
-							out.println(subject[ix]);
-							
-							}  */
-                            %>
-                            
-                       
-						
-                                <!-- <div class="flot-chart-content" id="flot-pie-chart"></div> -->
-                                <!-- combo box selection activity -->
-                                <!-- data connection -->
-     
-		
-                                <!--  -->
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                
-                
-   
-          
-               
-</div>
-                <!--  -->
                 
                 
                 
-                <div class="col-lg-8">
+                
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Chart
@@ -462,7 +398,13 @@
                             
                        <script>
                       function graph()  { </script><%
-                       
+                    	  String[] subject= request.getParameterValues("chex");
+                    	  
+                    	  String manuf = "bpi.manuf";
+                      String activity = "activity";
+                      String machine = "machine";
+                      String caseid = "caseid";
+                      String time = "time";
                     	/* fequency combobox   */
                     	  try{
                     	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Bar Chart"))
@@ -476,11 +418,7 @@
                  		  </script>
                  	  
                  	  <%
-                 		   String manuf = "bpi.manuf";
-String activity = "activity";
-String machine = "machine";
-String caseid = "caseid";
-String time = "time";
+                 		
 
 Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -624,7 +562,7 @@ google.load("visualization", "1", {packages:["corechart"]});
      chart.draw(data, options);
    }
  </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -641,11 +579,7 @@ google.load("visualization", "1", {packages:["corechart"]});
                     		  </script>
                     	  
                     	  <%
-                    		   String manuf = "bpi.manuf";
-  String activity = "activity";
-  String machine = "machine";
-  String caseid = "caseid";
-  String time = "time";
+                    		  
   
   Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -789,7 +723,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 550px; height: 350px;"></div>
+<div id="piechart" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 				
 							
@@ -806,11 +740,6 @@ try{
                  		  </script>
                  	  
                  	  <%
-                 		   String manuf = "bpi.manuf";
-String activity = "activity";
-String machine = "machine";
-String caseid = "caseid";
-String time = "time";
 
 Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -954,7 +883,7 @@ google.load("visualization", "1", {packages:["corechart"]});
      chart.draw(data, options);
    }
  </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -970,11 +899,6 @@ google.load("visualization", "1", {packages:["corechart"]});
                       
                     	   {
     
-String manuf = "bpi.manuf";
-String activity = "activity";
-String machine = "machine";
-String caseid = "caseid";
-String time = "time";
     
     
     
@@ -1077,7 +1001,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							
 							
 							<%} }catch(Exception e){ }%>
@@ -1088,11 +1012,6 @@ try{
                       
                     	   {
     
-String manuf = "bpi.manuf";
-String activity = "activity";
-String machine = "machine";
-String caseid = "caseid";
-String time = "time";
     
     
     
@@ -1195,7 +1114,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 550px; height: 350px;"></div>
+<div id="piechart" style="width: 900px; height: 380px;"></div>
 							
 							<%} }catch(Exception e){ }%>
 							
@@ -1204,11 +1123,6 @@ try{
                       
                     	   {
     
-String manuf = "bpi.manuf";
-String activity = "activity";
-String machine = "machine";
-String caseid = "caseid";
-String time = "time";
     
     
     
@@ -1311,7 +1225,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							
 							
 							<%} }catch(Exception e){ }%>
@@ -1331,11 +1245,6 @@ try{
                     	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
                       
                     	   {
-    String manuf = "bpi.manuf";
-    String activity = "activity";
-    String machine = "machine";
-    String caseid = "caseid";
-    String time = "time";
     
     Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -1439,7 +1348,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						
@@ -1449,11 +1358,6 @@ try{
                       
                     	   
                     	   {
-    String manuf = "bpi.manuf";
-    String activity = "activity";
-    String machine = "machine";
-    String caseid = "caseid";
-    String time = "time";
     
     Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -1557,7 +1461,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 550px; height: 350px;"></div>
+<div id="piechart" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -1569,11 +1473,6 @@ try{
                       
                     	   
                     	   {
-    String manuf = "bpi.manuf";
-    String activity = "activity";
-    String machine = "machine";
-    String caseid = "caseid";
-    String time = "time";
     
     Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
@@ -1677,7 +1576,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -1870,7 +1769,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2054,7 +1953,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 550px; height: 350px;"></div>
+<div id="piechart" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2238,7 +2137,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -2452,7 +2351,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2655,7 +2554,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 550px; height: 350px;"></div>
+<div id="piechart" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2858,7 +2757,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 550px; height: 350px;"></div>
+<div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -2882,6 +2781,51 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
                 
                 
                 
+                <div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>Select Activity or Machine</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body ">
+								<div class="flot-chart">
+
+									<div style="overflow: scroll; width: 290px; height: 400px; padding: 10px; ">
+										<form action = "01_BasicChart.jsp">
+                            Select Activity or Machine<br/>
+                        
+                            <input type="checkbox" name="chex" value="Activity"> Activity
+                            <input type="checkbox" name="chex" value="Machine"> Machine
+								
+                          
+                            <input type="checkbox" name="chex" value="Frequency" > Frequency
+                            <input type="checkbox" name="chex" value="Time"> time<br>
+									
+                        
+                             <input type="submit" name="chex" value="Bar Chart" onclick="graph()"> <br>
+                            <input type="submit" name="chex" value="Pie Chart" onclick="graph()"> <br>
+                            <input type="submit" name="chex" value="Line Chart" onclick="graph()"> <br>
+                  
+									</div>
+
+
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+				
+				
+				
+				
+                
+   
+          
+               
+</div>
+                <!--  --> 	
                 
                 
                 
