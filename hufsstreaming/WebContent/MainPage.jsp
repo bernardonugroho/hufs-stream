@@ -32,6 +32,9 @@
 			System.out.println(BeforePath);
 		}		
 	%>
+	
+	
+	
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -61,6 +64,37 @@
 </head>
 
 <body>
+<%
+			String FileName2 = (String) session.getAttribute("FileName");
+			String Database = FileName2;
+			
+			Connection conn7 = null;
+			String url7 = "jdbc:mysql://203.253.70.34:3306/bpi";
+			String id7 = "cmpteam";
+			String pw7 = "!cmpteam";
+			String Data_label7 = "";
+			
+			Statement stmt7 = null;
+			
+			
+			try {
+
+				Class.forName("com.mysql.jdbc.Driver");
+				conn7 = DriverManager.getConnection(url7, id7, pw7);
+
+				stmt7 = conn7.createStatement();
+				
+		
+		
+		
+		
+		
+		
+		
+			
+		
+		%>
+		
 
 	<div id="wrapper">
 
@@ -313,8 +347,19 @@
 									<i class="fa fa-comments fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">26</div>
-									<div>New Comments!</div>
+									<div class="huge">
+									<% 
+									String q = "select count(*) as Total from manuf2 "; // q 에 엑티비티들을 따온다
+		ResultSet rs1 =  stmt7.executeQuery(q); 
+		int Totalnum=0;
+		while(rs1.next()){
+			Totalnum=rs1.getInt("Total"); // 어레이 리스트에 각각 엑티비티들을 넣어준다 Act(i)=rs2
+		}
+		System.out.println(Totalnum);
+		rs1.close();%>
+									
+									<%=Totalnum %></div>
+									<div>Total Events</div>
 								</div>
 							</div>
 						</div>
@@ -335,8 +380,17 @@
 									<i class="fa fa-tasks fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">12</div>
-									<div>New Tasks!</div>
+									<div class="huge">
+									<% String p = "select count(distinct caseid) as Caseid from manuf2 ";
+		ResultSet rs2 = stmt7.executeQuery(p);
+		int Caseidnum=0;
+		while(rs2.next()){
+			Caseidnum=rs2.getInt("Caseid");
+		}
+		System.out.println(Caseidnum);
+		rs2.close();%>
+									<%=Caseidnum %></div>
+									<div>Total Caseid</div>
 								</div>
 							</div>
 						</div>
@@ -357,8 +411,17 @@
 									<i class="fa fa-shopping-cart fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">124</div>
-									<div>New Orders!</div>
+									<div class="huge">
+									<% String r = "select count(distinct machine) as Machine from manuf2 ";
+		ResultSet rs3 = stmt7.executeQuery(r);
+		int Machinenum=0;
+		while(rs3.next()){
+			Machinenum=rs3.getInt("Machine");
+		}
+		System.out.println(Machinenum);
+		rs3.close();%>
+									<%=Machinenum %></div>
+									<div>Total Machine</div>
 								</div>
 							</div>
 						</div>
@@ -379,8 +442,17 @@
 									<i class="fa fa-support fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">13</div>
-									<div>Support Tickets!</div>
+									<div class="huge">
+									<% String t = "select count(distinct activity) as Activity from manuf2 ";
+		ResultSet rs4 = stmt7.executeQuery(t);
+		int Actnum=0;
+		while(rs4.next()){
+			Actnum=rs4.getInt("Activity");
+		}
+		System.out.println(Actnum);
+		rs4.close();%>
+									<%=Actnum %></div>
+									<div>Total Activity</div>
 								</div>
 							</div>
 						</div>
@@ -394,7 +466,16 @@
 					</div>
 				</div>
 			</div>
+<%
+stmt7.close();
+	    conn7.close();
+	    
+			}
+			catch(Exception e){                                                    
 
+				e.printStackTrace();
+
+			} %>
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="panel panel-default">
@@ -551,7 +632,7 @@
 			
 			}
 	%>
-		
+	
 </body>
 
 </html>
