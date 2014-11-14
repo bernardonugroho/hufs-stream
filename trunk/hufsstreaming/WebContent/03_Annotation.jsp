@@ -408,7 +408,7 @@
 									
 										stmt = conn.createStatement();
 										
-									 	String query_str2 = "select distinct caseid from "+manuf+"";
+									 	String query_str2 = "select distinct caseid from "+manuf+" order by caseid asc";
 									 	ResultSet rs2=stmt.executeQuery(query_str2);
 									 	%>
 									 	
