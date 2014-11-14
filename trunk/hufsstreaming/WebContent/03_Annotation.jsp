@@ -292,94 +292,26 @@
                         <li class="active">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a class="active" href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+                               <li><a href="01_BasicChart.jsp">Bar Charts</a></li>
+								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
+								<li><a href="03_Annotation.jsp">Annotation Charts</a></li>
+							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
+						</li>
+						<li><a href=" "><i class="fa fa-table fa-fw"></i> Machine
+								Network</a></li>
+						<li><a href=" "><i class="fa fa-table fa-fw"></i> Process
+								Views</a></li>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
                     <h1 class="page-header">Annotation </h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -390,8 +322,9 @@
             <!-- This is the database connection close statements -->
             <!-- /.row -->
             <div class="row">
-               <!-- /.col-lg-12 -->
-                <div class="col-lg-12">
+             <!-- /.col-lg-12 -->
+             
+             <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Annotation Chart Example
@@ -407,55 +340,23 @@
                               
                               <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
 										    <script type='text/javascript'>
-										    <%if(data1.length()<1){
-										    out.print("empty");
+										    <%
+										    out.print(data1.length());
+										    if(data1.length()<1){
+										    out.print("empty  !");
 										    }else{
+										   	out.print(data1.length());
 										    %>
-										    
-										    
-										    
-										      google.load('visualization', '1', {'packages':['annotationchart']});
-										      google.setOnLoadCallback(drawChart);
-										      var datajs = [<%=data1.toString()%>];
-										      
-										      var msi= <%=chkbox.length%>;     
-										      var ii=0;
-										     
-										     
-										
-										      function drawChart() {    
-										    	  var data = new google.visualization.DataTable();
-										          data.addColumn('datetime', 'Date');
-										          while(ii<msi){
-										          data.addColumn('number', 'Quantity');
-										          data.addColumn('string', 'Activity');
-										          data.addColumn('string', 'Machine');
-										          ii++;  
-										    	 }
-										          
-										          
-										           data.addRows(datajs);
-										        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
-										
-										        var options = {
-										                displayAnnotations: true,
-										                chart: { interpolateNulls: true }
-										              };
-										        chart.draw(data, options);
-										      }
-											      
-										    <%}%>
-											    </script>
-											  <div id='chart_div' style='width: 1150px; height: 400px;'></div>
+										   <% }%>
+										      </script>
+											  <div id='chart_div1' style='width: 1150px; height: 400px;'></div>
                             </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                            
-            
-             <!-- /.col-lg-12 -->
+                
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -468,6 +369,7 @@
                             <div style="overflow: scroll; width: 290px; height: 360px; padding: 5px; ">
                             
                                    <%  
+                                   
                                    String FileName= (String) session.getAttribute("FileName");
                                    String manuf = FileName;
                                    String inactivity = "activity";
@@ -484,6 +386,9 @@
 									Statement stmt = null;
 									Statement stmt1 = null;
 									
+									
+								
+									
 									String date=null;
 									String caseid =null;
 									String activity = null;
@@ -493,7 +398,10 @@
 									int i = 0;
 									ArrayList<String> n = new ArrayList<String>();
 									
+									
+									
 									try{	
+									
 									    
 										Class.forName("com.mysql.jdbc.Driver");   
 										conn=DriverManager.getConnection(url,id,pw);              
@@ -507,16 +415,11 @@
 									 	<form action="03_Annotation.jsp"> 
 									 	 <% while(rs2.next()){ %>
 									    
-									        <input type="checkbox" name="chex" value="<%=rs2.getInt(1)%>"><%=rs2.getInt(1)%>  </input></br>
+									        <input type="checkbox" name="chex" value="<%=rs2.getInt(1)%>"><%=rs2.getInt(1)%> </input></br>
 									        <%} rs2.beforeFirst(); %>
 									        </div>
 									        <input type="submit" value="ok">
-									       
-									       
-									       <%
-									        out.println("<BR>"); %>
 									        </form>
-									        
 									 	 <%
 									 	try{
 									        
@@ -538,7 +441,7 @@
 									    		while(rs2.next()){
 											  countid++;
 											  //out.println(rs2.getInt(1));
-											  out.println("<BR>");
+											 // out.println("<BR>");
 											  n.add(rs2.getString(1));
 									}rs2.close();
 										//out.println("how many caseid? : " +countid);
@@ -548,7 +451,7 @@
 											 for ( int z = 0; z < chkbox.length; z++ )
 											 {
 										 ResultSet ci1;
-										String query_strc1 = "select * from bpi.manuf where "+incaseid+"= '"+chkbox[z]+"' order by time asc ";	
+										String query_strc1 = "select * from "+manuf+" where "+incaseid+"= '"+chkbox[z]+"' order by time asc ";	
 									 ci1=stmt.executeQuery(query_strc1); 	
 									 
 									 //1.  select each case
@@ -642,48 +545,19 @@
 									
 									 stmt.close();
 									 conn.close();
+									
 									    	}
 											}catch(Exception e){                                                    
 									
 										e.printStackTrace();
 									
 									}
+									 	 
+									
+									            
 									            %>
                             
-                          <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
-										    <script type='text/javascript'>
-										      google.load('visualization', '1', {'packages':['annotationchart']});
-										      google.setOnLoadCallback(drawChart);
-										      var datajs = [<%=data1.toString()%>];
-										      var countids = <%=countid%>;
-										      var msi= <%=chkbox.length%>;     
-										      var ii=0;
-										      function drawChart() {    
-										    	  var data = new google.visualization.DataTable();
-										          data.addColumn('datetime', 'Date');
-										          while(ii<msi){
-										          data.addColumn('number', 'Quantity');
-										          data.addColumn('string', 'Activity');
-										          data.addColumn('string', 'Machine');
-										          ii++;  
-										    	 }
-										          
-											     data.addRows(datajs);
-											        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
-											
-											        var options = {
-											                displayAnnotations: true,
-											                chart: { interpolateNulls: true }
-											              };
-											        chart.draw(data, options);
-											      } 
-											    </script>
-											    
-											  <div id='chart_div' style='width: 1150px; height: 400px;'></div>
-                                	<%
-                                }
-                                catch(Exception e){ }
-                                		%>
+                          
                                 
                                 <!-- if -->
                             
@@ -701,22 +575,62 @@
                 </div>
                 
                 <!-- Ãâ·ÂÃ¢ -->
-                	
-                                		
-                                		
+                <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+										    <script type='text/javascript'>
+										      google.load('visualization', '1', {'packages':['annotationchart']});
+										      google.setOnLoadCallback(drawChart);
+										      var datajs = [<%=data1.toString()%>];
+										      var countids = <%=countid%>;
+										      var msi= <%=chkbox.length%>;     
+										      var ii=0;
+										     
+										     
+										
+										      function drawChart() {    
+										    	  var data = new google.visualization.DataTable();
+										          data.addColumn('datetime', 'Date');
+										          while(ii<msi){
+										          data.addColumn('number', 'Quantity');
+										          data.addColumn('string', 'Activity');
+										          data.addColumn('string', 'Machine');
+										          ii++;  
+										    	 }
+										          
+										          
+										           data.addRows(datajs);
+										        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div1'));
+										
+										        var options = {
+										                displayAnnotations: true,
+										                chart: { interpolateNulls: true }
+										              };
+										        chart.draw(data, options);
+										      }
+											      
+											      
+											    </script>
+                                			
+                                	<%
+                                }
+                                catch(Exception e){ }
+                                		%>
                 
                 <div class="col-lg-12">
                 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Squence
+                            Squense
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
                             
                               		    
-	                           
+	                                
+                                			
+    <center>
+    
+  
                                
                             </div>
                         </div>
@@ -724,8 +638,7 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-                
-             
+                     
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
