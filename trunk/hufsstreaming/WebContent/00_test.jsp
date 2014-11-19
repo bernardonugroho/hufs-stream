@@ -53,7 +53,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">AMPES</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -432,7 +432,14 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                           <%  int mad =0;%>
+                           <%  int mad =0;
+                           String manuf = "bpi.manuf2";
+                           String activity = "activity";
+                           String machine = "machine";
+                           String caseid = "caseid";
+                           String time = "time";
+                           String quantity = "quantity";
+                           %>
                             
                        <script>
                       function graph()  {  </script><%
@@ -442,12 +449,7 @@
                       {
                     	  mad++;
                       }
-                    	  String manuf = "bpi.manuf2";
-                      String activity = "activity";
-                      String machine = "machine";
-                      String caseid = "caseid";
-                      String time = "time";
-                      String quantity = "quantity";
+                    	 
                     	
                       /* fequency combobox   */
                     	  
@@ -3022,7 +3024,8 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 따온다
 				<div class="col-lg-3">
 					<div class="panel panel-default">
 						<div class="panel-heading"><strong>
-						Activity Selection</strong></div>
+						<a href="http://localhost:8080/hufsstreaming/00_test.jsp?chex=Activity&chex=Frequency&chex=Bar+Chart">
+						<input tupe="submit" value="Activity Selection"></a></strong></div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form></form>
