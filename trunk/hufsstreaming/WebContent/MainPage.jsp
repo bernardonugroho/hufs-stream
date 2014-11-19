@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>HUFS Project</title>
+<title>SMPAS</title>
 
 	<%
 		String FileName=(String) request.getParameter("FileName");
@@ -108,7 +108,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="MainPage.jsp">HUFS Project</a>
+				<a class="navbar-brand" href="MainPage.jsp">SMPAS</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -343,9 +343,9 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-xs-3">
+								<!-- <div class="col-xs-3">
 									<i class="fa fa-comments fa-5x"></i>
-								</div>
+								</div> -->
 								<div class="col-xs-9 text-right">
 									<div class="huge">
 									<% 
@@ -359,13 +359,13 @@
 		rs1.close();%>
 									
 									<%=Totalnum %></div>
-									<div>Total Events</div>
+									<!-- <div>Total Events</div> -->
 								</div>
 							</div>
 						</div>
 						<a href="#">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">Total Events</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -376,9 +376,9 @@
 					<div class="panel panel-green">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-xs-3">
+								<!-- <div class="col-xs-3">
 									<i class="fa fa-tasks fa-5x"></i>
-								</div>
+								</div> -->
 								<div class="col-xs-9 text-right">
 									<div class="huge">
 									<% String p = "select count(distinct caseid) as Caseid from manuf2 ";
@@ -390,13 +390,13 @@
 		//System.out.println(Caseidnum);
 		rs2.close();%>
 									<%=Caseidnum %></div>
-									<div>Total Caseid</div>
+									
 								</div>
 							</div>
 						</div>
 						<a href="#">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">Total CaseId</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -407,9 +407,9 @@
 					<div class="panel panel-yellow">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-xs-3">
+								<!-- <div class="col-xs-3">
 									<i class="fa fa-shopping-cart fa-5x"></i>
-								</div>
+								</div> -->
 								<div class="col-xs-9 text-right">
 									<div class="huge">
 									<% String r = "select count(distinct machine) as Machine from manuf2 ";
@@ -421,13 +421,13 @@
 		//System.out.println(Machinenum);
 		rs3.close();%>
 									<%=Machinenum %></div>
-									<div>Total Machine</div>
+									
 								</div>
 							</div>
 						</div>
 						<a href="#">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">Total Machine</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -438,9 +438,9 @@
 					<div class="panel panel-red">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-xs-3">
+								<!-- <div class="col-xs-3">
 									<i class="fa fa-support fa-5x"></i>
-								</div>
+								</div> -->
 								<div class="col-xs-9 text-right">
 									<div class="huge">
 									<% String t = "select count(distinct activity) as Activity from manuf2 ";
@@ -452,13 +452,13 @@
 		//System.out.println(Actnum);
 		rs4.close();%>
 									<%=Actnum %></div>
-									<div>Total Activity</div>
+									
 								</div>
 							</div>
 						</div>
 						<a href="#">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">Total Activity</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
