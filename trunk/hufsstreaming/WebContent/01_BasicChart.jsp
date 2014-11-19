@@ -59,7 +59,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+				<a class="navbar-brand" href="index.html">SMPES</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -1528,7 +1528,7 @@ try{
 		
 		
 		
-String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온다
+String q = "Select distinct activity from " + manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -1539,7 +1539,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 		
-	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM "+manuf; 
 				
 	 	ResultSet rs4 = stmt.executeQuery(q2);
 	 	int TotalActTime =0;
@@ -1567,9 +1567,9 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manuf as a ";
+		query_str1+="FROM   "+manuf+" as a ";
 
-		query_str1+="LEFT JOIN bpi.manuf as b ";
+		query_str1+="LEFT JOIN "+manuf+" as b ";
 
 		query_str1+="ON a.caseid = b.caseid ";
 
@@ -1594,7 +1594,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		
 		int countNum=0;
-		String q5 = "Select time from bpi.manuf where activity = '"+Act.get(j)+"'";
+		String q5 = "Select time from "+manuf+" where activity = '"+Act.get(j)+"'";
 		ResultSet rs5 = stmt.executeQuery(q5);
 		while(rs5.next()){
 			countNum++;
@@ -1712,7 +1712,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		
 		
-String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온다
+String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -1723,7 +1723,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 		
-	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM "+manuf; 
 				
 	 	ResultSet rs4 = stmt.executeQuery(q2);
 	 	int TotalActTime =0;
@@ -1751,9 +1751,9 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manuf as a ";
+		query_str1+="FROM    "+manuf+" as a ";
 
-		query_str1+="LEFT JOIN bpi.manuf as b ";
+		query_str1+="LEFT JOIN "+manuf+" as b ";
 
 		query_str1+="ON a.caseid = b.caseid ";
 
@@ -1778,7 +1778,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		
 		int countNum=0;
-		String q5 = "Select time from bpi.manuf where activity = '"+Act.get(j)+"'";
+		String q5 = "Select time from "+manuf+" where activity = '"+Act.get(j)+"'";
 		ResultSet rs5 = stmt.executeQuery(q5);
 		while(rs5.next()){
 			countNum++;
@@ -1896,7 +1896,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		
 		
-String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들을 따온다
+String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -1907,7 +1907,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 		
-	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM "+manuf; 
 				
 	 	ResultSet rs4 = stmt.executeQuery(q2);
 	 	int TotalActTime =0;
@@ -1935,9 +1935,9 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manuf as a ";
+		query_str1+="FROM    "+manuf+" as a ";
 
-		query_str1+="LEFT JOIN bpi.manuf as b ";
+		query_str1+="LEFT JOIN "+manuf+" as b ";
 
 		query_str1+="ON a.caseid = b.caseid ";
 
@@ -1962,7 +1962,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		
 		int countNum=0;
-		String q5 = "Select time from bpi.manuf where activity = '"+Act.get(j)+"'";
+		String q5 = "Select time from "+manuf+" where activity = '"+Act.get(j)+"'";
 		ResultSet rs5 = stmt.executeQuery(q5);
 		while(rs5.next()){
 			countNum++;
@@ -2091,7 +2091,7 @@ String q = "Select distinct activity from bpi.manuf"; // q 에 엑티비티들�
 		
 		//System.out.println(event1);
 		
-String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
+String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -2102,7 +2102,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		//System.out.println(Act);
 		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 		
-	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM "+manuf; 
 				
 	 	ResultSet rs4 = stmt.executeQuery(q2);
 	 	int TotalActTime =0;
@@ -2130,9 +2130,9 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manuf as a ";
+		query_str1+="FROM    "+manuf+" as a ";
 
-		query_str1+="LEFT JOIN bpi.manuf as b ";
+		query_str1+="LEFT JOIN "+manuf+" as b ";
 
 		query_str1+="ON a.caseid = b.caseid ";
 
@@ -2157,7 +2157,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		
 		
 		int countNum=0;
-		String q5 = "Select time from bpi.manuf where machine = '"+Mac.get(j)+"'";
+		String q5 = "Select time from "+manuf+" where machine = '"+Mac.get(j)+"'";
 		ResultSet rs5 = stmt.executeQuery(q5);
 		while(rs5.next()){
 			countNum++;
@@ -2294,7 +2294,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		
 		//System.out.println(event1);
 		
-String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
+String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -2305,7 +2305,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		//System.out.println(Act);
 		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 		
-	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM "+manuf; 
 				
 	 	ResultSet rs4 = stmt.executeQuery(q2);
 	 	int TotalActTime =0;
@@ -2333,9 +2333,9 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manuf as a ";
+		query_str1+="FROM    "+manuf+" as a ";
 
-		query_str1+="LEFT JOIN bpi.manuf as b ";
+		query_str1+="LEFT JOIN "+manuf+" as b ";
 
 		query_str1+="ON a.caseid = b.caseid ";
 
@@ -2360,7 +2360,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		
 		
 		int countNum=0;
-		String q5 = "Select time from bpi.manuf where machine = '"+Mac.get(j)+"'";
+		String q5 = "Select time from "+manuf+" where machine = '"+Mac.get(j)+"'";
 		ResultSet rs5 = stmt.executeQuery(q5);
 		while(rs5.next()){
 			countNum++;
@@ -2497,7 +2497,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		
 		//System.out.println(event1);
 		
-String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을 따온다
+String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -2508,7 +2508,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		//System.out.println(Act);
 		////////////// 어레이리스트에 저장한다 activity 들을 그리고 불러올수 있게 준비함 
 		
-	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM bpi.manuf "; 
+	    String q2 = "Select TIMESTAMPDIFF(SECOND,MIN(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s')),MAX(STR_TO_DATE(time,'%d/%m/%Y %h:%i:%s'))) AS TotalactTime FROM "+manuf; 
 				
 	 	ResultSet rs4 = stmt.executeQuery(q2);
 	 	int TotalActTime =0;
@@ -2536,9 +2536,9 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM    bpi.manuf as a ";
+		query_str1+="FROM    "+manuf+" as a ";
 
-		query_str1+="LEFT JOIN bpi.manuf as b ";
+		query_str1+="LEFT JOIN "+manuf+" as b ";
 
 		query_str1+="ON a.caseid = b.caseid ";
 
@@ -2563,7 +2563,7 @@ String q = "Select distinct machine from bpi.manuf"; // q 에 엑티비티들을
 		
 		
 		int countNum=0;
-		String q5 = "Select time from bpi.manuf where machine = '"+Mac.get(j)+"'";
+		String q5 = "Select time from "+manuf+" where machine = '"+Mac.get(j)+"'";
 		ResultSet rs5 = stmt.executeQuery(q5);
 		while(rs5.next()){
 			countNum++;
