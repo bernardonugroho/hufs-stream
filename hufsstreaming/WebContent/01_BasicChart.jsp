@@ -285,12 +285,49 @@
             <!-- /.row -->
             <div class="row">
                 
-                </div>
                 
                 
                 
                 
-                <div class="col-lg-12">
+                
+               <div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>Select</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body ">
+								<div class="flot-chart">
+
+									
+										<form action="01_BasicChart.jsp">
+                           
+                        
+                            <input type="checkbox" name="chex" value="Activity"> Activity
+                            <input type="checkbox" name="chex" value="Machine"> Machine<br><br>
+									
+                          
+                            <input type="checkbox" name="chex" value="Frequency" > Frequency
+                            <input type="checkbox" name="chex" value="Time"> time<br><br>
+									
+                        
+                             <input type="submit" name="chex" value="Bar Chart" onclick="graph()"> <br><br>
+                            <input type="submit" name="chex" value="Pie Chart" onclick="graph()"> <br><br>
+                            <input type="submit" name="chex" value="Line Chart" onclick="graph()"> <br><br>
+                  
+									
+
+
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+                
+                
+                <div class="col-lg-9">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Chart
@@ -298,32 +335,148 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
+                           <%  int mad =0;
+                           String FileName = (String) session.getAttribute("FileName");
+                 			String manuf = FileName;
+                             String activity = "activity";
+                             String machine = "machine";
+                             String caseid = "caseid";
+                             String time = "time";
+                           String quantity = "quantity";
+                           %>
                             
                        <script>
-                      function graph()  { </script><%
+                      function graph()  {  </script><%
                     	  String[] subject= request.getParameterValues("chex");
-                      String FileName = (String) session.getAttribute("FileName");
-          			String manuf = FileName;
-                      String activity = "activity";
-                      String machine = "machine";
-                      String caseid = "caseid";
-                      String time = "time";
-                    	/* fequency combobox   */
-                    	  try{
-                    	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Bar Chart"))
+                      //out.println(subject);
+                      if(subject != null)
+                      {
+                    	  mad++;
+                      }
+                    	 
+                    	
+                    
+                    	  
+                   if(mad==0){
+   Connection conn = null; 
+String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
+String id = "cmpteam";                                                   
+String pw = "!cmpteam";                                                
+String Data_label = "";
+ 
+Statement stmt = null;
+Statement stmt1 = null;
+
+StringBuffer data = new StringBuffer();
+
+try{
+
+   
+	Class.forName("com.mysql.jdbc.Driver");   
+	conn=DriverManager.getConnection(url,id,pw);              
+
+	stmt = conn.createStatement();
+	
+	//data initialization
+	if (data.length() > 0) {
+    data.append(',');
+}
+	data.append('[').append("'Activity'").append(',').append("'Frequency'").append(']').append(',');
+	//out.println("******* "+ data);
+
+	
+	
+	//Find the activity
+	//SELECT distinct activity from manuf
+	String query_str1 = "select distinct "+ activity+" from "+ manuf;
+	ResultSet rs1=stmt.executeQuery(query_str1);
+	
+	ArrayList<String> name = new ArrayList<String>();
+	int k=0;
+	while(rs1.next())
+	{
+		name.add(rs1.getString(activity));
+		//out.println("arraylist : "+name.get(k));
+		k++;
+	}
+
+	rs1.close();
+	
+	for (String act : name)
+	{
+	String q = "select count(*) from "+ manuf +" where "+ activity+"='"+act+"'";
+	//out.println(q);
+	ResultSet rs2=stmt.executeQuery(q);
+	int countA=0;
+	if(rs2.next()){
+		countA =rs2.getInt(1);	
+	}
+	
+	//out.println(act+" : "+countA);
+	rs2.close();
+	data.append('[').append("'").append(act).append("'").append(',').append(countA).append(']').append(',');
+	}
+	//out.println(data.toString());
+	
+	
+	//------------------------------		
+	 //------------------------------
+	 //out.println(data);
+	//--------------------------
+	
+	
+
+    stmt.close();
+    stmt1.close();
+    conn.close();
+	
+	}catch(Exception e){                                                    
+
+		e.printStackTrace();
+
+	}
+
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+   <script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+     google.setOnLoadCallback(drawChart);
+     
+     var datajs = [<%=data.toString()%>];
+     //////alert(datajs);
+     function drawChart() {
+
+       var data = google.visualization.arrayToDataTable(datajs);
+
+       var options = {
+         title: 'Activities'
+       };
+
+       var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+       chart.draw(data, options);
+     }
+   </script>
+<div id="chart_div" style="width: 650px; height: 400px;"></div>
+							
+							<%}
+						
+                        /* fequency combobox   */
                       
-                    	   { %><script>
-                    	   function Send(frm){
-                 			  frm.action="01_BasicChart.jsp?chex=Activity&chex=Machine&chex=Frequency&chex=Bar+Chart";
-                 			  frm.method="post";
-                 			  frm.submit();
-                 		  }
-                 		  </script>
-                 	  
-                 	  <%
-                 		
-                 	
-          			
+                       try{
+                   	   if(subject[0].equals("Activity") && subject[1].equals("Machine") && subject[2].equals("Frequency") && subject[3].equals("Bar Chart"))
+                           
+                   	   { %><script>
+                   	   function Send(frm){
+                			  frm.action="01_BasicChart.jsp?chex=Activity&chex=Machine&chex=Frequency&chex=Bar+Chart";
+                			  frm.method="post";
+                			  frm.submit();
+                		  }
+                		  </script>
+                	  
+                	  <%
+                		
+
 Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
 String id = "cmpteam";                                                   
@@ -443,29 +596,29 @@ String q = "select count(*), activity, machine from "+manuf+" where "+activity+"
 
 	
 
-     %>
- 
+    %>
+
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
- <script type="text/javascript">
+<script type="text/javascript">
 google.load("visualization", "1", {packages:["corechart"]});
-   google.setOnLoadCallback(drawChart);
-   
-   var datajs = [<%=data.toString()%>];
-   alert(datajs);
-   function drawChart() {
+  google.setOnLoadCallback(drawChart);
+  
+  var datajs = [<%=data.toString()%>];
+  //////alert(datajs);
+  function drawChart() {
 
-     var data = google.visualization.arrayToDataTable(datajs);
+    var data = google.visualization.arrayToDataTable(datajs);
 
-     var options = {
-       title: 'Activities & Machines'
-     };
+    var options = {
+      title: 'Activities & Machines'
+    };
 
-     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
-     chart.draw(data, options);
-   }
- </script>
+    chart.draw(data, options);
+  }
+</script>
 <div id="chart_div" style="width: 900px; height: 380px;"></div>
 							<%} }catch(Exception e){ }%>
 							
@@ -613,7 +766,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -773,7 +926,7 @@ google.load("visualization", "1", {packages:["corechart"]});
    google.setOnLoadCallback(drawChart);
    
    var datajs = [<%=data.toString()%>];
-   alert(datajs);
+   //////alert(datajs);
    function drawChart() {
 
      var data = google.visualization.arrayToDataTable(datajs);
@@ -802,8 +955,6 @@ google.load("visualization", "1", {packages:["corechart"]});
                     	   if(subject[0].equals("Activity") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
                       
                     	   {
-    
-    
     
     
     Connection conn = null; 
@@ -891,7 +1042,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      ////////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -908,7 +1059,12 @@ try{
 <div id="chart_div" style="width: 900px; height: 380px;"></div>
 							
 							
-							<%} }catch(Exception e){ }%>
+					<%} }
+						
+                    	   catch(Exception e){ 
+                    		   e.getStackTrace();
+                    	   }%>
+                    		   
 						
 						
 						<%try{
@@ -1004,7 +1160,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      ////////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -1115,7 +1271,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -1149,7 +1305,7 @@ try{
                     	   if(subject[0].equals("Machine") && subject[1].equals("Frequency") && subject[2].equals("Bar Chart"))
                       
                     	   {
-    
+  
     Connection conn = null; 
 String url = "jdbc:mysql://203.253.70.34:3306/bpi";        
 String id = "cmpteam";                                                   
@@ -1238,7 +1394,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -1351,7 +1507,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -1466,7 +1622,7 @@ try{
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -1528,7 +1684,7 @@ try{
 		
 		
 		
-String q = "Select distinct activity from " + manuf; // q 에 엑티비티들을 따온다
+String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 따온다
 		
 		ResultSet rs2 =  stmt.executeQuery(q); 
 		
@@ -1567,7 +1723,7 @@ String q = "Select distinct activity from " + manuf; // q 에 엑티비티들을
 
 		query_str1+="TIMESTAMPDIFF(SECOND,(STR_TO_DATE(a.time,'%d/%m/%Y %h:%i:%s')),MIN(STR_TO_DATE(b.time,'%d/%m/%Y %h:%i:%s'))) AS TimeDiff ";
 
-		query_str1+="FROM   "+manuf+" as a ";
+		query_str1+="FROM    "+manuf+" as a ";
 
 		query_str1+="LEFT JOIN "+manuf+" as b ";
 
@@ -1659,7 +1815,7 @@ String q = "Select distinct activity from " + manuf; // q 에 엑티비티들을
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -1843,7 +1999,7 @@ String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 �
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -2027,7 +2183,7 @@ String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 �
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -2241,7 +2397,7 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -2444,7 +2600,7 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //////alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -2647,7 +2803,7 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
       google.setOnLoadCallback(drawChart);
       
       var datajs = [<%=data.toString()%>];
-      alert(datajs);
+      //alert(datajs);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(datajs);
@@ -2669,7 +2825,10 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
 						
 						
 						
-						
+						<br>
+						<Br>
+						<Br>
+						<BR>
                  
 
                             <!--  -->
@@ -2680,37 +2839,168 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
                     </div>
                  <!--    /.panel -->
                 </div> 
-                
+                </div>
                 <!-- /.col-lg-12 --> 
                 
                 
+			<!--@@@@@@@@@@@@@@@@ DB 접속 & 데이터 페이지에 띄우기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+			<%
+				Connection conn = null;
+				String url = "jdbc:mysql://203.253.70.34:3306/bpi";
+				String id = "cmpteam";
+				String pw = "!cmpteam";
+				String Data_label = "";
+
+				Statement stmt = null;
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(url, id, pw);
+
+				stmt = conn.createStatement();
+
+				String query_str2 = "select distinct "+ machine+" from "+manuf +" group by "+machine;
+				ResultSet rs2 = stmt.executeQuery(query_str2);
+				ArrayList GOGO = new ArrayList();
+				while (rs2.next()) {
+					GOGO.add(rs2.getString(1));
+				}
+			%>
+
+			<!--@@@@@@@@@@@@@@@@ DB 접속 & 데이터 페이지에 띄우기 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                 
-                <div class="col-lg-4">
+                <!--@@@@@@@@@@@@@@@@@@ 두번째 row 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			<div class="row">
+			
+			
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Caseid Select  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+	
+				<div class="col-lg-3">
 					<div class="panel panel-default">
-						<div class="panel-heading"><strong>Select Activity or Machine</strong></div>
+						<div class="panel-heading"><strong>CaseID Selection</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body">
+								<div class="flot-chart">
+
+									<div style="overflow: scroll; width: 180px; height: 400px; padding: 10px; ">
+
+										<%
+											String query_str4 = "select distinct "+ caseid+" from "+manuf+" group by "+caseid;
+											ResultSet rs4 = stmt.executeQuery(query_str4);
+											ArrayList GOGO3 = new ArrayList();
+											while (rs4.next()) {
+												GOGO3.add(rs4.getString(1));
+											}
+										%>
+										<form action="01_BasicChart.jsp">
+											<%
+												for (int si3 = 0; si3 < GOGO3.size(); si3++) {
+											%>
+											<%-- <input name="checkbox1" type="checkbox"
+												value="<%=GOGO3.get(si3)%>"></input> --%><%=GOGO3.get(si3)%></br>
+
+											<%
+												}
+											%></div>
+											<!-- <input type="submit" value="       Analyze       ">
+											 -->
+											<%
+												rs4.close();
+											%>
+										</form>
+									
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+			
+			<!--@@@@@@@@@@@@@@@@@ 컨디션 3 Caseid Select @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+	
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>
+						<a href="01_BasicChart.jsp?chex=Activity&chex=Frequency&chex=Bar+Chart">
+						<input type="submit" value="Activity Selection"></a></strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body">
+								<div class="flot-chart">
+
+									<div style="overflow: scroll; width: 180px; height: 400px; padding: 10px; ">
+										<%
+											String query_str3 = "select distinct "+ activity+" from "+manuf+" group by "+activity;
+											ResultSet rs3 = stmt.executeQuery(query_str3);
+											ArrayList GOGO2 = new ArrayList();
+											while (rs3.next()) {
+												GOGO2.add(rs3.getString(1));
+											}
+										%>
+										<form action="01_BasicChart.jsp">
+											<%
+												for (int si2 = 0; si2 < GOGO2.size(); si2++) {
+											%>
+											<%-- <input name="checkbox1" type="checkbox"
+												value="<%=GOGO2.get(si2)%>"></input> --%><%=GOGO2.get(si2)%></br>
+
+											<%
+												}
+											%></div>
+											<!-- <input type="submit" value="       Analyze       "> -->
+											<%
+												rs3.close();
+											%>
+										</form>
+									
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 Activity Select  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+			
+			<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Machine Select  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+				
+				
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>
+						<a href="01_BasicChart.jsp?chex=Machine&chex=Frequency&chex=Bar+Chart">
+						<input type="submit" value="Machine Selection"></a></strong></div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form></form>
 							<div class="panel-body ">
 								<div class="flot-chart">
 
-									<div style="overflow: scroll; width: 290px; height: 400px; padding: 10px; ">
-										<form action = "01_BasicChart.jsp">
-                            Select Activity or Machine<br/>
-                        
-                            <input type="checkbox" name="chex" value="Activity"> Activity
-                            <input type="checkbox" name="chex" value="Machine"> Machine
-								
-                          
-                            <input type="checkbox" name="chex" value="Frequency" > Frequency
-                            <input type="checkbox" name="chex" value="Time"> time<br>
+									<div style="overflow: scroll; width: 180px; height: 400px; padding: 10px; ">
+										<form action="01_BasicChart.jsp">
+											<%
+												for (int si = 0; si < GOGO.size(); si++) {
+											%>
+											<%-- <input name="checkbox1" type="checkbox"
+												value="<%=GOGO.get(si)%>"></input> --%><%=GOGO.get(si)%></br>
+
+											<%
+												}
+											%></div>
+											<!-- <input type="submit" value="       Analyze       "> -->
+											<%
+												rs2.close();
+											%>
+										</form>
 									
-                        
-                             <input type="submit" name="chex" value="Bar Chart" onclick="graph()"> <br>
-                            <input type="submit" name="chex" value="Pie Chart" onclick="graph()"> <br>
-                            <input type="submit" name="chex" value="Line Chart" onclick="graph()"> <br>
-                  
-									</div>
 
 
 								</div>
@@ -2720,19 +3010,59 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
 						<!-- /.panel -->
 					</div>
 				</div>
-				
-				
-				
-				
-                
-   
-          
-               
-</div>
-                <!--  --> 	
-                
-                
-                
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 1 Machine Select  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+			<!--@@@@@@@@@@@@@@@@@ 컨디션 2 quantity Select  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading"><strong>Quantity Selection</strong></div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form></form>
+							<div class="panel-body">
+								<div class="flot-chart">
+
+									<div style="overflow: scroll; width: 180px; height: 400px; padding: 10px; ">
+										<%
+											String query_str5 = "select distinct "+ quantity+" from "+manuf+" group by "+quantity;
+											ResultSet rs5 = stmt.executeQuery(query_str5);
+											ArrayList GOGO5 = new ArrayList();
+											while (rs5.next()) {
+												GOGO5.add(rs5.getString(1));
+											}
+										%>
+										<form action="01_BasicChart.jsp">
+											<%
+												for (int si2 = 0; si2 < GOGO2.size(); si2++) {
+											%>
+											<%-- <input name="checkbox1" type="checkbox"
+												value="<%=GOGO5.get(si2)%>"></input> --%><%=GOGO5.get(si2)%></br>
+
+											<%
+												}
+											%></div>
+											<!-- <input type="submit" value="       Analyze       "> -->
+											<%
+												rs5.close();
+											%>
+										</form>
+									
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+				</div>
+
+				<!--@@@@@@@@@@@@@@@@@ 컨디션 2 quantity Select @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			
+			</div>
+			<!--@@@@@@@@@@@@@@@@@@ 두번째 row 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+
                 
                 
                 <div class="col-lg-12">
