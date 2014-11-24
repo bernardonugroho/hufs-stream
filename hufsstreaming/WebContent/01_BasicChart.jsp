@@ -457,7 +457,7 @@ try{
        chart.draw(data, options);
      }
    </script>
-<div id="chart_div" style="width: 650px; height: 400px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							
 							<%}
 						
@@ -619,7 +619,7 @@ google.load("visualization", "1", {packages:["corechart"]});
     chart.draw(data, options);
   }
 </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -780,7 +780,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 380px;"></div>
+<div id="piechart" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 				
 							
@@ -940,7 +940,7 @@ google.load("visualization", "1", {packages:["corechart"]});
      chart.draw(data, options);
    }
  </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -1056,7 +1056,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							
 							
 					<%} }
@@ -1174,7 +1174,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 380px;"></div>
+<div id="piechart" style="width: 850px; height: 410px;"></div>
 							
 							<%} }catch(Exception e){ }%>
 							
@@ -1285,7 +1285,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							
 							
 							<%} }catch(Exception e){ }%>
@@ -1408,7 +1408,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						
@@ -1521,7 +1521,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 380px;"></div>
+<div id="piechart" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -1636,7 +1636,7 @@ try{
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -1829,7 +1829,7 @@ String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 �
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2013,7 +2013,7 @@ String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 �
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 380px;"></div>
+<div id="piechart" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2197,7 +2197,7 @@ String q = "Select distinct activity from "+manuf; // q 에 엑티비티들을 �
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style=": 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
@@ -2411,7 +2411,7 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2614,7 +2614,7 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 380px;"></div>
+<div id="piechart" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 						
 						<%try{
@@ -2817,7 +2817,7 @@ String q = "Select distinct machine from "+manuf; // q 에 엑티비티들을 �
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div" style="width: 900px; height: 380px;"></div>
+<div id="chart_div" style="width: 850px; height: 410px;"></div>
 							<%} }catch(Exception e){ }%>
 							
 							
