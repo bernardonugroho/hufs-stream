@@ -58,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">SMPES</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -287,10 +287,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                <li><a href="01_BasicChart.jsp">Bar Charts</a></li>
 								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
@@ -624,8 +624,14 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                            
-                              		    
+                            <%
+                              		   
+                            Class.forName("com.mysql.jdbc.Driver");   
+                            conn=DriverManager.getConnection(url,id,pw);              
+                            stmt = conn.createStatement();
+                            String query_str2 = "select distinct caseid from "+manuf+" order by caseid asc";
+                            ResultSet rs2=stmt.executeQuery(query_str2);
+									 	 %>
 	                                
                                 			
     <center>
