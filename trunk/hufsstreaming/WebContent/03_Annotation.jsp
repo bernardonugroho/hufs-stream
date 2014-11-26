@@ -325,7 +325,7 @@
              <!-- /.col-lg-12 -->
              
              <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel   panel-default">
                         <div class="panel-heading">
                            Annotation Chart Example
                         </div>
@@ -333,7 +333,6 @@
                         <div class="panel-body">
                             <div class="flot-chart">
                               <%
-                              
                               String chkbox[] = request.getParameterValues("chex");
                               StringBuffer data1 = new StringBuffer();
                               %>
@@ -615,35 +614,7 @@
                                 catch(Exception e){ }
                                 		%>
                 
-                <div class="col-lg-12">
                 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Squense
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                            <%
-                              		   
-                            Class.forName("com.mysql.jdbc.Driver");   
-                            conn=DriverManager.getConnection(url,id,pw);              
-                            stmt = conn.createStatement();
-                            String query_str2 = "select distinct caseid from "+manuf+" order by caseid asc";
-                            ResultSet rs2=stmt.executeQuery(query_str2);
-									 	 %>
-	                                
-                                			
-    <center>
-    
-  
-                               
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
                      
                 <!-- /.col-lg-6 -->
             </div>
