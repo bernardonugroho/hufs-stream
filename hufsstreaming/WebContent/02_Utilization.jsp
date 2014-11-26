@@ -59,7 +59,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+				<a class="navbar-brand" href="MainPage.jsp">SMPAS</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -253,7 +253,7 @@
 								</span>
 							</div> <!-- /input-group -->
 						</li>
-						<li><a class="active" href="index(main).jsp"><i
+						<li><a class="active" href="MainPage.jsp"><i
 								class="fa fa-table fa-fw"></i> Home</a></li>
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Dashboard<span class="fa arrow"></span></a>
