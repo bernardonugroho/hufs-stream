@@ -94,7 +94,7 @@
                         <li class="active">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                               <li><a href="01_BasicChart.jsp">Bar Charts</a></li>
+                               <li><a href="01_BasicChart.jsp">Basic Charts</a></li>
 								<li><a href="02_Utilization.jsp">Utilization Charts</a></li>
 								<li><a href="03_Annotation.jsp">Annotation Charts</a></li>
 							</ul> <!-- /.nav-second-level --> <!-- <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
