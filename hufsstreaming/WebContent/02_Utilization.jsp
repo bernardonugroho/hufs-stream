@@ -66,7 +66,7 @@
 			<ul class="nav navbar-top-links navbar-right">
 				<li class="dropdown">
 						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+						<li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i>
 								Logout</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
