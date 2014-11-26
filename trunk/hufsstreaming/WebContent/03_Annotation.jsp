@@ -58,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">SMPES</a>
+                <a class="navbar-brand" href="MainPage.jsp">SMPAS</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -287,7 +287,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                            <a href="MainPage.jsp"><i class="fa fa-table fa-fw"></i> Home</a>
                         </li>
                         <li class="active">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard<span class="fa arrow"></span></a>
